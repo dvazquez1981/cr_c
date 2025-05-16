@@ -14,9 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//No help, variable specified on the command line.
-CCACHE_ENABLE:UNINITIALIZED=0
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/home/diego/.espressif/tools/riscv32-esp-elf/esp-2022r1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-addr2line
 
@@ -582,8 +579,6 @@ _Python3_EXECUTABLE:INTERNAL=/home/diego/.espressif/python_env/idf5.0_py3.11_env
 //Python3 Properties
 _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;11;2;32;;;/usr/lib/python3.11;/usr/lib/python3.11;/home/diego/.espressif/python_env/idf5.0_py3.11_env/lib/python3.11/site-packages;/home/diego/.espressif/python_env/idf5.0_py3.11_env/lib/python3.11/site-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=c1538578e7bf4a83b3a516c9a48b7e2f
-//Interpreter reason failure
-_Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
 
