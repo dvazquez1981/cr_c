@@ -59,6 +59,7 @@ static bool mqtt_ready = false;
 static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data);
 
 static bool uart_instalado_modem = false;
+static bool uart_instalado_r232 = false;
 
 static bool uart_modem_init()
 {
@@ -118,9 +119,14 @@ static bool uart_rs232_init()
 
 
     };
-    esp_err_t err;
-     ESP_LOGI(TAG_UART_RS232, "Iniciacizacion UART rs232");
-     uart_driver_delete(UART_RS232_NUM);
+     esp_err_t err;
+
+    if (uart_instalado_r232) {
+        uart_driver_delete(UART_RS232_NUM);
+        ESP_LOGI(TAG_UART_RS232, "Iniciacizacion UART rs232");
+        uart_instalado_r232= false;
+    }
+    
     // UART para RS232
     err = uart_param_config(UART_RS232_NUM, &uart_config);
     if (err != ESP_OK) {
@@ -142,7 +148,7 @@ static bool uart_rs232_init()
     }
    
     ESP_LOGI(TAG_UART_RS232 , "Uart RS232 inicializada");
-
+    uart_instalado_r232 = true;
     return true;
 }
 
