@@ -1,0 +1,1 @@
+ninja: error: '/home/diego/esp/esp-idf/components/esp_wifi/lib/esp32c3/libcoexist.a', needed by 'cr_c.elf', missing and no known rule to make it

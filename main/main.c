@@ -10,6 +10,9 @@
 #include "esp_flash.h"
 #include "esp_system.h"
 #include "esp_log.h"
+#include "esp_http_client.h"
+#include "esp_netif.h"
+
 
 #include "driver/uart.h"
 #include "mqtt_client.h"
@@ -26,11 +29,12 @@ static const char *TAG_UART_RS232 = "UART_RS232";
 #define UART_MODEM_NUM     UART_NUM_1
 #define UART_RS232_NUM     UART_NUM_0
 
-#define UART_MODEM_TX_PIN 4
-#define UART_MODEM_RX_PIN 5
+#define UART_MODEM_TX_PIN 2
+#define UART_MODEM_RX_PIN 3
 
-#define UART_RS232_TX_PIN  10   // UART0 TX
-#define UART_RS232_RX_PIN  9    // UART0 RX       
+
+#define UART_RS232_TX_PIN  1    // UART0 TX
+#define UART_RS232_RX_PIN  3    // UART0 RX       
 
 #define INTENTOSCONEXION 3
 
@@ -40,9 +44,9 @@ static const char *TAG_UART_RS232 = "UART_RS232";
 #define COLA_TAMANO 10
 
 // APN 
-const char *apn = "wap.gprs.unifon.com.ar";
-const char *gprsUser = "wap";
-const char *gprsPass = "wap";
+const char *apn = "igprs.claro.com.ar";
+const char *gprsUser = "";
+const char *gprsPass = "";
 //MQTT
 const char *mqttUri =       "mqtt://broker.hivemq.com";
 const char *mqttTopicData = "dnv/contador1/transito";
@@ -64,42 +68,46 @@ static bool uart_instalado_r232 = false;
 static bool uart_modem_init()
 {
 
-
-
     if (uart_instalado_modem) {
         uart_driver_delete(UART_MODEM_NUM);
         uart_instalado_modem= false;
     }
 
     uart_config_t uart_config = {
-        .baud_rate = 57600,
+        .baud_rate = 9600,
         .data_bits = UART_DATA_8_BITS,
-        .parity = UART_PARITY_DISABLE,
-        .stop_bits = UART_STOP_BITS_1,
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
-        .source_clk = UART_SCLK_APB,
+        .parity    = UART_PARITY_DISABLE,
+        .stop_bits  = UART_STOP_BITS_1,
+        .flow_ctrl  = UART_HW_FLOWCTRL_DISABLE,
+        .source_clk = UART_SCLK_APB
     };
 
-    esp_err_t err = uart_param_config(UART_MODEM_NUM, &uart_config);
+
+    esp_err_t err; 
+    err = uart_driver_install(UART_MODEM_NUM, BUF_SIZE * 2, 0, 0, NULL, 0);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG_UART_MODEM, "Error en uart_driver_install: %s", esp_err_to_name(err));
+        return false;
+    }
+    
+    ESP_LOGI(TAG_UART_MODEM, "uart_driver_install OK");
+
+     err = uart_param_config(UART_MODEM_NUM, &uart_config);
     if (err != ESP_OK) {
         ESP_LOGE(TAG_UART_MODEM, "Error en uart_param_config: %s", esp_err_to_name(err));
         return false;
     }
-    ESP_LOGI(TAG_UART_MODEM, "paso uart_param_config");
+    ESP_LOGI(TAG_UART_MODEM, "uart_param_config OK");
     err = uart_set_pin(UART_MODEM_NUM, UART_MODEM_TX_PIN, UART_MODEM_RX_PIN,
                        UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
     if (err != ESP_OK) {
         ESP_LOGE(TAG_UART_MODEM, "Error en uart_set_pin: %s", esp_err_to_name(err));
         return false;
     }
-     ESP_LOGI(TAG_UART_MODEM, "paso uart_set_pin");
-    err = uart_driver_install(UART_MODEM_NUM, BUF_SIZE * 2, 0, 0, NULL, 0);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG_UART_MODEM, "Error en uart_driver_install: %s", esp_err_to_name(err));
-        return false;
-    }
-
-    uart_instalado_modem= true;
+     
+     ESP_LOGI(TAG_UART_MODEM, "uart_set_pin OK");   
+    
+     uart_instalado_modem= true;
 
     ESP_LOGI(TAG_UART_MODEM, "UART MODEM inicializada");
     return true;
@@ -126,7 +134,14 @@ static bool uart_rs232_init()
         ESP_LOGI(TAG_UART_RS232, "Iniciacizacion UART rs232");
         uart_instalado_r232= false;
     }
-    
+     
+    err = uart_driver_install(UART_RS232_NUM, BUF_SIZE * 2, 0, 0, NULL, 0);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG_UART_RS232  , "Error en uart_driver_install RS232: %s", esp_err_to_name(err));
+         return false;
+    }
+   
+    ESP_LOGI(TAG_UART_RS232, "uart_driver_install OK");
     // UART para RS232
     err = uart_param_config(UART_RS232_NUM, &uart_config);
     if (err != ESP_OK) {
@@ -134,19 +149,17 @@ static bool uart_rs232_init()
          return false;
     }
 
+    ESP_LOGI(TAG_UART_RS232, "uart_driver_install OK");
+
     err = uart_set_pin(UART_RS232_NUM,UART_RS232_TX_PIN , UART_RS232_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 
     if (err != ESP_OK) {
         ESP_LOGE(TAG_UART_RS232  , "Error en uart_set_pin RS232: %s", esp_err_to_name(err));
          return false;
     }
-
-    err = uart_driver_install(UART_RS232_NUM, BUF_SIZE * 2, 0, 0, NULL, 0);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG_UART_RS232  , "Error en uart_driver_install RS232: %s", esp_err_to_name(err));
-         return false;
-    }
-   
+    
+    ESP_LOGI(TAG_UART_RS232, "uart_set_pin OK");
+  
     ESP_LOGI(TAG_UART_RS232 , "Uart RS232 inicializada");
     uart_instalado_r232 = true;
     return true;
@@ -164,44 +177,51 @@ static bool uart_init()
     return true;
 }
 
-static bool read_response_ok() {
-    uint8_t buf[UART_BUF_SIZE] = {0};
-    int len = uart_read_bytes(UART_RS232_NUM, buf, sizeof(buf) - 1, pdMS_TO_TICKS(UART_TIMEOUT_MS));
 
-    if (len > 0) {
-        buf[len] = '\0';  
-        ESP_LOGI(TAG_UART_RS232, "Respuesta UART: %s", (char *)buf);
+// Enviar comando 
 
-        if (strstr((char *)buf, "OK") != NULL) {
-            return true;
-        } else {
-            ESP_LOGW(TAG_UART_RS232 , "No se encontró OK en la respuesta");
-            return false;
+static void send_at_command(const char* t,uart_port_t un, const char *cmd) {
+    // Añadir terminación CR+LF si no está
+    char cmd_with_crlf[128];
+    snprintf(cmd_with_crlf, sizeof(cmd_with_crlf), "%s\r\n", cmd);
+    uart_write_bytes(un, cmd_with_crlf, strlen(cmd_with_crlf));
+    ESP_LOGI(t, "Comando enviado: %s", cmd_with_crlf);
+}
+
+
+
+
+
+static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,const char* t,uart_port_t un) {
+    // Limpiar buffer UART antes de enviar comando
+    uart_flush(un);
+
+  
+    send_at_command(t,un,cmd);
+
+    char resp[128] = {0};
+    size_t len = 0;
+    uint32_t start_tick = xTaskGetTickCount();
+
+    while ((xTaskGetTickCount() - start_tick) < pdMS_TO_TICKS(timeout_ms)) {
+        int r = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)(resp + len), sizeof(resp) - len - 1, pdMS_TO_TICKS(100));
+        if (r > 0) {
+            len += r;
+            resp[len] = '\0';
+
+            if (strstr(resp, "OK") != NULL) {
+                ESP_LOGI(t, "Respuesta OK recibida: %s", resp);
+                return true;
+            }
+            if (strstr(resp, "ERROR") != NULL) {
+                ESP_LOGE(t, "Respuesta ERROR recibida: %s", resp);
+                return false;
+            }
         }
-    } else {
-        ESP_LOGE(TAG_UART_RS232, "No se recibió respuesta por UART");
-        return false;
     }
-}
-    
-// Enviar comando AT al módem
-static void send_at_command(const char *cmd)
-{
-    uart_write_bytes(UART_MODEM_NUM, cmd, strlen(cmd));
-    uart_write_bytes(UART_MODEM_NUM, "\r\n", 2);
-    ESP_LOGI(TAG_UART_MODEM, "mandó el comando AT : %s", cmd);
-}
 
-
-static bool send_at_command_and_wait_ok(const char *cmd) {
-    send_at_command(cmd);  
-    if (read_response_ok()) {
-        ESP_LOGI(TAG_UART_MODEM , "Comando AT exitoso");
-        return true;
-    } else {
-        ESP_LOGE(TAG_UART_MODEM , "Comando AT falló");
-        return false;
-}
+    ESP_LOGE(t, "Timeout esperando OK o ERROR: %s", resp);
+    return false;
 }
 
 static void encolar(char* msg)
@@ -214,7 +234,58 @@ static void encolar(char* msg)
             }
     }
 }
+static bool is_netif_ready(void) {
+    esp_netif_t* netif = esp_netif_get_handle_from_ifkey("GPRS_IF_KEY"); // Reemplazá por tu nombre
+    if (netif == NULL) {
+        ESP_LOGW(TAG, "Netif no encontrado");
+        return false;
+    }
 
+    esp_netif_ip_info_t ip_info;
+    if (esp_netif_get_ip_info(netif, &ip_info) != ESP_OK) {
+        ESP_LOGW(TAG, "No se pudo obtener IP");
+        return false;
+    }
+
+    // IP válida no es 0.0.0.0
+    if (ip_info.ip.addr == 0) {
+        ESP_LOGW(TAG, "IP no asignada");
+        return false;
+    }
+
+    // Además chequeá que el netif esté "up"
+    if (!esp_netif_is_netif_up(netif)) {
+        ESP_LOGW(TAG, "Netif no está UP");
+        return false;
+    }
+
+    return true;
+}
+
+static bool  check_internet_http() {
+
+      if (!is_netif_ready()) {
+        ESP_LOGW(TAG, "Red no lista, no se prueba HTTP");
+        return false;
+    }
+
+    esp_http_client_config_t config = {
+        .url = "http://clients3.google.com/generate_204",
+        .method = HTTP_METHOD_GET,
+        .timeout_ms = 5000,
+    };
+    esp_http_client_handle_t client = esp_http_client_init(&config);
+    esp_err_t err = esp_http_client_perform(client);
+
+    if (err == ESP_OK) {
+        int status = esp_http_client_get_status_code(client);
+        esp_http_client_cleanup(client);
+        return (status == 204);  // 204 indica éxito y sin contenido
+    } else {
+        esp_http_client_cleanup(client);
+        return false;
+    }
+}
 // Tarea para leer respuestas del RS232 y ponerlas en cola
 static void rs232_lectura_tarea(void *arg)
 {
@@ -320,7 +391,7 @@ static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int3
 // Inicializar MQTT y registrar evento
 static bool mqtt_app_init(void)
 {
-    esp_mqtt_client_config_t mqtt_cfg = {
+  esp_mqtt_client_config_t mqtt_cfg = {
         .broker.address.uri = mqttUri,
     };
 
@@ -332,28 +403,37 @@ static bool mqtt_app_init(void)
 
     esp_err_t err;
 
-    err = esp_mqtt_client_start(mqtt_client);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG_MQTT, "Error al iniciar el cliente MQTT: 0x%x", err);
-        return false;
-    }
-
+    // Registrar manejador antes de iniciar
     err = esp_mqtt_client_register_event(mqtt_client, ESP_EVENT_ANY_ID, mqtt_event_manejador, NULL);
     if (err != ESP_OK) {
         ESP_LOGE(TAG_MQTT, "Error al registrar el manejador de eventos MQTT: 0x%x", err);
+        esp_mqtt_client_destroy(mqtt_client);
+        mqtt_client = NULL;
         return false;
     }
-return true;
+
+    // Iniciar cliente MQTT
+    err = esp_mqtt_client_start(mqtt_client);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG_MQTT, "Error al iniciar el cliente MQTT: 0x%x", err);
+        esp_mqtt_client_destroy(mqtt_client);
+        mqtt_client = NULL;
+        return false;
+    }
+
+    ESP_LOGI(TAG_MQTT, "Cliente MQTT iniciado correctamente");
+    return true;
 }
 
 static bool gprs_is_connected()
-{
+{   
+ 
     ESP_LOGI(TAG_GPRS, "Enviando comando AT+CIPSTATUS para verificar estado GPRS...");
-    send_at_command("AT+CIPSTATUS");
+    send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSTATUS");
     vTaskDelay(pdMS_TO_TICKS(500));
 
     uint8_t buf[128] = {0};
-    int len = uart_read_bytes(UART_MODEM_NUM, buf, sizeof(buf) - 1, pdMS_TO_TICKS(1000));
+    int len = uart_read_bytes(UART_MODEM_NUM, buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
     if (len > 0) {
         buf[len] = '\0';
         ESP_LOGI(TAG_GPRS, "Respuesta AT+CIPSTATUS: %s", (char *)buf);
@@ -378,71 +458,98 @@ static bool gprs_is_connected()
 
 static bool gprs_connect()
 {
-    ESP_LOGI(TAG_GPRS, "Chequeando registro en red con AT+CREG?...");
-    send_at_command("AT+CREG?");
+    ESP_LOGI(TAG_GPRS, "Verificando comunicación con AT...");
+    if (!send_at_command_and_wait_ok("AT",1000,TAG_GPRS,UART_MODEM_NUM)) {
+        ESP_LOGE(TAG_GPRS, "Error: el módulo no responde a AT");
+        return false;
+    }
+
+    ESP_LOGI(TAG_GPRS, "Verificando estado de SIM con AT+CPIN?...");
+    uart_flush(UART_MODEM_NUM);
+    send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CPIN?");
     vTaskDelay(pdMS_TO_TICKS(500));
-
-    uint8_t buf[64] = {0};
-    int len = uart_read_bytes(UART_MODEM_NUM, buf, sizeof(buf) - 1, pdMS_TO_TICKS(1000));
+    char buf[64] = {0};
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
     if (len <= 0) {
-        ESP_LOGE(TAG_GPRS, "No se recibió respuesta al consultar registro de red");
+        ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CPIN?");
         return false;
     }
-    buf[len] = '\0';
-    ESP_LOGI(TAG_GPRS, "Respuesta AT+CREG?: %s", (char*)buf);
+    buf[len] = 0;
+    if (strstr(buf, "READY") == NULL) {
+        ESP_LOGE(TAG_GPRS, "SIM no lista o no detectada: %s", buf);
+        return false;
+    }
 
-    if (!(strstr((char*)buf, "+CREG: 0,1") || strstr((char*)buf, "+CREG: 0,5"))) {
-        ESP_LOGW(TAG_GPRS, "No registrado en red móvil");
+    ESP_LOGI(TAG_GPRS, "Chequeando calidad de señal con AT+CSQ...");
+    uart_flush(UART_MODEM_NUM);
+    send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CSQ");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    memset(buf, 0, sizeof(buf));
+    len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    if (len <= 0) {
+        ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CSQ");
         return false;
     }
-    ESP_LOGI(TAG_GPRS, "Registrado en red móvil");
+    buf[len] = 0;
+    if (strstr(buf, "+CSQ") == NULL) {
+        ESP_LOGE(TAG_GPRS, "No se pudo obtener calidad de señal: %s", buf);
+        return false;
+    }
+    ESP_LOGI(TAG_GPRS, "Calidad de señal: %s", buf);
 
-    ESP_LOGI(TAG_GPRS, "Enviando AT para probar comunicación...");
-    if (!send_at_command_and_wait_ok("AT")) {
-        ESP_LOGE(TAG_GPRS, "Error: no responde comando AT");
+    ESP_LOGI(TAG_GPRS, "Verificando registro en red con AT+CREG?...");
+    uart_flush(UART_MODEM_NUM);
+    send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CREG?");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    memset(buf, 0, sizeof(buf));
+    len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    if (len <= 0) {
+        ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CREG?");
         return false;
     }
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    buf[len] = 0;
+    if (!(strstr(buf, "+CREG: 0,1") || strstr(buf, "+CREG: 0,5"))) {
+        ESP_LOGW(TAG_GPRS, "No registrado en red móvil: %s", buf);
+        return false;
+    }
 
     ESP_LOGI(TAG_GPRS, "Activando GPRS con AT+CGATT=1...");
-    if (!send_at_command_and_wait_ok("AT+CGATT=1")) {
+    if (!send_at_command_and_wait_ok("AT+CGATT=1", 2000,TAG_GPRS,UART_MODEM_NUM)) {
         ESP_LOGE(TAG_GPRS, "Error: no se pudo activar GPRS (AT+CGATT=1)");
         return false;
     }
-    vTaskDelay(pdMS_TO_TICKS(1000));
 
     char apn_cmd[64];
     snprintf(apn_cmd, sizeof(apn_cmd), "AT+CSTT=\"%s\",\"%s\",\"%s\"", apn, gprsUser, gprsPass);
     ESP_LOGI(TAG_GPRS, "Configurando APN con: %s", apn_cmd);
-    if (!send_at_command_and_wait_ok(apn_cmd)) {
+    if (!send_at_command_and_wait_ok(apn_cmd, 2000,TAG_GPRS,UART_MODEM_NUM)) {
         ESP_LOGE(TAG_GPRS, "Error: no se pudo configurar APN");
         return false;
     }
-    vTaskDelay(pdMS_TO_TICKS(1000));
 
     ESP_LOGI(TAG_GPRS, "Iniciando conexión con AT+CIICR...");
-    if (!send_at_command_and_wait_ok("AT+CIICR")) {
+    if (!send_at_command_and_wait_ok("AT+CIICR", 5000,TAG_GPRS,UART_MODEM_NUM)) {
         ESP_LOGE(TAG_GPRS, "Error: no se pudo iniciar conexión GPRS (AT+CIICR)");
         return false;
     }
-    vTaskDelay(pdMS_TO_TICKS(3000));
 
     ESP_LOGI(TAG_GPRS, "Obteniendo IP con AT+CIFSR...");
-    send_at_command("AT+CIFSR");
+    uart_flush(UART_MODEM_NUM);
+    send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIFSR");
     vTaskDelay(pdMS_TO_TICKS(1000));
     memset(buf, 0, sizeof(buf));
-    len = uart_read_bytes(UART_MODEM_NUM, buf, sizeof(buf) - 1, pdMS_TO_TICKS(1000));
+    len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1000));
     if (len <= 0) {
-        ESP_LOGE(TAG_GPRS, "No se pudo obtener IP (AT+CIFSR)");
+        ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIFSR");
         return false;
     }
-    buf[len] = '\0';
-    ESP_LOGI(TAG_GPRS, "IP obtenida: %s", (char*)buf);
+    buf[len] = 0;
+    if (strchr(buf, '.') == NULL) {
+        ESP_LOGE(TAG_GPRS, "IP obtenida inválida o no disponible: %s", buf);
+        return false;
+    }
 
-    if (strchr((char*)buf, '.') == NULL) {  // no hay punto, no es IP válida
-        ESP_LOGE(TAG_GPRS, "IP obtenida inválida");
-        return false;
-    }
+    ESP_LOGI(TAG_GPRS, "IP obtenida: %s", buf);
     ESP_LOGI(TAG_GPRS, "Conexión GPRS establecida correctamente");
     return true;
 }
@@ -451,12 +558,14 @@ static void gprs_mqtt_task(void *pvParameters)
 {
     bool mqtt_iniciado = false;
     bool gprs_conectado = false;
+    
+    //gprs_connect();
 
     while (1) {
         // Verificar estado de conexión GPRS
         gprs_conectado = gprs_is_connected();
 
-        if (!gprs_conectado) {
+        if (gprs_conectado==false) {
             int intento = 0;
             mqtt_iniciado = false;
 
@@ -468,7 +577,7 @@ static void gprs_mqtt_task(void *pvParameters)
                 intento++;
                 ESP_LOGW(TAG_GPRS, "Intento %d fallido en conexión GPRS. Esperando 5 segundos...", intento);
                 vTaskDelay(pdMS_TO_TICKS(5000));
-            }
+              }
 
             // Si se agotaron intentos
             if (intento == INTENTOSCONEXION) {
@@ -478,8 +587,15 @@ static void gprs_mqtt_task(void *pvParameters)
             }
         }
 
+
+        if (check_internet_http()) {
+        ESP_LOGI(TAG, "Conexión a internet OK");
+         } else {
+          ESP_LOGW(TAG, "GPRS conectado, pero sin acceso a internet");
+        }
+
         // Si hay conexión GPRS y MQTT no iniciado, iniciar MQTT
-        if (gprs_conectado && !mqtt_iniciado) {
+      /* if (gprs_conectado && !mqtt_iniciado) {
             ESP_LOGI(TAG_MQTT, "Inicializando MQTT...");
             if (mqtt_app_init() == 0) {
                 mqtt_iniciado = true;
@@ -490,13 +606,13 @@ static void gprs_mqtt_task(void *pvParameters)
             }
         }
 
-        // Si MQTT está listo y la cola de datos no está vacía, enviar datos
+       // Si MQTT está listo y la cola de datos no está vacía, enviar datos
         if (mqtt_iniciado && mqtt_ready && dataQueue != NULL) {
             enviar_datos_cola_mqtt();
         }
-
+     */ 
         // Esperar un poco para no saturar la CPU
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -522,11 +638,12 @@ void app_main(void)
     
    
       //Iniciar tarea para leer RS232
-     if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
+    if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
       {  
        ESP_LOGE(TAG, "No se pudo crear la tarea rs232_lectura_tarea");
        return;
       }
+    
       //Iniciar tarea para comunicar gprs y mqtt
       if (xTaskCreate(gprs_mqtt_task, "gprs_mqtt_task", 8192, NULL, 9, NULL)!= pdPASS)
       {  
