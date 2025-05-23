@@ -12,7 +12,7 @@
  */
 /*
  * Automatically generated file. DO NOT EDIT.
- * Espressif IoT Development Framework (ESP-IDF) Configuration Header
+ * Espressif IoT Development Framework (ESP-IDF) 5.2.0 Configuration Header
  */
        
 /* List of deprecated options */
@@ -28,6 +28,7 @@ _esp_memprot_prefetch_pad_size = 16;
 /* Memory alignment size for PMS */
 _esp_memprot_align_size = 512;
 _esp_mmu_block_size = (0x10000);
+    /* rtc timer data (s_rtc_timer_retain_mem, see esp_clk.c files). For rtc_timer_data_in_rtc_mem section. */
 /**
  * physical memory is mapped twice to the vritual address (IRAM and DRAM).
  * `I_D_SRAM_OFFSET` is the offset between the two locations of the same physical memory
@@ -40,7 +41,7 @@ MEMORY
    *  are connected to the data port of the CPU and eg allow byte-wise access.
    */
   /* IRAM for PRO CPU. */
-  iram0_0_seg (RX) : org = (0x4037C000 + 0x4000), len = 0x403CF600 - (0x4037C000 - 0x3FC7C000) - (0x3FC7C000 + 0x4000)
+  iram0_0_seg (RX) : org = (0x4037C000 + 0x4000), len = 0x403CE710 - (0x4037C000 - 0x3FC7C000) - (0x3FC7C000 + 0x4000)
   /* Flash mapped instruction data */
   iram0_2_seg (RX) : org = 0x42000020, len = 0x800000-0x20
   /**
@@ -54,16 +55,23 @@ MEMORY
    * Shared data RAM, excluding memory reserved for ROM bss/data/stack.
    * Enabling Bluetooth & Trace Memory features in menuconfig will decrease the amount of RAM available.
    */
-  dram0_0_seg (RW) : org = (0x3FC7C000 + 0x4000), len = 0x403CF600 - (0x4037C000 - 0x3FC7C000) - (0x3FC7C000 + 0x4000)
+  dram0_0_seg (RW) : org = (0x3FC7C000 + 0x4000), len = 0x403CE710 - (0x4037C000 - 0x3FC7C000) - (0x3FC7C000 + 0x4000)
   /* Flash mapped constant data */
   drom0_0_seg (R) : org = 0x3C000020, len = 0x800000-0x20
   /* (See iram0_2_seg for meaning of 0x20 offset in the above.) */
   /**
    * RTC fast memory (executable). Persists over deep sleep.
    */
-  rtc_iram_seg(RWX) : org = 0x50000000, len = 0x2000 - 0
+  rtc_iram_seg(RWX) : org = 0x50000000, len = 0x2000 - (0 + (24))
+  /* We reduced the size of rtc_iram_seg by RESERVE_RTC_MEM value.
+     It reserves the amount of RTC fast memory that we use for this memory segment.
+     This segment is intended for keeping:
+       - (lower addr) rtc timer data (s_rtc_timer_retain_mem, see esp_clk.c files).
+       - (higher addr) bootloader rtc data (s_bootloader_retain_mem, when a Kconfig option is on).
+     The aim of this is to keep data that will not be moved around and have a fixed address.
+  */
+  rtc_reserved_seg(RW) : org = 0x50000000 + 0x2000 - (0 + (24)), len = (0 + (24))
 }
-_static_data_end = _bss_end;
 /* Heap ends at top of dram0_0_seg */
 _heap_end = 0x40000000;
 _data_seg_org = ORIGIN(rtc_data_seg);

@@ -1,0 +1,1033 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bec8h ( 48840) map[0m
+[0;32mI (106) esp_image: segment 1: paddr=0001bef0 vaddr=3fc8c200 size=0125ch (  4700) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001d154 vaddr=40380000 size=02ec4h ( 11972) load[0m
+[0;32mI (118) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d4cch (120012) map[0m
+[0;32mI (143) esp_image: segment 4: paddr=0003d4f4 vaddr=40382ec4 size=09140h ( 37184) load[0m
+[0;32mI (153) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (154) boot: Disabling RNG early entropy source...[0m
+[0;32mI (165) cpu_start: Unicore app[0m
+[0;32mI (174) cpu_start: Pro cpu start user code[0m
+[0;32mI (174) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (174) cpu_start: Application information:[0m
+[0;32mI (177) cpu_start: Project name:     cr_c[0m
+[0;32mI (182) cpu_start: App version:      10fbb67-dirty[0m
+[0;32mI (187) cpu_start: Compile time:     May 23 2025 11:38:48[0m
+[0;32mI (194) cpu_start: ELF file SHA256:  9cecf9e3a212fb3f...[0m
+[0;32mI (199) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (204) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (209) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (214) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (218) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (226) heap_init: At 3FC8E410 len 00031BF0 (198 KiB): RAM[0m
+[0;32mI (232) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (239) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (246) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (253) spi_flash: detected chip: generic[0m
+[0;32mI (257) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (281) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (288) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+[0;32mI (288) APP: Inicio Aplicación...[0m
+[0;32mI (298) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (298) UART_MODEM: uart_param_config OK[0m
+[0;32mI (308) UART_MODEM: uart_s[0;32mI (318) UART_RS232: uart_driver_install OK[0m
+[0;32mI (318) UART_RS232: uart_set_pin OK[0m
+[0;32mI (318) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (318) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (328) APP: Se creo la cola[0m
+[0;32mI (328) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (338) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (338) main_task: Returned from app_main()[0m
+[0;32mI (2338) GPRS: Respuesta AT+CIPSTATUS: [0m
+[0;33mW (2338) GPRS: Estado inesperado o desconectado: [0m
+[0;32mI (2338) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (2338) GPRS: Comando enviado: AT
+[0m
+[0;32mI (2468) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (2468) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (2468) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (4468) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (4468) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (6468) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (6468) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (6468) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (8468) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8468) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8608) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (8608) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8608) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8808) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (8808) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8808) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (8818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (10818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (10818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (11818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (11818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (13818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (13818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (14818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (14818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (16818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (16818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (17818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (17818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (19818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (19818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (20818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (20818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (22818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (22818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (23818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (23818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (25818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (25818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (26818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (26818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (28818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (28818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (29818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (29818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (31818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (31818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (32818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (32818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (34818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (34818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (35818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (35818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (37818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (37818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (38818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (38818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (40818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (40818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (41818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (41818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (43818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (43818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (44818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (44818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (46818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (46818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (47818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (47818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (49818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (49818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (50818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (50818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (52818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (52818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (53818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (53818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (55818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (55818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (56818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (56818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (58818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (58818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (59818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (59818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (61818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (61818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (62818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (62818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (64818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (64818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (65818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (65818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (67818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (67818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (68818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (68818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (70818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (70818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (71818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (71818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (73818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (73818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (74818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (74818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (76818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (76818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (77818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (77818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (79818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (79818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (80818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (80818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (82818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (82818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (83818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (83818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (85818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (85818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (86818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (86818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (88818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (88818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (89818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (89818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (91818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (91818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (92818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (92818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (94818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (94818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (95818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (95818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (97818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (97818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (98818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (98818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (100818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (100818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (101818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (101818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (103818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (103818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (104818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (104818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (106818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (106818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (107818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (107818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (109818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (109818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (110818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (110818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (112818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (112818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (113818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (113818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (115818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (115818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (116818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (116818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (118818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (118818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (119818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (119818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (121818) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (121818) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;32mI (122818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (122818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (124818) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;32mI (124818) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (124818) GPRS: Comando enviado: AT
+[0m
+[0;31mE (125818) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (125818) GPRS: Error: el módulo no responde a AT[0m
+[0;32mI (125818) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (125818) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (127828) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (127828) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (132828) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (132828) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (134828) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (134828) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (139828) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (139828) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (141828) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (141828) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (146828) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (146828) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (148828) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;31mE (148828) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (178828) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (178828) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (180828) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;32mI (180828) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (180828) GPRS: Comando enviado: AT
+[0m
+[0;31mE (181828) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (181828) GPRS: Error: el módulo no responde a AT[0m
+[0;32mI (181828) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (181828) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (183838) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (183838) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (188838) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (188838) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (190838) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (190838) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (195838) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (195838) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (197838) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (197838) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (202838) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (202838) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (204838) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;31mE (204838) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (234838) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (234838) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (236838) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;32mI (236838) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (236838) GPRS: Comando enviado: AT
+[0m
+[0;31mE (237838) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (237838) GPRS: Error: el módulo no responde a AT[0m
+[0;32mI (237838) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (237838) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (239848) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (239848) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (244848) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (244848) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (246848) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (246848) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (251848) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (251848) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (253848) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (253848) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (258848) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (258848) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (260848) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;31mE (260848) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (290848) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (290848) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (292848) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;32mI (292848) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (292848) GPRS: Comando enviado: AT
+[0m
+[0;31mE (293848) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (293848) GPRS: Error: el módulo no responde a AT[0m
+[0;32mI (293848) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (293848) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (295858) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (295858) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (300858) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (300858) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (302858) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (302858) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (307858) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (307858) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (309858) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (309858) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (314858) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (314858) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (316858) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;31mE (316858) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (346858) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (346858) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (348858) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;32mI (348858) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (348858) GPRS: Comando enviado: AT
+[0m
+[0;31mE (349858) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (349858) GPRS: Error: el módulo no responde a AT[0m
+[0;32mI (349858) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (349858) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (351868) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (351868) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (356868) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (356868) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (358868) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (358868) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (363868) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (363868) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (365868) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;33mW (365868) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (370868) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (370868) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (372868) GPRS: No se recibió respuesta del módem tras enviar AT+CIPSTATUS[0m
+[0;31mE (372868) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (402868) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (402868) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (404868) GPRS: Respuesta AT+CIPSTATUS: [0m
+[0;33mW (404868) GPRS: Estado inesperado o desconectado: [0m
+[0;32mI (404868) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (404868) GPRS: Comando enviado: AT
+[0m
+[0;32mI (404998) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (404998) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (404998) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (406998) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (406998) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (408998) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (408998) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (408998) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (410998) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (410998) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (411138) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (411138) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (411138) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (411328) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
+OK
+[0m
+[0;32mI (411328) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (411328) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (412138) GPRS: Respuesta OK recibida: AT+CIICR
+OK
+[0m
+[0;32mI (412138) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (412138) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (414138) GPRS: IP obtenida: AT+CIFSR
+10.137.183.41
+[0m
+[0;32mI (414138) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (415138) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org","1883"
+[0m
+[0;32mI (415348) GPRS: Respuesta OK recibida: AT+CIPSTART="TCP","test.mosquitto.org","1883"
+OK
+[0m
+[0;32mI (416348) GPRS: Comando enviado: AT+CIPSEND=3
+[0m
+[0;31mE (416498) GPRS: Respuesta ERROR recibida: AT+CIPSEND=3
+ERROR
+[0m
+[0;32mI (416998) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (416998) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (418998) GPRS: Respuesta AT+CIPSTATUS: ...AT+CIPSTATUS
+OK
+
+STATE: TCP CONNECTING
+[0m
+[0;33mW (418998) GPRS: Estado inesperado o desconectado: ...AT+CIPSTATUS
+OK
+
+STATE: TCP CONNECTING
+[0m
+[0;33mW (418998) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (424008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (424008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (426008) GPRS: Respuesta AT+CIPSTATUS: 
+CONNECT OK
+AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (426008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (427008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (427008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (429008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (429008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (430008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (430008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (432008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (432008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (433008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (433008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (435008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (435008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (436008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (436008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (438008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (438008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (439008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (439008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (441008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (441008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (442008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (442008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (444008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (444008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (445008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (445008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (447008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (447008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (448008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (448008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (450008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (450008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (451008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (451008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (453008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (453008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (454008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (454008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (456008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (456008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (457008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (457008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (459008) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: CONNECT OK
+[0m
+[0;32mI (459008) GPRS: Estado GPRS: CONECTADO (CONNECT OK)[0m
+[0;32mI (460008) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (460008) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (462008) GPRS: Respuesta AT+CIPSTATUS: 
+CLOSED
+AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (462008) GPRS: Estado inesperado o desconectado: 
+CLOSED
+AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;32mI (462008) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (462018) GPRS: Comando enviado: AT
+[0m
+[0;32mI (462148) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (462148) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (462148) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (464148) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (464148) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (466148) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (466148) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (466148) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (468148) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (468148) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (468288) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (468288) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (468288) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (468488) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (468488) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (468488) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (468498) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (470498) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (470498) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (470498) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (475508) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (475508) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (477508) GPRS: Respuesta AT+CIPSTATUS: 
++CMTI: "SM",2
+AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (477508) GPRS: Estado inesperado o desconectado: 
++CMTI: "SM",2
+AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (477518) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (482518) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (482518) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (484518) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (484518) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (484518) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (489528) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (489528) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (491528) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (491528) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;31mE (491528) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (521538) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (521538) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (523538) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (523538) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;32mI (523538) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (523548) GPRS: Comando enviado: AT
+[0m
+[0;32mI (523678) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (523678) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (523678) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (525678) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (525678) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (527678) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (527678) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (527678) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (529678) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (529678) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (529818) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (529818) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (529818) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (530018) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (530018) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (530018) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (530028) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (532028) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (532028) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (532028) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (537038) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (537038) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (539038) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (539038) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (539038) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (544048) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (544048) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (546048) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (546048) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (546048) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
+[0;32mI (551058) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (551058) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (553058) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (553058) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;31mE (553058) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
+[0;32mI (583068) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (583068) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (585068) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;33mW (585068) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
+OK
+
+STATE: TCP CLOSED
+[0m
+[0;32mI (585068) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (585078) GPRS: Comando enviado: AT
+[0m
+[0;32mI (585208) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (585208) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (585208) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (587208) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (587208) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (589208) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (589208) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (589208) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (591208) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (591208) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (591348) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (591348) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (591348) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (591548) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (591548) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (591548) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (591558) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32

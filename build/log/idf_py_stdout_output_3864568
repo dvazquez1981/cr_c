@@ -1,0 +1,2175 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=1ea28h (125480) map[0m
+[0;32mI (118) esp_image: segment 1: paddr=0002ea50 vaddr=3fc8c600 size=013b0h (  5040) load[0m
+[0;32mI (119) esp_image: segment 2: paddr=0002fe08 vaddr=40380000 size=00210h (   528) load[0m
+[0;32mI (124) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=5e6e8h (386792) map[0m
+[0;32mI (193) esp_image: segment 4: paddr=0008e710 vaddr=40380210 size=0c294h ( 49812) load[0m
+[0;32mI (206) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (206) boot: Disabling RNG early entropy source...[0m
+[0;32mI (218) cpu_start: Unicore app[0m
+[0;32mI (227) cpu_start: Pro cpu start user code[0m
+[0;32mI (227) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (227) cpu_start: Application information:[0m
+[0;32mI (230) cpu_start: Project name:     cr_c[0m
+[0;32mI (235) cpu_start: App version:      10fbb67-dirty[0m
+[0;32mI (240) cpu_start: Compile time:     May 23 2025 11:28:16[0m
+[0;32mI (246) cpu_start: ELF file SHA256:  498c9341ca0882b9...[0m
+[0;32mI (252) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (257) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (261) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (266) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (271) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (278) heap_init: At 3FC8F7D0 len 00030830 (194 KiB): RAM[0m
+[0;32mI (284) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (291) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (298) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (306) spi_flash: detected chip: generic[0m
+[0;32mI (309) spi_flash: flash io: dio[0m
+[0;33mW (313) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (327) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (333) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (340) main_task: Started on CPU0[0m
+[0;32mI (340) main_task: Calling app_main()[0m
+[0;32mI (340) APP: Inicio Aplicación...[0m
+[0;32mI (350) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (350) UART_MODEM: uart_param_config OK[0m
+[0;32mI (360) UART_MODEM: uart_s[0;32mI (370) UART_RS232: uart_driver_install OK[0m
+[0;32mI (370) UART_RS232: uart_set_pin OK[0m
+[0;32mI (370) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (370) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (380) APP: Se creo la cola[0m
+[0;32mI (380) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (390) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (390) main_task: Returned from app_main()[0m
+[0;32mI (2390) GPRS: Respuesta AT+CIPSTATUS: [0m
+[0;33mW (2390) GPRS: Estado inesperado o desconectado: [0m
+[0;32mI (2390) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (2390) GPRS: Comando enviado: AT
+[0m
+[0;32mI (2520) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (2520) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (2520) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (4520) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (4520) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (6520) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (6520) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (6520) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (8520) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8520) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8660) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (8660) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8660) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8860) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (8860) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8860) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (8870) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (10870) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (10870) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (10870) APP: Netif no encontrado[0m
+[0;33mW (10870) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (10880) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (11880) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (11880) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (13880) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (13880) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (13880) APP: Netif no encontrado[0m
+[0;33mW (13880) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (13890) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (14890) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (14890) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (16890) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (16890) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (16890) APP: Netif no encontrado[0m
+[0;33mW (16890) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (16900) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (17900) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (17900) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (19900) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (19900) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (19900) APP: Netif no encontrado[0m
+[0;33mW (19900) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (19910) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (20910) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (20910) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (22910) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (22910) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (22910) APP: Netif no encontrado[0m
+[0;33mW (22910) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (22920) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (23920) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (23920) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (25920) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (25920) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (25920) APP: Netif no encontrado[0m
+[0;33mW (25920) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (25930) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (26930) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (26930) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (28930) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (28930) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (28930) APP: Netif no encontrado[0m
+[0;33mW (28930) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (28940) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (29940) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (29940) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (31940) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (31940) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (31940) APP: Netif no encontrado[0m
+[0;33mW (31940) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (31950) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (32950) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (32950) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (34950) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (34950) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (34950) APP: Netif no encontrado[0m
+[0;33mW (34950) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (34960) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (35960) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (35960) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (37960) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (37960) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (37960) APP: Netif no encontrado[0m
+[0;33mW (37960) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (37970) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (38970) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (38970) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (40970) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (40970) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (40970) APP: Netif no encontrado[0m
+[0;33mW (40970) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (40980) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (41980) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (41980) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (43980) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (43980) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (43980) APP: Netif no encontrado[0m
+[0;33mW (43980) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (43990) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (44990) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (44990) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (46990) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (46990) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (46990) APP: Netif no encontrado[0m
+[0;33mW (46990) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (47000) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (48000) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (48000) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (50000) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (50000) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (50000) APP: Netif no encontrado[0m
+[0;33mW (50000) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (50010) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (51010) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (51010) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (53010) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (53010) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (53010) APP: Netif no encontrado[0m
+[0;33mW (53010) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (53020) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (54020) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (54020) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (56020) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (56020) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (56020) APP: Netif no encontrado[0m
+[0;33mW (56020) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (56030) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (57030) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (57030) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (59030) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (59030) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (59030) APP: Netif no encontrado[0m
+[0;33mW (59030) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (59040) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (60040) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (60040) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (62040) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (62040) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (62040) APP: Netif no encontrado[0m
+[0;33mW (62040) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (62050) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (63050) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (63050) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (65050) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (65050) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (65050) APP: Netif no encontrado[0m
+[0;33mW (65050) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (65060) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (66060) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (66060) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (68060) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (68060) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (68060) APP: Netif no encontrado[0m
+[0;33mW (68060) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (68070) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (69070) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (69070) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (71070) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (71070) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (71070) APP: Netif no encontrado[0m
+[0;33mW (71070) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (71080) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (72080) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (72080) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (74080) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (74080) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (74080) APP: Netif no encontrado[0m
+[0;33mW (74080) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (74090) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (75090) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (75090) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (77090) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (77090) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (77090) APP: Netif no encontrado[0m
+[0;33mW (77090) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (77100) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (78100) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (78100) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (80100) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (80100) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (80100) APP: Netif no encontrado[0m
+[0;33mW (80100) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (80110) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (81110) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (81110) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (83110) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (83110) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (83110) APP: Netif no encontrado[0m
+[0;33mW (83110) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (83120) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (84120) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (84120) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (86120) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (86120) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (86120) APP: Netif no encontrado[0m
+[0;33mW (86120) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (86130) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (87130) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (87130) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (89130) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (89130) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (89130) APP: Netif no encontrado[0m
+[0;33mW (89130) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (89140) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (90140) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (90140) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (92140) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (92140) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (92140) APP: Netif no encontrado[0m
+[0;33mW (92140) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (92150) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (93150) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (93150) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (95150) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (95150) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (95150) APP: Netif no encontrado[0m
+[0;33mW (95150) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (95160) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (96160) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (96160) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (98160) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (98160) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (98160) APP: Netif no encontrado[0m
+[0;33mW (98160) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (98170) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (99170) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (99170) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (101170) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (101170) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (101170) APP: Netif no encontrado[0m
+[0;33mW (101170) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (101180) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (102180) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (102180) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (104180) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (104180) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (104180) APP: Netif no encontrado[0m
+[0;33mW (104180) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (104190) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (105190) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (105190) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (107190) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (107190) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (107190) APP: Netif no encontrado[0m
+[0;33mW (107190) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (107200) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (108200) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (108200) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (110200) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (110200) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (110200) APP: Netif no encontrado[0m
+[0;33mW (110200) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (110210) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (111210) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (111210) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (113210) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (113210) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (113210) APP: Netif no encontrado[0m
+[0;33mW (113210) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (113220) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (114220) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (114220) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (116220) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (116220) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (116220) APP: Netif no encontrado[0m
+[0;33mW (116220) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (116230) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (117230) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (117230) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (119230) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (119230) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (119230) APP: Netif no encontrado[0m
+[0;33mW (119230) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (119240) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (120240) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (120240) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (122240) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (122240) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (122240) APP: Netif no encontrado[0m
+[0;33mW (122240) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (122250) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (123250) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (123250) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (125250) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (125250) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (125250) APP: Netif no encontrado[0m
+[0;33mW (125250) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (125260) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (126260) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (126260) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (128260) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (128260) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (128260) APP: Netif no encontrado[0m
+[0;33mW (128260) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (128270) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (129270) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (129270) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (131270) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (131270) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (131270) APP: Netif no encontrado[0m
+[0;33mW (131270) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (131280) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (132280) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (132280) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (134280) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (134280) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (134280) APP: Netif no encontrado[0m
+[0;33mW (134280) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (134290) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (135290) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (135290) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (137290) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (137290) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (137290) APP: Netif no encontrado[0m
+[0;33mW (137290) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (137300) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (138300) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (138300) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (140300) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (140300) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (140300) APP: Netif no encontrado[0m
+[0;33mW (140300) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (140310) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (141310) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (141310) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (143310) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (143310) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (143310) APP: Netif no encontrado[0m
+[0;33mW (143310) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (143320) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (144320) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (144320) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (146320) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (146320) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (146320) APP: Netif no encontrado[0m
+[0;33mW (146320) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (146330) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (147330) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (147330) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (149330) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (149330) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (149330) APP: Netif no encontrado[0m
+[0;33mW (149330) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (149340) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (150340) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (150340) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (152340) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (152340) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (152340) APP: Netif no encontrado[0m
+[0;33mW (152340) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (152350) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (153350) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (153350) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (155350) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (155350) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (155350) APP: Netif no encontrado[0m
+[0;33mW (155350) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (155360) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (156360) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (156360) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (158360) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (158360) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (158360) APP: Netif no encontrado[0m
+[0;33mW (158360) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (158370) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (159370) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (159370) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (161370) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (161370) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (161370) APP: Netif no encontrado[0m
+[0;33mW (161370) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (161380) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (162380) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (162380) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (164380) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (164380) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (164380) APP: Netif no encontrado[0m
+[0;33mW (164380) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (164390) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (165390) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (165390) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (167390) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (167390) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (167390) APP: Netif no encontrado[0m
+[0;33mW (167390) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (167400) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (168400) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (168400) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (170400) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (170400) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (170400) APP: Netif no encontrado[0m
+[0;33mW (170400) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (170410) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (171410) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (171410) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (173410) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (173410) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (173410) APP: Netif no encontrado[0m
+[0;33mW (173410) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (173420) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (174420) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (174420) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (176420) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (176420) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (176420) APP: Netif no encontrado[0m
+[0;33mW (176420) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (176430) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (177430) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (177430) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (179430) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (179430) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (179430) APP: Netif no encontrado[0m
+[0;33mW (179430) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (179440) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (180440) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (180440) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (182440) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (182440) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (182440) APP: Netif no encontrado[0m
+[0;33mW (182440) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (182450) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (183450) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (183450) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (185450) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (185450) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (185450) APP: Netif no encontrado[0m
+[0;33mW (185450) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (185460) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (186460) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (186460) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (188460) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (188460) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (188460) APP: Netif no encontrado[0m
+[0;33mW (188460) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (188470) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (189470) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (189470) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (191470) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (191470) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (191470) APP: Netif no encontrado[0m
+[0;33mW (191470) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (191480) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (192480) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (192480) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (194480) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (194480) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (194480) APP: Netif no encontrado[0m
+[0;33mW (194480) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (194490) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (195490) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (195490) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (197490) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (197490) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (197490) APP: Netif no encontrado[0m
+[0;33mW (197490) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (197500) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (198500) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (198500) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (200500) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (200500) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (200500) APP: Netif no encontrado[0m
+[0;33mW (200500) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (200510) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (201510) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (201510) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (203510) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (203510) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (203510) APP: Netif no encontrado[0m
+[0;33mW (203510) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (203520) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (204520) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (204520) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (206520) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (206520) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (206520) APP: Netif no encontrado[0m
+[0;33mW (206520) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (206530) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (207530) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (207530) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (209530) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (209530) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (209530) APP: Netif no encontrado[0m
+[0;33mW (209530) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (209540) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (210540) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (210540) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (212540) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (212540) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (212540) APP: Netif no encontrado[0m
+[0;33mW (212540) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (212550) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (213550) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (213550) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (215550) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (215550) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (215550) APP: Netif no encontrado[0m
+[0;33mW (215550) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (215560) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (216560) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (216560) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (218560) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (218560) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (218560) APP: Netif no encontrado[0m
+[0;33mW (218560) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (218570) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (219570) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (219570) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (221570) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (221570) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (221570) APP: Netif no encontrado[0m
+[0;33mW (221570) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (221580) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (222580) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (222580) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (224580) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (224580) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (224580) APP: Netif no encontrado[0m
+[0;33mW (224580) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (224590) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (225590) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (225590) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (227590) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (227590) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (227590) APP: Netif no encontrado[0m
+[0;33mW (227590) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (227600) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (228600) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (228600) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (230600) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (230600) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (230600) APP: Netif no encontrado[0m
+[0;33mW (230600) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (230610) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (231610) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (231610) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (233610) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (233610) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (233610) APP: Netif no encontrado[0m
+[0;33mW (233610) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (233620) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (234620) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (234620) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (236620) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (236620) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (236620) APP: Netif no encontrado[0m
+[0;33mW (236620) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (236630) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (237630) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (237630) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (239630) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (239630) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (239630) APP: Netif no encontrado[0m
+[0;33mW (239630) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (239640) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (240640) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (240640) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (242640) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (242640) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (242640) APP: Netif no encontrado[0m
+[0;33mW (242640) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (242650) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (243650) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (243650) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (245650) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (245650) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (245650) APP: Netif no encontrado[0m
+[0;33mW (245650) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (245660) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (246660) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (246660) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (248660) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (248660) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (248660) APP: Netif no encontrado[0m
+[0;33mW (248660) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (248670) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (249670) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (249670) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (251670) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (251670) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (251670) APP: Netif no encontrado[0m
+[0;33mW (251670) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (251680) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (252680) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (252680) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (254680) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (254680) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (254680) APP: Netif no encontrado[0m
+[0;33mW (254680) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (254690) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (255690) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (255690) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (257690) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (257690) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (257690) APP: Netif no encontrado[0m
+[0;33mW (257690) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (257700) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (258700) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (258700) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (260700) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (260700) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (260700) APP: Netif no encontrado[0m
+[0;33mW (260700) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (260710) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (261710) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (261710) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (263710) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (263710) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (263710) APP: Netif no encontrado[0m
+[0;33mW (263710) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (263720) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (264720) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (264720) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (266720) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (266720) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (266720) APP: Netif no encontrado[0m
+[0;33mW (266720) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (266730) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (267730) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (267730) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (269730) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (269730) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (269730) APP: Netif no encontrado[0m
+[0;33mW (269730) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (269740) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (270740) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (270740) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (272740) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (272740) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (272740) APP: Netif no encontrado[0m
+[0;33mW (272740) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (272750) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (273750) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (273750) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (275750) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (275750) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (275750) APP: Netif no encontrado[0m
+[0;33mW (275750) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (275760) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (276760) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (276760) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (278760) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (278760) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (278760) APP: Netif no encontrado[0m
+[0;33mW (278760) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (278770) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (279770) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (279770) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (281770) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (281770) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (281770) APP: Netif no encontrado[0m
+[0;33mW (281770) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (281780) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (282780) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (282780) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (284780) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (284780) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (284780) APP: Netif no encontrado[0m
+[0;33mW (284780) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (284790) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (285790) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (285790) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (287790) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (287790) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (287790) APP: Netif no encontrado[0m
+[0;33mW (287790) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (287800) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (288800) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (288800) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (290800) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (290800) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (290800) APP: Netif no encontrado[0m
+[0;33mW (290800) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (290810) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (291810) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (291810) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (293810) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (293810) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (293810) APP: Netif no encontrado[0m
+[0;33mW (293810) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (293820) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (294820) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (294820) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (296820) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (296820) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (296820) APP: Netif no encontrado[0m
+[0;33mW (296820) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (296830) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (297830) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (297830) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (299830) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (299830) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (299830) APP: Netif no encontrado[0m
+[0;33mW (299830) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (299840) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (300840) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (300840) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (302840) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (302840) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (302840) APP: Netif no encontrado[0m
+[0;33mW (302840) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (302850) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (303850) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (303850) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (305850) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (305850) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (305850) APP: Netif no encontrado[0m
+[0;33mW (305850) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (305860) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (306860) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (306860) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (308860) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (308860) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (308860) APP: Netif no encontrado[0m
+[0;33mW (308860) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (308870) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (309870) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (309870) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (311870) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (311870) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (311870) APP: Netif no encontrado[0m
+[0;33mW (311870) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (311880) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (312880) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (312880) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (314880) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (314880) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (314880) APP: Netif no encontrado[0m
+[0;33mW (314880) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (314890) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (315890) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (315890) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (317890) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (317890) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (317890) APP: Netif no encontrado[0m
+[0;33mW (317890) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (317900) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (318900) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (318900) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (320900) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (320900) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (320900) APP: Netif no encontrado[0m
+[0;33mW (320900) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (320910) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (321910) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (321910) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (323910) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (323910) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (323910) APP: Netif no encontrado[0m
+[0;33mW (323910) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (323920) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (324920) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (324920) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (326920) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (326920) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (326920) APP: Netif no encontrado[0m
+[0;33mW (326920) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (326930) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (327930) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (327930) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (329930) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (329930) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (329930) APP: Netif no encontrado[0m
+[0;33mW (329930) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (329940) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (330940) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (330940) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (332940) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (332940) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (332940) APP: Netif no encontrado[0m
+[0;33mW (332940) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (332950) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (333950) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (333950) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (335950) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (335950) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (335950) APP: Netif no encontrado[0m
+[0;33mW (335950) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (335960) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (336960) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (336960) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (338960) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (338960) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (338960) APP: Netif no encontrado[0m
+[0;33mW (338960) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (338970) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (339970) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (339970) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (341970) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (341970) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (341970) APP: Netif no encontrado[0m
+[0;33mW (341970) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (341980) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (342980) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (342980) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (344980) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (344980) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (344980) APP: Netif no encontrado[0m
+[0;33mW (344980) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (344990) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (345990) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (345990) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (347990) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (347990) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (347990) APP: Netif no encontrado[0m
+[0;33mW (347990) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (348000) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (349000) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (349000) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (351000) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (351000) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (351000) APP: Netif no encontrado[0m
+[0;33mW (351000) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (351010) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (352010) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (352010) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (354010) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (354010) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (354010) APP: Netif no encontrado[0m
+[0;33mW (354010) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (354020) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (355020) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (355020) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (357020) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (357020) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (357020) APP: Netif no encontrado[0m
+[0;33mW (357020) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (357030) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (358030) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (358030) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (360030) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (360030) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (360030) APP: Netif no encontrado[0m
+[0;33mW (360030) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (360040) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (361040) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (361040) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (363040) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (363040) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (363040) APP: Netif no encontrado[0m
+[0;33mW (363040) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (363050) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (364050) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (364050) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (366050) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (366050) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (366050) APP: Netif no encontrado[0m
+[0;33mW (366050) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (366060) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (367060) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (367060) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (369060) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (369060) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (369060) APP: Netif no encontrado[0m
+[0;33mW (369060) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (369070) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (370070) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (370070) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (372070) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (372070) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (372070) APP: Netif no encontrado[0m
+[0;33mW (372070) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (372080) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (373080) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (373080) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (375080) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (375080) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (375080) APP: Netif no encontrado[0m
+[0;33mW (375080) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (375090) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (376090) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (376090) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (378090) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (378090) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (378090) APP: Netif no encontrado[0m
+[0;33mW (378090) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (378100) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (379100) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (379100) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (381100) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (381100) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (381100) APP: Netif no encontrado[0m
+[0;33mW (381100) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (381110) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (382110) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (382110) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (384110) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (384110) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (384110) APP: Netif no encontrado[0m
+[0;33mW (384110) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (384120) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (385120) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (385120) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (387120) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (387120) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (387120) APP: Netif no encontrado[0m
+[0;33mW (387120) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (387130) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (388130) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (388130) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (390130) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (390130) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (390130) APP: Netif no encontrado[0m
+[0;33mW (390130) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (390140) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (391140) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (391140) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (393140) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (393140) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (393140) APP: Netif no encontrado[0m
+[0;33mW (393140) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (393150) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (394150) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (394150) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (396150) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (396150) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (396150) APP: Netif no encontrado[0m
+[0;33mW (396150) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (396160) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (397160) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (397160) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (399160) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (399160) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (399160) APP: Netif no encontrado[0m
+[0;33mW (399160) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (399170) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (400170) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (400170) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (402170) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (402170) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (402170) APP: Netif no encontrado[0m
+[0;33mW (402170) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (402180) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (403180) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (403180) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (405180) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (405180) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (405180) APP: Netif no encontrado[0m
+[0;33mW (405180) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (405190) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (406190) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (406190) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (408190) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (408190) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (408190) APP: Netif no encontrado[0m
+[0;33mW (408190) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (408200) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (409200) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (409200) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (411200) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (411200) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (411200) APP: Netif no encontrado[0m
+[0;33mW (411200) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (411210) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (412210) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (412210) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (414210) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (414210) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (414210) APP: Netif no encontrado[0m
+[0;33mW (414210) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (414220) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (415220) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (415220) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (417220) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (417220) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (417220) APP: Netif no encontrado[0m
+[0;33mW (417220) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (417230) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (418230) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (418230) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (420230) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (420230) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (420230) APP: Netif no encontrado[0m
+[0;33mW (420230) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (420240) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (421240) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (421240) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (423240) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (423240) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (423240) APP: Netif no encontrado[0m
+[0;33mW (423240) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (423250) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (424250) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (424250) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (426250) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (426250) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (426250) APP: Netif no encontrado[0m
+[0;33mW (426250) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (426260) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (427260) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (427260) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (429260) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (429260) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (429260) APP: Netif no encontrado[0m
+[0;33mW (429260) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (429270) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (430270) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (430270) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (432270) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (432270) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (432270) APP: Netif no encontrado[0m
+[0;33mW (432270) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (432280) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (433280) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (433280) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (435280) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (435280) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (435280) APP: Netif no encontrado[0m
+[0;33mW (435280) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (435290) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (436290) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (436290) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (438290) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (438290) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (438290) APP: Netif no encontrado[0m
+[0;33mW (438290) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (438300) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (439300) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (439300) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (441300) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (441300) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (441300) APP: Netif no encontrado[0m
+[0;33mW (441300) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (441310) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (442310) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (442310) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (444310) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (444310) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (444310) APP: Netif no encontrado[0m
+[0;33mW (444310) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (444320) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (445320) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (445320) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (447320) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (447320) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (447320) APP: Netif no encontrado[0m
+[0;33mW (447320) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (447330) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (448330) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (448330) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (450330) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (450330) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (450330) APP: Netif no encontrado[0m
+[0;33mW (450330) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (450340) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (451340) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (451340) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (453340) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (453340) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (453340) APP: Netif no encontrado[0m
+[0;33mW (453340) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (453350) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (454350) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (454350) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (456350) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (456350) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (456350) APP: Netif no encontrado[0m
+[0;33mW (456350) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (456360) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (457360) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (457360) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (459360) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (459360) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (459360) APP: Netif no encontrado[0m
+[0;33mW (459360) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (459370) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (460370) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (460370) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (462370) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (462370) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (462370) APP: Netif no encontrado[0m
+[0;33mW (462370) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (462380) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (463380) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (463380) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (465380) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (465380) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (465380) APP: Netif no encontrado[0m
+[0;33mW (465380) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (465390) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (466390) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (466390) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (468390) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (468390) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (468390) APP: Netif no encontrado[0m
+[0;33mW (468390) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (468400) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (469400) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (469400) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (471400) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (471400) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (471400) APP: Netif no encontrado[0m
+[0;33mW (471400) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (471410) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (472410) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (472410) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (474410) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (474410) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (474410) APP: Netif no encontrado[0m
+[0;33mW (474410) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (474420) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (475420) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (475420) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (477420) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (477420) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (477420) APP: Netif no encontrado[0m
+[0;33mW (477420) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (477430) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (478430) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (478430) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (480430) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (480430) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (480430) APP: Netif no encontrado[0m
+[0;33mW (480430) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (480440) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (481440) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (481440) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (483440) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (483440) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (483440) APP: Netif no encontrado[0m
+[0;33mW (483440) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (483450) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (484450) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (484450) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (486450) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (486450) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (486450) APP: Netif no encontrado[0m
+[0;33mW (486450) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (486460) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (487460) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (487460) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (489460) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (489460) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (489460) APP: Netif no encontrado[0m
+[0;33mW (489460) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (489470) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (490470) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (490470) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (492470) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (492470) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (492470) APP: Netif no encontrado[0m
+[0;33mW (492470) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (492480) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (493480) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (493480) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (495480) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (495480) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (495480) APP: Netif no encontrado[0m
+[0;33mW (495480) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (495490) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (496490) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (496490) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (498490) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (498490) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (498490) APP: Netif no encontrado[0m
+[0;33mW (498490) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (498500) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (499500) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (499500) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (501500) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (501500) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (501500) APP: Netif no encontrado[0m
+[0;33mW (501500) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (501510) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (502510) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (502510) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (504510) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (504510) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (504510) APP: Netif no encontrado[0m
+[0;33mW (504510) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (504520) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (505520) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (505520) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (507520) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (507520) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (507520) APP: Netif no encontrado[0m
+[0;33mW (507520) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (507530) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (508530) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (508530) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (510530) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (510530) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (510530) APP: Netif no encontrado[0m
+[0;33mW (510530) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (510540) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (511540) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (511540) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (513540) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (513540) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (513540) APP: Netif no encontrado[0m
+[0;33mW (513540) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (513550) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (514550) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (514550) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (516550) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (516550) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (516550) APP: Netif no encontrado[0m
+[0;33mW (516550) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (516560) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (517560) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (517560) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (519560) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (519560) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (519560) APP: Netif no encontrado[0m
+[0;33mW (519560) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (519570) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (520570) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (520570) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (522570) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (522570) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (522570) APP: Netif no encontrado[0m
+[0;33mW (522570) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (522580) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (523580) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (523580) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (525580) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (525580) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (525580) APP: Netif no encontrado[0m
+[0;33mW (525580) APP: Red no lista, no se prueba HTTP[0m
+[0;33mW (525590) APP: GPRS conectado, pero sin acceso a internet[0m
+[0;32mI (526590) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
+[0;32mI (526590) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (528590) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
+OK
+
+STATE: IP STATUS
+[0m
+[0;32mI (528590) GPRS: Estado GPRS: IP asignada (IP STATUS)[0m
+[0;33mW (528590) APP: Netif no encontrado[0m
+[0;33mW

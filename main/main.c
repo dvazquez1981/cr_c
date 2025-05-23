@@ -551,6 +551,37 @@ static bool gprs_connect()
 
     ESP_LOGI(TAG_GPRS, "IP obtenida: %s", buf);
     ESP_LOGI(TAG_GPRS, "Conexión GPRS establecida correctamente");
+
+// 1. Abrir conexión TCP
+send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSTART=\"TCP\",\"httpbin.org\",80");
+vTaskDelay(pdMS_TO_TICKS(5000));
+
+// 2. Enviar comando para enviar datos
+send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSEND");
+vTaskDelay(pdMS_TO_TICKS(5000));
+
+const char* request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
+uart_write_bytes(UART_MODEM_NUM, request, strlen(request));
+vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
+
+const char end_char = 0x1A;  // Ctrl+Z
+uart_write_bytes(UART_MODEM_NUM, &end_char, 1);
+
+
+
+// 4. Leer respuesta
+char response[512];
+int l = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
+if (l > 0) {
+    response[l] = '\0';
+   ESP_LOGI(TAG_GPRS,"Respuesta HTTP: %s\n", response);
+} else {
+    ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
+}
+
+
+    ESP_LOGI(TAG_GPRS, "Cerrando sesión IP con AT+CIPSHUT...");
+    send_at_command_and_wait_ok("AT+CIPSHUT", 5000, TAG_GPRS, UART_MODEM_NUM);
     return true;
 }
 
@@ -563,18 +594,19 @@ static void gprs_mqtt_task(void *pvParameters)
 
     while (1) {
         // Verificar estado de conexión GPRS
-        gprs_conectado = gprs_is_connected();
+        //gprs_conectado = gprs_is_connected();
 
         if (gprs_conectado==false) {
             int intento = 0;
             mqtt_iniciado = false;
 
             // Intentar conectar GPRS
-            gprs_connect();
+            gprs_conectado=gprs_connect();
 
             // Reintentos con espera
-            while (!gprs_is_connected() && intento < INTENTOSCONEXION) {
+            while (!gprs_conectado && intento < INTENTOSCONEXION) {
                 intento++;
+                gprs_conectado=gprs_connect();
                 ESP_LOGW(TAG_GPRS, "Intento %d fallido en conexión GPRS. Esperando 5 segundos...", intento);
                 vTaskDelay(pdMS_TO_TICKS(5000));
               }
@@ -587,12 +619,6 @@ static void gprs_mqtt_task(void *pvParameters)
             }
         }
 
-
-        if (check_internet_http()) {
-        ESP_LOGI(TAG, "Conexión a internet OK");
-         } else {
-          ESP_LOGW(TAG, "GPRS conectado, pero sin acceso a internet");
-        }
 
         // Si hay conexión GPRS y MQTT no iniciado, iniciar MQTT
       /* if (gprs_conectado && !mqtt_iniciado) {
@@ -637,13 +663,15 @@ void app_main(void)
       }
     
    
+
+ 
       //Iniciar tarea para leer RS232
-    if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
+     /* if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
       {  
        ESP_LOGE(TAG, "No se pudo crear la tarea rs232_lectura_tarea");
        return;
       }
-    
+    */
       //Iniciar tarea para comunicar gprs y mqtt
       if (xTaskCreate(gprs_mqtt_task, "gprs_mqtt_task", 8192, NULL, 9, NULL)!= pdPASS)
       {  
