@@ -1,0 +1,210 @@
+���xxx�x��xxx�x�x������������ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bd68h ( 48488) map[0m
+[0;32mI (106) esp_image: segment 1: paddr=0001bd90 vaddr=3fc8c200 size=0125ch (  4700) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001cff4 vaddr=40380000 size=03024h ( 12324) load[0m
+[0;32mI (118) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d3a0h (119712) map[0m
+[0;32mI (143) esp_image: segment 4: paddr=0003d3c8 vaddr=40383024 size=08fe0h ( 36832) load[0m
+[0;32mI (153) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (153) boot: Disabling RNG early entropy source...[0m
+[0;32mI (165) cpu_start: Unicore app[0m
+[0;32mI (174) cpu_start: Pro cpu start user code[0m
+[0;32mI (174) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (174) cpu_start: Application information:[0m
+[0;32mI (177) cpu_start: Project name:     cr_c[0m
+[0;32mI (182) cpu_start: App version:      e6db10c-dirty[0m
+[0;32mI (187) cpu_start: Compile time:     May 26 2025 14:38:01[0m
+[0;32mI (193) cpu_start: ELF file SHA256:  1799032bcc83bc50...[0m
+[0;32mI (199) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (204) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (209) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (214) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (218) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (226) heap_init: At 3FC8E410 len 00031BF0 (198 KiB): RAM[0m
+[0;32mI (232) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (239) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (246) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (253) spi_flash: detected chip: generic[0m
+[0;32mI (257) spi_flash: flash io: dio[0m
+[0;33mW (260) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (288) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+[0;32mI (288) APP: Inicio Aplicación...[0m
+[0;32mI (298) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (298) UART_MODEM: uart_param_config OK[0m
+[0;32mI (308) UART_MODEM: uart_[0;32mI (318) UART_RS232: uart_driver_install OK[0m
+[0;32mI (318) UART_RS232: uart_set_pin OK[0m
+[0;32mI (318) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (318) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (328) APP: Se creo la cola[0m
+[0;32mI (328) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (338) GPRS: Comando enviado: AT
+[0m
+[0;32mI (338) main_task: Returned from app_main()[0m
+[0;31mE (1368) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (1368) GPRS: Error: el módulo no responde a AT[0m
+[0;32mI (1368) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;33mW (6368) GPRS: No funciono AT+CIPSTART: AT+CIPSTART="TCP","httpbin.org",80
+ERROR
+
+ALREADY CONNECT
+[0m
+[0;32mI (6368) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (63398) GPRS: Respuesta HTTP: AT+CIPSEND
+> GET /get HTTP/1.1
+Host: httpbin.org
+
+
+SEND OK
+HTTP/1.1 200 OK
+Date: Mon, 26 May 2025 17:38:55 GMT
+Content-Type: application/json
+Content-Length: 196
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834a72f-03ff393e1000cffa6d707d8f"
+  }, 
+  "origin": "170.51.84.2", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (63428) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (63588) GPRS: Respuesta OK recibida: AT+CIPCLOSE
+CLOSE OK
+[0m
+[0;32mI (63588) GPRS: Conexión TCP cerrada[0m
+[0;32mI (63588) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (68348) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (68348) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (69348) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (69348) GPRS: Comando enviado: AT
+[0m
+[0;32mI (69468) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (69468) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (69468) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (71468) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (71468) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (73468) GPRS: Calidad de señal: AT+CSQ
++CSQ: 25,0
+
+OK
+[0m
+[0;32mI (73468) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (73468) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (75468) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (75468) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (75608) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (75608) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (75608) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (75798) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
+OK
+[0m
+[0;32mI (75798) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (75798) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (76718) GPRS: Respuesta OK recibida: AT+CIICR
+OK
+[0m
+[0;32mI (76718) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (76718) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (78718) GPRS: IP obtenida: AT+CIFSR
+100.86.63.84
+[0m
+[0;32mI (78718) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (78718) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (85218) GPRS: Conexión TCP realizada[0m
+[0;32mI (85218) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (144838) GPRS: Respuesta HTTP: AT+CIPSEND
+> GET /get HTTP/1.1
+Host: httpbin.org
+
+
+SEND OK
+HTTP/1.1 200 OK
+Date: Mon, 26 May 2025 17:40:16 GMT
+Content-Type: application/json
+Content-Length: 199
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834a780-5234e92d265d594c5d5bfd4a"
+  }, 
+  "origin": "170.51.141.249", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (144868) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (145028) GPRS: Respuesta OK recibida: AT+CIPCLOSE
+CLOSE OK
+[0m
+[0;32mI (145028) GPRS: Conexión TCP cerrada[0m
+[0;32mI (145028) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (147638) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (147638) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (148638) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (148638) GPRS: Comando enviado: AT
+[0m
+[0;32mI (148758) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (148758) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32

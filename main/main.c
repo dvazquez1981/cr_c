@@ -64,7 +64,7 @@ static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int3
 
 static bool uart_instalado_modem = false;
 static bool uart_instalado_r232 = false;
-
+static bool gprs_conectado=false;
 static bool uart_modem_init()
 {
 
@@ -204,7 +204,7 @@ static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,co
     uint32_t start_tick = xTaskGetTickCount();
 
     while ((xTaskGetTickCount() - start_tick) < pdMS_TO_TICKS(timeout_ms)) {
-        int r = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)(resp + len), sizeof(resp) - len - 1, pdMS_TO_TICKS(100));
+        int r = uart_read_bytes(un, (uint8_t*)(resp + len), sizeof(resp) - len - 1, pdMS_TO_TICKS(100));
         if (r > 0) {
             len += r;
             resp[len] = '\0';
@@ -213,6 +213,19 @@ static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,co
                 ESP_LOGI(t, "Respuesta OK recibida: %s", resp);
                 return true;
             }
+            
+            if (strstr(resp,"CONNECT OK") != NULL) {
+                ESP_LOGI(t, "Respuesta OK recibida: %s", resp);
+                return true;
+            }
+
+             if (strstr(resp,">") != NULL) {
+                ESP_LOGI(t, "Respuesta OK recibida: %s", resp);
+                return true;
+            }
+           
+
+
             if (strstr(resp, "ERROR") != NULL) {
                 ESP_LOGE(t, "Respuesta ERROR recibida: %s", resp);
                 return false;
@@ -424,40 +437,32 @@ static bool mqtt_app_init(void)
     ESP_LOGI(TAG_MQTT, "Cliente MQTT iniciado correctamente");
     return true;
 }
-
-static bool gprs_is_connected()
-{   
- 
-    ESP_LOGI(TAG_GPRS, "Enviando comando AT+CIPSTATUS para verificar estado GPRS...");
-    send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSTATUS");
+static bool gprs_is_connected() {
+    char buf[64];
+    uart_flush(UART_MODEM_NUM);
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CGATT?");
     vTaskDelay(pdMS_TO_TICKS(500));
-
-    uint8_t buf[128] = {0};
-    int len = uart_read_bytes(UART_MODEM_NUM, buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
-    if (len > 0) {
-        buf[len] = '\0';
-        ESP_LOGI(TAG_GPRS, "Respuesta AT+CIPSTATUS: %s", (char *)buf);
-
-        if (strstr((char *)buf, "CONNECT OK")) {
-            ESP_LOGI(TAG_GPRS, "Estado GPRS: CONECTADO (CONNECT OK)");
-            return true;
-        } else if (strstr((char *)buf, "IP STATUS")) {
-            ESP_LOGI(TAG_GPRS, "Estado GPRS: IP asignada (IP STATUS)");
-            return true;
-        } else if (strstr((char *)buf, "ERROR")) {
-            ESP_LOGE(TAG_GPRS, "Error reportado por el módem al consultar CIPSTATUS");
-        } else {
-            ESP_LOGW(TAG_GPRS, "Estado inesperado o desconectado: %s", (char *)buf);
-        }
-    } else {
-        ESP_LOGE(TAG_GPRS, "No se recibió respuesta del módem tras enviar AT+CIPSTATUS");
-    }
-
-    return false;
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    if (len <= 0) return false;
+    buf[len] = 0;
+    return (strstr(buf, "+CGATT: 1") != NULL);
 }
 
+static bool tcp_is_connected() {
+    char buf[128];
+    uart_flush(UART_MODEM_NUM);
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CIPSTATUS");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    if (len <= 0) return false;
+    buf[len] = 0;
+    // Estado típico "STATE: CONNECT OK" si está conectado
+    return (strstr(buf, "STATE: CONNECT OK") != NULL);
+}
+
+
 static bool gprs_connect()
-{
+{   uart_flush(UART_MODEM_NUM);
     ESP_LOGI(TAG_GPRS, "Verificando comunicación con AT...");
     if (!send_at_command_and_wait_ok("AT",1000,TAG_GPRS,UART_MODEM_NUM)) {
         ESP_LOGE(TAG_GPRS, "Error: el módulo no responde a AT");
@@ -551,44 +556,97 @@ static bool gprs_connect()
 
     ESP_LOGI(TAG_GPRS, "IP obtenida: %s", buf);
     ESP_LOGI(TAG_GPRS, "Conexión GPRS establecida correctamente");
+    
+    return true;
+}
 
-// 1. Abrir conexión TCP
-send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSTART=\"TCP\",\"httpbin.org\",80");
-vTaskDelay(pdMS_TO_TICKS(5000));
+static bool tcp_connect(const char* host, int port) {
+    
+    char buf[64] = {0};
+    char cmd[128];
+    uart_flush(UART_MODEM_NUM);
+    snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%d", host, port);
+    send_at_command(TAG_GPRS,UART_MODEM_NUM,cmd);   
+    vTaskDelay(pdMS_TO_TICKS(5000));
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    if (len <= 0) {
+        ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSTART");
+        return false;
+    }
+    buf[len] = 0;
+    if (!strstr(buf, "OK")|| !strstr(buf, "CONNECT OK") ) {
+        ESP_LOGW(TAG_GPRS, "No funciono AT+CIPSTART: %s", buf);
+        return false;
+    }
 
+    ESP_LOGI(TAG_GPRS, "Conexión TCP realizada");
+    return true;
+
+
+
+}
+
+static bool tcp_send(const char* data) {
+
+char buf[64] = {0};
+uart_flush(UART_MODEM_NUM);
 // 2. Enviar comando para enviar datos
 send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSEND");
 vTaskDelay(pdMS_TO_TICKS(5000));
 
-const char* request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
-uart_write_bytes(UART_MODEM_NUM, request, strlen(request));
+//const char* request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
+uart_write_bytes(UART_MODEM_NUM, data, strlen(data));
 vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
 
 const char end_char = 0x1A;  // Ctrl+Z
 uart_write_bytes(UART_MODEM_NUM, &end_char, 1);
 
+uart_flush(UART_MODEM_NUM);
 
+int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(2000));
+if (len <= 0) {
+    ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSEND");
+    return false;
+}
+ buf[len] = 0;
+ if ( !strstr(buf,"SEND OK") ) {
+         ESP_LOGW(TAG_GPRS, "No funciono AT+CIPSEND: %s", buf);
+        return false;
+    }
+ESP_LOGI(TAG_GPRS, "Se envió correctamente");
+return true;
 
-// 4. Leer respuesta
-char response[512];
-int l = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
-if (l > 0) {
-    response[l] = '\0';
-   ESP_LOGI(TAG_GPRS,"Respuesta HTTP: %s\n", response);
-} else {
-    ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
+}
+
+static bool tcp_disconnect() {
+    if (!send_at_command_and_wait_ok("AT+CIPCLOSE", 3000, TAG_GPRS, UART_MODEM_NUM)) {
+        ESP_LOGE(TAG_GPRS, "No se pudo cerrar conexión TCP");
+        return false;
+    }
+    ESP_LOGI(TAG_GPRS, "Conexión TCP cerrada");
+    return true;
 }
 
 
-    ESP_LOGI(TAG_GPRS, "Cerrando sesión IP con AT+CIPSHUT...");
-    send_at_command_and_wait_ok("AT+CIPSHUT", 5000, TAG_GPRS, UART_MODEM_NUM);
+static bool gprs_disconnect() {
+    if (!send_at_command_and_wait_ok("AT+CIPSHUT", 5000, TAG_GPRS, UART_MODEM_NUM)) {
+        ESP_LOGE(TAG_GPRS, "No se pudo cerrar conexión GPRS");
+        return false;
+    }
+    ESP_LOGI(TAG_GPRS, "Conexión GPRS cerrada");
     return true;
 }
 
 static void gprs_mqtt_task(void *pvParameters)
 {
+    const char *host = "httpbin.org";
+    const char *http_request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
+    int port = 80;
+    
     bool mqtt_iniciado = false;
     bool gprs_conectado = false;
+
+
     
     //gprs_connect();
 
@@ -596,30 +654,64 @@ static void gprs_mqtt_task(void *pvParameters)
         // Verificar estado de conexión GPRS
         //gprs_conectado = gprs_is_connected();
 
-        if (gprs_conectado==false) {
-            int intento = 0;
-            mqtt_iniciado = false;
-
-            // Intentar conectar GPRS
-            gprs_conectado=gprs_connect();
-
-            // Reintentos con espera
-            while (!gprs_conectado && intento < INTENTOSCONEXION) {
-                intento++;
-                gprs_conectado=gprs_connect();
-                ESP_LOGW(TAG_GPRS, "Intento %d fallido en conexión GPRS. Esperando 5 segundos...", intento);
+       /*gprs_connect();
+        tcp_connect(host, port);
+        tcp_send(http_request);
+        */
+        // . Leer respuesta
+       /* char response[512];
+        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
+        if (l > 0) {
+         response[l] = '\0';
+         ESP_LOGI(TAG_GPRS,"Respuesta HTTP: %s\n", response);
+         } else {
+            ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
+        }
+        tcp_disconnect();
+        gprs_disconnect();
+       */
+    
+       if (!gprs_is_connected()) {
+            ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
+            if (!gprs_connect()) {
+                ESP_LOGE(TAG_GPRS, "No se pudo conectar GPRS, reintentando en 5s...");
                 vTaskDelay(pdMS_TO_TICKS(5000));
-              }
-
-            // Si se agotaron intentos
-            if (intento == INTENTOSCONEXION) {
-                ESP_LOGE(TAG_GPRS, "No se pudo reconectar GPRS después de %d intentos. Reintentando en 30 segundos...", INTENTOSCONEXION);
-                vTaskDelay(pdMS_TO_TICKS(30000));
-                continue; // Saltar esta iteración y volver a intentar después del delay
+                continue;
             }
+            ESP_LOGI(TAG_GPRS, "GPRS conectado");
         }
 
+        if (!tcp_is_connected()) {
+            ESP_LOGW(TAG_GPRS, "TCP desconectado, conectando...");
+            if (!tcp_connect(host, port)) {
+                ESP_LOGE(TAG_GPRS, "No se pudo conectar TCP, reintentando en 5s...");
+                vTaskDelay(pdMS_TO_TICKS(5000));
+                continue;
+            }
+            ESP_LOGI(TAG_GPRS, "TCP conectado");
+        }
 
+         // Enviar datos
+        if (!tcp_send(http_request)) {
+            ESP_LOGE(TAG_GPRS, "Error enviando datos, cerrando TCP");
+            tcp_disconnect();
+            vTaskDelay(pdMS_TO_TICKS(2000));
+            continue;
+        }
+        
+        char response[512];
+        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
+        if (l > 0) {
+         response[l] = '\0';
+         ESP_LOGI(TAG_GPRS,"Respuesta HTTP: %s\n", response);
+         } else {
+            ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
+        }
+        
+        //tcp_disconnect();
+        gprs_disconnect();
+          
+        vTaskDelay(pdMS_TO_TICKS(2000));
         // Si hay conexión GPRS y MQTT no iniciado, iniciar MQTT
       /* if (gprs_conectado && !mqtt_iniciado) {
             ESP_LOGI(TAG_MQTT, "Inicializando MQTT...");
@@ -638,7 +730,7 @@ static void gprs_mqtt_task(void *pvParameters)
         }
      */ 
         // Esperar un poco para no saturar la CPU
-        vTaskDelay(pdMS_TO_TICKS(1000));
+       
     }
 }
 

@@ -1,0 +1,424 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bfd8h ( 49112) map[0m
+[0;32mI (106) esp_image: segment 1: paddr=0001c000 vaddr=3fc8c200 size=0125ch (  4700) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001d264 vaddr=40380000 size=02db4h ( 11700) load[0m
+[0;32mI (118) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d6c0h (120512) map[0m
+[0;32mI (143) esp_image: segment 4: paddr=0003d6e8 vaddr=40382db4 size=09250h ( 37456) load[0m
+[0;32mI (154) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (154) boot: Disabling RNG early entropy source...[0m
+[0;32mI (165) cpu_start: Unicore app[0m
+[0;32mI (174) cpu_start: Pro cpu start user code[0m
+[0;32mI (174) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (174) cpu_start: Application information:[0m
+[0;32mI (177) cpu_start: Project name:     cr_c[0m
+[0;32mI (182) cpu_start: App version:      e6db10c-dirty[0m
+[0;32mI (188) cpu_start: Compile time:     May 26 2025 15:30:38[0m
+[0;32mI (194) cpu_start: ELF file SHA256:  775d41d5bcaf4ff0...[0m
+[0;32mI (200) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (204) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (209) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (214) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (219) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (226) heap_init: At 3FC8E410 len 00031BF0 (198 KiB): RAM[0m
+[0;32mI (232) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (239) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (246) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (253) spi_flash: detected chip: generic[0m
+[0;32mI (257) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (281) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (288) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+[0;32mI (288) APP: Inicio Aplicación...[0m
+[0;32mI (298) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (298) UART_MODEM: uart_param_config OK[0m
+[0;32mI (308) UART_MODEM: uart���+���j%�(318) UART_RS232: uart_driver_install OK[0m
+[0;32mI (318) UART_RS232: uart_set_pin OK[0m
+[0;32mI (318) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (318) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (328) APP: Se creo la cola[0m
+[0;32mI (328) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (338) main_task: Returned from app_main()[0m
+[0;33mW (2338) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (2338) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (2338) GPRS: Comando enviado: AT
+[0m
+[0;31mE (3358) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (3358) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (3358) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (8358) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (10358) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (10358) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (10358) GPRS: Comando enviado: AT
+[0m
+[0;31mE (11378) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (11378) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (11378) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (16378) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (18378) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (18378) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (18378) GPRS: Comando enviado: AT
+[0m
+[0;31mE (19398) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (19398) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (19398) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (24398) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (26398) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (26398) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (26398) GPRS: Comando enviado: AT
+[0m
+[0;31mE (27418) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (27418) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (27418) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (32418) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (34418) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (34418) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (34418) GPRS: Comando enviado: AT
+[0m
+[0;31mE (35438) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (35438) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (35438) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (40438) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (42438) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (42438) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (42438) GPRS: Comando enviado: AT
+[0m
+[0;31mE (43458) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (43458) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (43458) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (48458) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (50458) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (50458) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (50458) GPRS: Comando enviado: AT
+[0m
+[0;31mE (51478) GPRS: Timeout esperando OK o ERROR: AT
+[0m
+[0;31mE (51478) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (51478) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (56478) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (58478) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (60478) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (60478) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (66978) GPRS: Conexión TCP realizada[0m
+[0;32mI (66978) GPRS: TCP conectado[0m
+[0;32mI (66978) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (73668) GPRS: Se envió correctamente[0m
+[0;32mI (123988) GPRS: Respuesta HTTP: T
+Content-Type: application/json
+Content-Length: 197
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834b3c9-09ff94d777ba5ddd3bd287d7"
+  }, 
+  "origin": "186.12.16.81", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (124008) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (126598) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (126598) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (128598) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (130598) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (132598) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (132598) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (139098) GPRS: Conexión TCP realizada[0m
+[0;32mI (139098) GPRS: TCP conectado[0m
+[0;32mI (139098) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;33mW (146948) GPRS: No funciono AT+CIPSEND: [0m
+[0;31mE (146948) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (146948) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (149948) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (149948) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (151948) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (154768) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (154768) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (154768) GPRS: Comando enviado: AT
+[0m
+[0;32mI (154888) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (154888) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (154888) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (156888) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (156888) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (158888) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (158888) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (158888) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (160888) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (160888) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (161028) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (161028) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (161028) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (161218) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
+OK
+[0m
+[0;32mI (161218) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (161218) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (161978) GPRS: Respuesta OK recibida: AT+CIICR
+OK
+[0m
+[0;32mI (161978) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (161978) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (163978) GPRS: IP obtenida: AT+CIFSR
+10.251.153.134
+[0m
+[0;32mI (163978) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (163978) GPRS: GPRS conectado[0m
+[0;32mI (163978) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (165988) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (165988) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (172488) GPRS: Conexión TCP realizada[0m
+[0;32mI (172488) GPRS: TCP conectado[0m
+[0;32mI (172488) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;33mW (179598) GPRS: No funciono AT+CIPSEND: [0m
+[0;31mE (179598) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (179598) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (179748) GPRS: Respuesta OK recibida: AT+CIPCLOSE
+CLOSE OK
+[0m
+[0;32mI (179748) GPRS: Conexión TCP cerrada[0m
+[0;32mI (181748) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (183748) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (185748) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (185748) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (192248) GPRS: Conexión TCP realizada[0m
+[0;32mI (192248) GPRS: TCP conectado[0m
+[0;32mI (192248) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (198988) GPRS: Se envió correctamente[0m
+[0;32mI (249308) GPRS: Respuesta HTTP: T
+Content-Type: application/json
+Content-Length: 197
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834b446-72ac44175202426d2d9470e0"
+  }, 
+  "origin": "186.12.61.39", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (249328) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (251968) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (251968) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (253968) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (255968) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (257968) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (257968) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (264468) GPRS: Conexión TCP realizada[0m
+[0;32mI (264468) GPRS: TCP conectado[0m
+[0;32mI (264468) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (271288) GPRS: Se envió correctamente[0m
+[0;32mI (321618) GPRS: Respuesta HTTP: T
+Content-Type: application/json
+Content-Length: 200
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834b48f-7d961f6b5da123cb36645b2f"
+  }, 
+  "origin": "186.157.101.180", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (321638) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (324598) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (324598) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (326598) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (328598) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (330598) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (330598) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (337098) GPRS: Conexión TCP realizada[0m
+[0;32mI (337098) GPRS: TCP conectado[0m
+[0;32mI (337098) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;33mW (344208) GPRS: No funciono AT+CIPSEND: [0m
+[0;31mE (344208) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (344208) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (344358) GPRS: Respuesta OK recibida: AT+CIPCLOSE
+CLOSE OK
+[0m
+[0;32mI (344358) GPRS: Conexión TCP cerrada[0m
+[0;32mI (346358) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (348358) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (350358) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (350358) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (356858) GPRS: Conexión TCP realizada[0m
+[0;32mI (356858) GPRS: TCP conectado[0m
+[0;32mI (356858) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (363598) GPRS: Se envió correctamente[0m
+[0;32mI (413928) GPRS: Respuesta HTTP: T
+Content-Type: application/json
+Content-Length: 199
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834b4eb-148eedd7502e596b4b4a1004"
+  }, 
+  "origin": "170.51.129.244", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (413948) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (416518) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (416518) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (418518) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (420518) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (422518) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (422518) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
+[0m
+[0;32mI (429018) GPRS: Conexión TCP realizada[0m
+[0;32mI (429018) GPRS: TCP conectado[0m
+[0;32mI (429018) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (435958) GPRS: Se envió correctamente[0m
+[0;32mI (486418) GPRS: Respuesta HTTP: T
+Content-Type: application/json
+Content-Length: 199
+Connection: keep-alive
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "headers": {
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6834b533-508258980e6a371a2da1b835"
+  }, 
+  "origin": "181.238.39.166", 
+  "url": "http://httpbin.org/get"
+}
+
+[0m
+[0;32mI (486438) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (489298) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (489298) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (491298) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (493298) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (495298) GPRS: TCP desconectado, conecta
