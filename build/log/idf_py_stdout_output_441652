@@ -1,0 +1,386 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0c030h ( 49200) map[0m
+[0;32mI (106) esp_image: segment 1: paddr=0001c058 vaddr=3fc8c200 size=0125ch (  4700) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001d2bc vaddr=40380000 size=02d5ch ( 11612) load[0m
+[0;32mI (118) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d75ch (120668) map[0m
+[0;32mI (143) esp_image: segment 4: paddr=0003d784 vaddr=40382d5c size=092a8h ( 37544) load[0m
+[0;32mI (154) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (154) boot: Disabling RNG early entropy source...[0m
+[0;32mI (165) cpu_start: Unicore app[0m
+[0;32mI (174) cpu_start: Pro cpu start user code[0m
+[0;32mI (174) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (174) cpu_start: Application information:[0m
+[0;32mI (177) cpu_start: Project name:     cr_c[0m
+[0;32mI (182) cpu_start: App version:      0f1bf9e-dirty[0m
+[0;32mI (188) cpu_start: Compile time:     May 27 2025 15:20:24[0m
+[0;32mI (194) cpu_start: ELF file SHA256:  6cf52125cf3a36e9...[0m
+[0;32mI (200) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (204) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (209) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (214) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (219) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (226) heap_init: At 3FC8E410 len 00031BF0 (198 KiB): RAM[0m
+[0;32mI (232) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (239) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (246) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (253) spi_flash: detected chip: generic[0m
+[0;32mI (257) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (281) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (288) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+[0;32mI (288) APP: Inicio Aplicación...[0m
+[0;32mI (298) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (298) UART_MODEM: uart_param_config OK[0m
+[0;32mI (308) UART_MODEM: uart_s[0;32mI (318) UART_RS232: uart_driver_install OK[0m
+[0;32mI (318) UART_RS232: uart_set_pin OK[0m
+[0;32mI (318) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (318) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (328) APP: Se creo la cola[0m
+[0;32mI (328) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (338) main_task: Returned from app_main()[0m
+[0;33mW (2338) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (2338) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (2338) GPRS: Comando enviado: AT
+[0m
+[0;32mI (2458) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (2458) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (2458) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (4458) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (4458) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (6458) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (6458) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (6458) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (8458) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8458) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8598) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (8598) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8598) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8798) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (8798) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (8798) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (13798) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (15798) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (17798) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;32mI (20008) GPRS: Se envió correctamente[0m
+[0;32mI (73638) GPRS: Respuesta HTTP: :25 GMT
+Content-Type: text/plain; charset=UTF-8
+Content-Length: 16
+Connection: close
+X-Frame-Options: SAMEORIGIN
+Referrer-Policy: same-origin
+Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Expires: Thu, 01 Jan 1970 00:00:01 GMT
+Server: cloudflare
+CF-RAY: 9467882cfe37ae63-GRU
+
+error code: 1001
+CLOSED
+
+[0m
+[0;32mI (73658) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (74268) GPRS: Respuesta OK recibida: AT+CIPSHUT
+SHUT OK
+[0m
+[0;32mI (74268) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (76268) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (78268) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (80268) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (80268) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (86768) GPRS: Conexión TCP realizada[0m
+[0;32mI (86768) GPRS: TCP conectado[0m
+[0;32mI (86768) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (92208) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (92208) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (92208) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (92358) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (92358) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (94358) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (96358) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (98358) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (98358) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (103948) GPRS: Conexión TCP realizada[0m
+[0;32mI (103948) GPRS: TCP conectado[0m
+[0;32mI (103948) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (109398) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (109398) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (109398) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (109548) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (109548) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (111548) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (113548) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (115548) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (115548) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (121108) GPRS: Conexión TCP realizada[0m
+[0;32mI (121108) GPRS: TCP conectado[0m
+[0;32mI (121108) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (126558) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (126558) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (126558) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (126708) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (126708) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (128708) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (130708) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (132708) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (132708) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (138238) GPRS: Conexión TCP realizada[0m
+[0;32mI (138238) GPRS: TCP conectado[0m
+[0;32mI (138238) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (143688) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (143688) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (143688) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (143838) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (143838) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (145838) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (147838) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (149838) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (149838) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (155368) GPRS: Conexión TCP realizada[0m
+[0;32mI (155368) GPRS: TCP conectado[0m
+[0;32mI (155368) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (160808) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (160808) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (160808) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (160958) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (160958) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (162958) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (164958) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (166958) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (166958) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (172548) GPRS: Conexión TCP realizada[0m
+[0;32mI (172548) GPRS: TCP conectado[0m
+[0;32mI (172548) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (177998) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (177998) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (177998) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (178148) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (178148) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (180148) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (182148) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (184148) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (184148) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (189698) GPRS: Conexión TCP realizada[0m
+[0;32mI (189698) GPRS: TCP conectado[0m
+[0;32mI (189708) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (195148) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (195148) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (195148) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (195298) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (195298) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (197298) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (199298) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (201298) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (201298) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (206858) GPRS: Conexión TCP realizada[0m
+[0;32mI (206858) GPRS: TCP conectado[0m
+[0;32mI (206858) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (212308) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (212308) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (212308) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (212458) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (212458) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (214458) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (216458) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (218458) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (218458) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (224148) GPRS: Conexión TCP realizada[0m
+[0;32mI (224148) GPRS: TCP conectado[0m
+[0;32mI (224148) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (229598) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (229598) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (229598) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (229748) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (229748) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (231748) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (233748) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (235748) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (235748) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (241428) GPRS: Conexión TCP realizada[0m
+[0;32mI (241428) GPRS: TCP conectado[0m
+[0;32mI (241428) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (246868) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (246868) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (246868) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (247018) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (247018) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (249018) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (251018) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (253018) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (253018) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (258758) GPRS: Conexión TCP realizada[0m
+[0;32mI (258758) GPRS: TCP conectado[0m
+[0;32mI (258758) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (264208) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (264208) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (264208) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (264358) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (264358) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (266358) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (268358) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (270358) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (270358) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (276048) GPRS: Conexión TCP realizada[0m
+[0;32mI (276048) GPRS: TCP conectado[0m
+[0;32mI (276048) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (281498) GPRS: No se recibió el símbolo '>' después de AT+CIPSEND[0m
+[0;31mE (281498) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (281498) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (281648) GPRS: Respuesta ERROR recibida: AT+CIPCLOSE
+ERROR
+[0m
+[0;31mE (281648) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (283648) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (285648) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (287648) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (287648) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (294148) GPRS: Conexión TCP realizada[0m
+[0;32mI (294148) GPRS: TCP conectado[0m
+[0;32mI (294148) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;33mW (296798) GPRS: No funciono AT+CIPSEND: [0m
+[0;31mE (296798) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (296798) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (296948) GPRS: Respuesta OK recibida: AT+CIPCLOSE
+CLOSE OK
+[0m
+[0;32mI (296948) GPRS: Conexión TCP cerrada[0m
+[0;32mI (298948) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (300948) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (302948) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (302948) GPRS: Comando enviado: AT+CIPSTART="TCP","worldtimeapi.org",80
+[0m
+[0;32mI (308618) GPRS: Conexión TCP realizada[0m
+[0;32mI (308618) GPRS: TCP conectado[0m
+[0;32mI (308618) GPRS: Comando enviado: AT+CIPSEND
+[0m
+

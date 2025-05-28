@@ -1,0 +1,603 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0c020h ( 49184) map[0m
+[0;32mI (106) esp_image: segment 1: paddr=0001c048 vaddr=3fc8c200 size=0125ch (  4700) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001d2ac vaddr=40380000 size=02d6ch ( 11628) load[0m
+[0;32mI (118) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d900h (121088) map[0m
+[0;32mI (143) esp_image: segment 4: paddr=0003d928 vaddr=40382d6c size=09298h ( 37528) load[0m
+[0;32mI (154) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (154) boot: Disabling RNG early entropy source...[0m
+[0;32mI (165) cpu_start: Unicore app[0m
+[0;32mI (174) cpu_start: Pro cpu start user code[0m
+[0;32mI (174) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (175) cpu_start: Application information:[0m
+[0;32mI (177) cpu_start: Project name:     cr_c[0m
+[0;32mI (182) cpu_start: App version:      0f1bf9e-dirty[0m
+[0;32mI (188) cpu_start: Compile time:     May 27 2025 10:33:10[0m
+[0;32mI (194) cpu_start: ELF file SHA256:  a5898ffc6caea24b...[0m
+[0;32mI (200) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (204) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (209) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (214) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (219) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (226) heap_init: At 3FC8E410 len 00031BF0 (198 KiB): RAM[0m
+[0;32mI (232) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (239) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (246) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (253) spi_flash: detected chip: generic[0m
+[0;32mI (257) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (281) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (288) main_task: Started on CPU0[0m
+[0;32mI (288) main_task: Calling app_main()[0m
+[0;32mI (288) APP: Inicio Aplicación...[0m
+[0;32mI (298) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (298) UART_MODEM: uart_param_config OK[0m
+[0;32mI (308) UART_MODEM: uart_s[0;32mI (318) UART_RS232: uart_driver_install OK[0m
+[0;32mI (318) UART_RS232: uart_set_pin OK[0m
+[0;32mI (318) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (318) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (328) APP: Se creo la cola[0m
+[0;32mI (328) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (338) main_task: Returned from app_main()[0m
+[0;33mW (2338) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (2338) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (2338) GPRS: Comando enviado: AT
+[0m
+[0;32mI (2458) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (2458) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (2458) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (4458) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (4458) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (6458) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (6458) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (6458) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (8458) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8458) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8598) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (8598) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8598) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8798) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (8798) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (8798) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (13798) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (15798) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (17798) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (17798) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (22798) GPRS: Conexión TCP realizada[0m
+[0;32mI (22798) GPRS: TCP conectado[0m
+[0;32mI (22798) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (27798) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (27798) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (27798) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (30838) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (30838) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (32838) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (34838) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (34838) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (34838) GPRS: Comando enviado: AT
+[0m
+[0;31mE (35038) GPRS: Respuesta ERROR recibida: AT
+
+ERROR
+
+CLOSED
+[0m
+[0;31mE (35038) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (35038) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (40038) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (42038) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (44038) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (44038) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (49038) GPRS: Conexión TCP realizada[0m
+[0;32mI (49038) GPRS: TCP conectado[0m
+[0;32mI (49038) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (54038) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (54038) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (54038) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (57078) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (57078) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (59078) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (61868) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (61868) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (61868) GPRS: Comando enviado: AT
+[0m
+[0;32mI (61988) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (61988) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (61988) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (63988) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (63988) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (65988) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (65988) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (65988) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (67988) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (67988) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (68128) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (68128) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (68128) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (68328) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (68328) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (68328) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (73328) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (75328) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (77328) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (77328) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (82328) GPRS: Conexión TCP realizada[0m
+[0;32mI (82328) GPRS: TCP conectado[0m
+[0;32mI (82328) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (87328) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (87328) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (87328) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (90368) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (90368) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (92368) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (94368) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (94368) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (94368) GPRS: Comando enviado: AT
+[0m
+[0;31mE (95278) GPRS: Respuesta ERROR recibida: AT
+
+ERROR
+
+CLOSED
+[0m
+[0;31mE (95278) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (95278) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (100278) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (102278) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (104278) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (104278) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (109278) GPRS: Conexión TCP realizada[0m
+[0;32mI (109278) GPRS: TCP conectado[0m
+[0;32mI (109278) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (114278) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (114278) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (114278) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (117318) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (117318) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (119318) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (121318) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (121318) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (121318) GPRS: Comando enviado: AT
+[0m
+[0;31mE (121668) GPRS: Respuesta ERROR recibida: AT
+
+ERROR
+
+CLOSED
+[0m
+[0;31mE (121668) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (121668) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (126668) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (128668) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (130668) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (130668) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (135668) GPRS: Conexión TCP realizada[0m
+[0;32mI (135668) GPRS: TCP conectado[0m
+[0;32mI (135668) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (140668) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (140668) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (140668) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (143708) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (143708) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (145708) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (148498) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (148498) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (148498) GPRS: Comando enviado: AT
+[0m
+[0;32mI (148618) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (148618) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (148618) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (150618) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (150618) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (152618) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (152618) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (152618) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (154618) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (154618) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (154758) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (154758) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (154758) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (154958) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (154958) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (154958) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (159958) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (161958) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (163958) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (163958) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (168958) GPRS: Conexión TCP realizada[0m
+[0;32mI (168958) GPRS: TCP conectado[0m
+[0;32mI (168958) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (173958) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (173958) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (173958) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (176998) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (176998) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (178998) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (182398) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (182398) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (182398) GPRS: Comando enviado: AT
+[0m
+[0;32mI (182518) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (182518) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (182518) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (184518) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (184518) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (186518) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (186518) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (186518) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (188518) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (188518) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (188658) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (188658) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (188658) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (188858) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (188858) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (188858) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (193858) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (195858) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (197858) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (197858) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (202858) GPRS: Conexión TCP realizada[0m
+[0;32mI (202858) GPRS: TCP conectado[0m
+[0;32mI (202858) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (207858) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (207858) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (207858) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (210898) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (210898) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (212898) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (216298) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (216298) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (216298) GPRS: Comando enviado: AT
+[0m
+[0;32mI (216418) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (216418) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (216418) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (218418) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (218418) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (220418) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (220418) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (220418) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (222418) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (222418) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (222558) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (222558) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (222558) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (222758) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (222758) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (222758) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (227758) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (229758) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (231758) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (231758) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (236758) GPRS: Conexión TCP realizada[0m
+[0;32mI (236758) GPRS: TCP conectado[0m
+[0;32mI (236758) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (241758) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (241758) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (241758) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (244798) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (244798) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (246798) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (250198) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (250198) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (250198) GPRS: Comando enviado: AT
+[0m
+[0;32mI (250318) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (250318) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (250318) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (252318) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (252318) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (254318) GPRS: Calidad de señal: AT+CSQ
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (254318) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (254318) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (256318) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (256318) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (256458) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (256458) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (256458) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (256658) GPRS: Respuesta ERROR recibida: AT+CSTT="igprs.claro.com.ar","",""
+ERROR
+[0m
+[0;31mE (256658) GPRS: Error: no se pudo configurar APN[0m
+[0;31mE (256658) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (261658) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (263658) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (265658) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (265658) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (270658) GPRS: Conexión TCP realizada[0m
+[0;32mI (270658) GPRS: TCP conectado[0m
+[0;32mI (270658) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (275658) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (275658) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (275658) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (278658) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (278658) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (280658) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (282808) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (282808) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (282808) GPRS: Comando enviado: AT
+[0m
+[0;32mI (282928) GPRS: Respuesta OK recibida: AT
+OK
+[0m
+[0;32mI (282928) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (282928) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (284928) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (284928) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (286928) GPRS: Calidad de señal: AT+CSQ
++CSQ: 29,0
+
+OK
+[0m
+[0;32mI (286928) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (286928) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (288928) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (288928) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (289068) GPRS: Respuesta OK recibida: AT+CGATT=1
+OK
+[0m
+[0;32mI (289068) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (289068) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (289258) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
+OK
+[0m
+[0;32mI (289258) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (289258) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (290448) GPRS: Respuesta OK recibida: AT+CIICR
+OK
+[0m
+[0;32mI (290448) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (290448) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (292448) GPRS: IP obtenida: AT+CIFSR
+10.37.116.146
+[0m
+[0;32mI (292448) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (292448) GPRS: GPRS conectado[0m
+[0;32mI (292448) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (294458) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (294458) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (299458) GPRS: Conexión TCP realizada[0m
+[0;32mI (299458) GPRS: TCP conectado[0m
+[0;32mI (299458) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (304458) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (304458) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (304458) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (307498) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (307498) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (309498) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (311498) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (311498) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (311498) GPRS: Comando enviado: AT
+[0m
+[0;31mE (311898) GPRS: Respuesta ERROR recibida: AT
+
+ERROR
+
+CLOSED
+[0m
+[0;31mE (311898) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (311898) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (316898) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (318898) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (320898) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (320898) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (325898) GPRS: Conexión TCP realizada[0m
+[0;32mI (325898) GPRS: TCP conectado[0m
+[0;32mI (325898) GPRS: Comando enviado: AT+CIPSEND
+[0m
+[0;31mE (330898) GPRS: No se recibió el símbolo '>' de AT+CIPSEND. Abortando.[0m
+[0;31mE (330898) GPRS: Error enviando datos, cerrando TCP[0m
+[0;32mI (330898) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;31mE (333938) GPRS: Timeout esperando OK o ERROR: AT+CIPCLOSE
+[0m
+[0;31mE (333938) GPRS: No se pudo cerrar conexión TCP[0m
+[0;32mI (335938) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;33mW (337938) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (337938) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (337938) GPRS: Comando enviado: AT
+[0m
+[0;31mE (338248) GPRS: Respuesta ERROR recibida: AT
+
+ERROR
+
+CLOSED
+[0m
+[0;31mE (338248) GPRS: Error: el módulo no responde a AT[0m
+[0;31mE (338248) GPRS: No se pudo conectar GPRS, reintentando en 5s...[0m
+[0;32mI (343248) GPRS: Comando enviado: AT+CGATT?
+[0m
+[0;32mI (345248) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;33mW (347248) GPRS: TCP des

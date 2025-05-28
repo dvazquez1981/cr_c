@@ -65,6 +65,9 @@ static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int3
 static bool uart_instalado_modem = false;
 static bool uart_instalado_r232 = false;
 static bool gprs_conectado=false;
+
+
+
 static bool uart_modem_init()
 {
 
@@ -191,7 +194,6 @@ static void send_at_command(const char* t,uart_port_t un, const char *cmd) {
 
 
 
-
 static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,const char* t,uart_port_t un) {
     // Limpiar buffer UART antes de enviar comando
     uart_flush(un);
@@ -247,58 +249,7 @@ static void encolar(char* msg)
             }
     }
 }
-static bool is_netif_ready(void) {
-    esp_netif_t* netif = esp_netif_get_handle_from_ifkey("GPRS_IF_KEY"); // Reemplazá por tu nombre
-    if (netif == NULL) {
-        ESP_LOGW(TAG, "Netif no encontrado");
-        return false;
-    }
 
-    esp_netif_ip_info_t ip_info;
-    if (esp_netif_get_ip_info(netif, &ip_info) != ESP_OK) {
-        ESP_LOGW(TAG, "No se pudo obtener IP");
-        return false;
-    }
-
-    // IP válida no es 0.0.0.0
-    if (ip_info.ip.addr == 0) {
-        ESP_LOGW(TAG, "IP no asignada");
-        return false;
-    }
-
-    // Además chequeá que el netif esté "up"
-    if (!esp_netif_is_netif_up(netif)) {
-        ESP_LOGW(TAG, "Netif no está UP");
-        return false;
-    }
-
-    return true;
-}
-
-static bool  check_internet_http() {
-
-      if (!is_netif_ready()) {
-        ESP_LOGW(TAG, "Red no lista, no se prueba HTTP");
-        return false;
-    }
-
-    esp_http_client_config_t config = {
-        .url = "http://clients3.google.com/generate_204",
-        .method = HTTP_METHOD_GET,
-        .timeout_ms = 5000,
-    };
-    esp_http_client_handle_t client = esp_http_client_init(&config);
-    esp_err_t err = esp_http_client_perform(client);
-
-    if (err == ESP_OK) {
-        int status = esp_http_client_get_status_code(client);
-        esp_http_client_cleanup(client);
-        return (status == 204);  // 204 indica éxito y sin contenido
-    } else {
-        esp_http_client_cleanup(client);
-        return false;
-    }
-}
 // Tarea para leer respuestas del RS232 y ponerlas en cola
 static void rs232_lectura_tarea(void *arg)
 {
@@ -469,6 +420,8 @@ static bool gprs_connect()
         return false;
     }
 
+   
+    
     ESP_LOGI(TAG_GPRS, "Verificando estado de SIM con AT+CPIN?...");
     uart_flush(UART_MODEM_NUM);
     send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CPIN?");
@@ -556,7 +509,25 @@ static bool gprs_connect()
 
     ESP_LOGI(TAG_GPRS, "IP obtenida: %s", buf);
     ESP_LOGI(TAG_GPRS, "Conexión GPRS establecida correctamente");
-    
+    // 2. Configuración inicial crítica (¡NUEVO!)
+    ESP_LOGI(TAG_GPRS, "Configurando módem...");
+    if (!send_at_command_and_wait_ok("ATE0",1000,TAG_GPRS,UART_MODEM_NUM)) {
+        ESP_LOGE(TAG_GPRS, "Error: modem init");
+        return false;
+    }    // Desactiva el eco
+  if (!send_at_command_and_wait_ok("AT+CMEE=1",1000,TAG_GPRS,UART_MODEM_NUM)) { 
+  ESP_LOGE(TAG_GPRS, "Error: modem init");
+        return false;
+    } // Habilita códigos de error detallados
+
+
+    if (!send_at_command_and_wait_ok("AT+CIPHEAD=0",1000,TAG_GPRS,UART_MODEM_NUM)) { 
+          ESP_LOGE(TAG_GPRS, "Error: modem init");
+        return false;
+    }    // Sin cabeceras extra
+
+   
+
     return true;
 }
 
@@ -568,7 +539,7 @@ static bool tcp_connect(const char* host, int port) {
     snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%d", host, port);
     send_at_command(TAG_GPRS,UART_MODEM_NUM,cmd);   
     vTaskDelay(pdMS_TO_TICKS(5000));
-    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(3000));
     if (len <= 0) {
         ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSTART");
         return false;
@@ -586,24 +557,63 @@ static bool tcp_connect(const char* host, int port) {
 
 }
 
-static bool tcp_send(const char* data) {
+static bool tcp_send(const uint8_t* data,unsigned int len) {
 
-char buf[64] = {0};
+char buf[128] = {0};
+
 uart_flush(UART_MODEM_NUM);
 // 2. Enviar comando para enviar datos
-send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CIPSEND");
-vTaskDelay(pdMS_TO_TICKS(5000));
+send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CIPSEND");
 
-//const char* request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
-uart_write_bytes(UART_MODEM_NUM, data, strlen(data));
-vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
+
+
+// Esperar el símbolo '>' dinámicamente
+bool prompt_found = false;
+int total = 0;
+TickType_t start = xTaskGetTickCount();
+
+while ((xTaskGetTickCount() - start) < pdMS_TO_TICKS(5000)) {
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf + total, sizeof(buf) - total, pdMS_TO_TICKS(500));
+    if (len > 0) {
+        total += len;
+        for (int i = 0; i < total; i++) {
+            if (buf[i] == '>') {
+                prompt_found = true;
+                break;
+            }
+  
+
+            // Verificar si ya está cerrado antes de enviar
+            if (strstr(buf, "CLOSED")) {
+                ESP_LOGW(TAG_GPRS, "Conexión cerrada antes de enviar");
+                return false;
+            }
+
+        }
+        if (prompt_found) break;
+    }
+    vTaskDelay(pdMS_TO_TICKS(100));
+}
+
+if (!prompt_found) {
+    ESP_LOGE(TAG_GPRS, "No se recibió el símbolo '>' después de AT+CIPSEND");
+    return false;
+}
+
+
+uart_flush(UART_MODEM_NUM);
+
+uart_write_bytes(UART_MODEM_NUM, data, len);
+
+//vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
+
 
 const char end_char = 0x1A;  // Ctrl+Z
 uart_write_bytes(UART_MODEM_NUM, &end_char, 1);
-
 uart_flush(UART_MODEM_NUM);
+vTaskDelay(pdMS_TO_TICKS(100));
 
-int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(2000));
+len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(5000));
 if (len <= 0) {
     ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSEND");
     return false;
@@ -618,16 +628,6 @@ return true;
 
 }
 
-static bool tcp_disconnect() {
-    if (!send_at_command_and_wait_ok("AT+CIPCLOSE", 3000, TAG_GPRS, UART_MODEM_NUM)) {
-        ESP_LOGE(TAG_GPRS, "No se pudo cerrar conexión TCP");
-        return false;
-    }
-    ESP_LOGI(TAG_GPRS, "Conexión TCP cerrada");
-    return true;
-}
-
-
 static bool gprs_disconnect() {
     if (!send_at_command_and_wait_ok("AT+CIPSHUT", 5000, TAG_GPRS, UART_MODEM_NUM)) {
         ESP_LOGE(TAG_GPRS, "No se pudo cerrar conexión GPRS");
@@ -639,9 +639,23 @@ static bool gprs_disconnect() {
 
 static void gprs_mqtt_task(void *pvParameters)
 {
-    const char *host = "httpbin.org";
-    const char *http_request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
-    int port = 80;
+//const char *host = "httpbin.org";
+//const char *http_request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
+
+const char *host = "api.ipify.org";
+const char *http_request =     "GET /?format=json HTTP/1.1\r\nHost: api.ipify.org\r\n\r\n";
+//const char *host = "worldtimeapi.org";
+//const char *http_request = "GET / HTTP/1.1\r\nHost: worldtimeapi.org\r\n\r\n";
+unsigned int len=  strlen(http_request);
+int port = 80;
+
+//const char *host ="broker.hivemq.com";
+const uint8_t connect_packet[] = {
+    0x10, 0x12, 0x00, 0x04, 'M','Q','T','T', 0x04, 0x02, 0x00, 0x3C, 0x00, 0x04, 't','e','s','t'
+};
+
+//signed int len = sizeof(connect_packet);
+//int port =  1883;
     
     bool mqtt_iniciado = false;
     bool gprs_conectado = false;
@@ -671,15 +685,16 @@ static void gprs_mqtt_task(void *pvParameters)
         gprs_disconnect();
        */
     
-       if (!gprs_is_connected()) {
+      // if (!gprs_is_connected()) {
             ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
             if (!gprs_connect()) {
                 ESP_LOGE(TAG_GPRS, "No se pudo conectar GPRS, reintentando en 5s...");
                 vTaskDelay(pdMS_TO_TICKS(5000));
+                gprs_disconnect();
                 continue;
             }
             ESP_LOGI(TAG_GPRS, "GPRS conectado");
-        }
+      //  }
 
         if (!tcp_is_connected()) {
             ESP_LOGW(TAG_GPRS, "TCP desconectado, conectando...");
@@ -692,18 +707,18 @@ static void gprs_mqtt_task(void *pvParameters)
         }
 
          // Enviar datos
-        if (!tcp_send(http_request)) {
+        if (!tcp_send((const uint8_t*)/*connect_packet*/http_request,len)) {
             ESP_LOGE(TAG_GPRS, "Error enviando datos, cerrando TCP");
-            tcp_disconnect();
+            //tcp_disconnect();
             vTaskDelay(pdMS_TO_TICKS(2000));
             continue;
         }
         
         char response[512];
-        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
+        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 3000);
         if (l > 0) {
          response[l] = '\0';
-         ESP_LOGI(TAG_GPRS,"Respuesta HTTP: %s\n", response);
+         ESP_LOGI(TAG_GPRS,"Respuesta: %s\n", response);
          } else {
             ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
         }
