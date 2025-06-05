@@ -685,7 +685,7 @@ char http_request[512]; // suficiente para todo
 sprintf(http_request,
   "POST /api/v2/km100fuegos/feeds/transito/data HTTP/1.1\r\n"
   "Host: io.adafruit.com\r\n"
-  "X-AIO-Key: aio_WEev22ksUMyPCkLpLEFs8VYYUCnL\r\n"
+
   "Content-Type: application/json\r\n"
   "Content-Length: %d\r\n"
   "Connection: close\r\n"
