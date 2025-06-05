@@ -15,7 +15,7 @@
 
 
 #include "driver/uart.h"
-#include "mqtt_client.h"
+//#include "mqtt_client.h"
 static const char *TAG= "APP";
 
 static const char *TAG_UART_MQTT = "UART_MQTT";
@@ -29,12 +29,12 @@ static const char *TAG_UART_RS232 = "UART_RS232";
 #define UART_MODEM_NUM     UART_NUM_1
 #define UART_RS232_NUM     UART_NUM_0
 
-#define UART_MODEM_TX_PIN 2
-#define UART_MODEM_RX_PIN 3
+#define UART_MODEM_TX_PIN 5
+#define UART_MODEM_RX_PIN 6
 
 
 #define UART_RS232_TX_PIN  1    // UART0 TX
-#define UART_RS232_RX_PIN  3    // UART0 RX       
+#define UART_RS232_RX_PIN  4   // UART0 RX       
 
 #define INTENTOSCONEXION 3
 
@@ -53,14 +53,14 @@ const char *mqttTopicData = "dnv/contador1/transito";
 const char *mqttTopicCmd  = "dnv/contador1/cmd";
 const char *mqttTopicResp = "dnv/contador1/response";
 
-static esp_mqtt_client_handle_t mqtt_client = NULL;
+//static esp_mqtt_client_handle_t mqtt_client = NULL;
 static QueueHandle_t dataQueue;
 //estado mqtt ready
 static bool mqtt_ready = false;
 
 
 // Prototipo del handler MQTT
-static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data);
+//static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data);
 
 static bool uart_instalado_modem = false;
 static bool uart_instalado_r232 = false;
@@ -284,6 +284,7 @@ static bool crear_cola(void)
 }
 
 // Procesar mensajes de la cola para publicar en MQTT
+/*
 static void enviar_datos_cola_mqtt()
 {
     char *msg = NULL;
@@ -311,7 +312,8 @@ static void enviar_datos_cola_mqtt()
         }
     }
 }
-
+    */
+/*
 //manejador de eventos MQTT
 static void mqtt_event_manejador(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
@@ -388,6 +390,7 @@ static bool mqtt_app_init(void)
     ESP_LOGI(TAG_MQTT, "Cliente MQTT iniciado correctamente");
     return true;
 }
+    */
 static bool gprs_is_connected() {
     char buf[64];
     uart_flush(UART_MODEM_NUM);
@@ -466,10 +469,29 @@ static bool gprs_connect()
         return false;
     }
     buf[len] = 0;
-    if (!(strstr(buf, "+CREG: 0,1") || strstr(buf, "+CREG: 0,5"))) {
-        ESP_LOGW(TAG_GPRS, "No registrado en red móvil: %s", buf);
-        return false;
+    if (!(strstr(buf, "+CGREG: 0,1") || strstr(buf, "+CGREG: 0,5"))) {
+         ESP_LOGW(TAG_GPRS, "No registrado en red");
+    } 
+    else 
+    {
+        send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CIPGSMLOC=1,1");
+        vTaskDelay(pdMS_TO_TICKS(500)); 
+        len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+        buf[len] = 0;
+        ESP_LOGI(TAG, "Ubicación: %s", buf);
     }
+    ESP_LOGI(TAG_GPRS, "Activando GAT+CGREG?...");
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CGREG?");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    memset(buf, 0, sizeof(buf));
+    len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    if (len <= 0) {
+       ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CGREG?");
+       }
+    buf[len] = 0;
+
+
+
 
     ESP_LOGI(TAG_GPRS, "Activando GPRS con AT+CGATT=1...");
     if (!send_at_command_and_wait_ok("AT+CGATT=1", 2000,TAG_GPRS,UART_MODEM_NUM)) {
@@ -539,7 +561,7 @@ static bool tcp_connect(const char* host, int port) {
     snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%d", host, port);
     send_at_command(TAG_GPRS,UART_MODEM_NUM,cmd);   
     vTaskDelay(pdMS_TO_TICKS(5000));
-    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(3000));
+    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(5000));
     if (len <= 0) {
         ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSTART");
         return false;
@@ -557,7 +579,7 @@ static bool tcp_connect(const char* host, int port) {
 
 }
 
-static bool tcp_send(const uint8_t* data,unsigned int len) {
+static bool tcp_send(char* data,unsigned int len) {
 
 char buf[128] = {0};
 
@@ -602,7 +624,8 @@ if (!prompt_found) {
 
 
 uart_flush(UART_MODEM_NUM);
-
+ESP_LOGI("HTTP", "Enviando solicitud:\n%s", data);
+ESP_LOGI("HTTP", "Longitud: %u", len);
 uart_write_bytes(UART_MODEM_NUM, data, len);
 
 //vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
@@ -629,6 +652,8 @@ return true;
 }
 
 static bool gprs_disconnect() {
+
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
     if (!send_at_command_and_wait_ok("AT+CIPSHUT", 5000, TAG_GPRS, UART_MODEM_NUM)) {
         ESP_LOGE(TAG_GPRS, "No se pudo cerrar conexión GPRS");
         return false;
@@ -642,18 +667,38 @@ static void gprs_mqtt_task(void *pvParameters)
 //const char *host = "httpbin.org";
 //const char *http_request = "GET /get HTTP/1.1\r\nHost: httpbin.org\r\n\r\n";
 
-const char *host = "api.ipify.org";
-const char *http_request =     "GET /?format=json HTTP/1.1\r\nHost: api.ipify.org\r\n\r\n";
+//const char *host = "api.ipify.org";
+//const char *http_request =     "GET /?format=json HTTP/1.1\r\nHost: api.ipify.org\r\n\r\n";
 //const char *host = "worldtimeapi.org";
 //const char *http_request = "GET / HTTP/1.1\r\nHost: worldtimeapi.org\r\n\r\n";
-unsigned int len=  strlen(http_request);
-int port = 80;
+//unsigned int len=  strlen(http_request);
+//int port = 80;
 
-//const char *host ="broker.hivemq.com";
+const char* host = "io.adafruit.com";
+const int port = 80;
+
+const char *body = "{\"value\":\"{\\\"id\\\":\\\"1\\\",\\\"carril\\\":\\\"1\\\",\\\"liv\\\":\\\"64\\\"}\"}";
+
+
+
+char http_request[512]; // suficiente para todo
+sprintf(http_request,
+  "POST /api/v2/km100fuegos/feeds/transito/data HTTP/1.1\r\n"
+  "Host: io.adafruit.com\r\n"
+  "X-AIO-Key: aio_WEev22ksUMyPCkLpLEFs8VYYUCnL\r\n"
+  "Content-Type: application/json\r\n"
+  "Content-Length: %d\r\n"
+  "Connection: close\r\n"
+  "\r\n"
+  "%s", strlen(body), body);
+
+ unsigned int len=  strlen(http_request);
+
+/*const char *host="test.mosquitto.org";
 const uint8_t connect_packet[] = {
     0x10, 0x12, 0x00, 0x04, 'M','Q','T','T', 0x04, 0x02, 0x00, 0x3C, 0x00, 0x04, 't','e','s','t'
 };
-
+*/
 //signed int len = sizeof(connect_packet);
 //int port =  1883;
     
@@ -668,10 +713,10 @@ const uint8_t connect_packet[] = {
         // Verificar estado de conexión GPRS
         //gprs_conectado = gprs_is_connected();
 
-       /*gprs_connect();
-        tcp_connect(host, port);
-        tcp_send(http_request);
-        */
+         gprs_connect();
+        //tcp_connect(host, port);
+        //tcp_send(http_request);
+        //*/
         // . Leer respuesta
        /* char response[512];
         int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
@@ -687,7 +732,7 @@ const uint8_t connect_packet[] = {
     
       // if (!gprs_is_connected()) {
             ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
-            if (!gprs_connect()) {
+            /*if (!gprs_connect()) {
                 ESP_LOGE(TAG_GPRS, "No se pudo conectar GPRS, reintentando en 5s...");
                 vTaskDelay(pdMS_TO_TICKS(5000));
                 gprs_disconnect();
@@ -695,7 +740,7 @@ const uint8_t connect_packet[] = {
             }
             ESP_LOGI(TAG_GPRS, "GPRS conectado");
       //  }
-
+*/
         if (!tcp_is_connected()) {
             ESP_LOGW(TAG_GPRS, "TCP desconectado, conectando...");
             if (!tcp_connect(host, port)) {
@@ -707,15 +752,17 @@ const uint8_t connect_packet[] = {
         }
 
          // Enviar datos
-        if (!tcp_send((const uint8_t*)/*connect_packet*/http_request,len)) {
+
+    
+        if (!tcp_send(http_request,len)) {
             ESP_LOGE(TAG_GPRS, "Error enviando datos, cerrando TCP");
             //tcp_disconnect();
             vTaskDelay(pdMS_TO_TICKS(2000));
             continue;
         }
         
-        char response[512];
-        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 3000);
+        char response[1272];
+        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
         if (l > 0) {
          response[l] = '\0';
          ESP_LOGI(TAG_GPRS,"Respuesta: %s\n", response);

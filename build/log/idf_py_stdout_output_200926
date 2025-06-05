@@ -1,2080 +1,0 @@
-ESP-ROM:esp32c3-api1-20210207
-Build:Feb  7 2021
-rst:0x1 (POWERON),boot:0xe (SPI_FAST_FLASH_BOOT)
-SPIWP:0xee
-mode:DIO, clock div:1
-load:0x3fcd5820,len:0x1738
-load:0x403cc710,len:0xb9c
-load:0x403ce710,len:0x2e40
-entry 0x403cc71a
-[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
-[0;32mI (30) boot: compile time May 23 2025 11:20:10[0m
-[0;32mI (30) boot: chip revision: v0.3[0m
-[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
-[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
-[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
-[0;32mI (47) boot: Enabling RNG early entropy source...[0m
-[0;32mI (53) boot: Partition Table:[0m
-[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
-[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
-[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
-[0;32mI (86) boot: End of partition table[0m
-[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bee8h ( 48872) map[0m
-[0;32mI (106) esp_image: segment 1: paddr=0001bf10 vaddr=3fc8c200 size=0125ch (  4700) load[0m
-[0;32mI (108) esp_image: segment 2: paddr=0001d174 vaddr=40380000 size=02ea4h ( 11940) load[0m
-[0;32mI (118) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d38ch (119692) map[0m
-[0;32mI (143) esp_image: segment 4: paddr=0003d3b4 vaddr=40382ea4 size=09160h ( 37216) load[0m
-[0;32mI (153) boot: Loaded app from partition at offset 0x10000[0m
-[0;32mI (154) boot: Disabling RNG early entropy source...[0m
-[0;32mI (165) cpu_start: Unicore app[0m
-[0;32mI (174) cpu_start: Pro cpu start user code[0m
-[0;32mI (174) cpu_start: cpu freq: 160000000 Hz[0m
-[0;32mI (174) cpu_start: Application information:[0m
-[0;32mI (177) cpu_start: Project name:     cr_c[0m
-[0;32mI (182) cpu_start: App version:      10fbb67-dirty[0m
-[0;32mI (187) cpu_start: Compile time:     May 23 2025 15:37:10[0m
-[0;32mI (193) cpu_start: ELF file SHA256:  c84b2ff2487d8786...[0m
-[0;32mI (199) cpu_start: ESP-IDF:          v5.2[0m
-[0;32mI (204) cpu_start: Min chip rev:     v0.3[0m
-[0;32mI (209) cpu_start: Max chip rev:     v1.99 [0m
-[0;32mI (214) cpu_start: Chip rev:         v0.3[0m
-[0;32mI (218) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (226) heap_init: At 3FC8E410 len 00031BF0 (198 KiB): RAM[0m
-[0;32mI (232) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
-[0;32mI (239) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
-[0;32mI (246) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
-[0;32mI (253) spi_flash: detected chip: generic[0m
-[0;32mI (257) spi_flash: flash io: dio[0m
-[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
-[0;32mI (274) sleep: Configure to isolate all GPIO pins in sleep state[0m
-[0;32mI (280) sleep: Enable automatic switching of GPIO sleep configuration[0m
-[0;32mI (288) main_task: Started on CPU0[0m
-[0;32mI (288) main_task: Calling app_main()[0m
-[0;32mI (288) APP: Inicio Aplicación...[0m
-[0;32mI (298) UART_MODEM: uart_driver_install OK[0m
-[0;32mI (298) UART_MODEM: uart_param_config OK[0m
-[0;32mI (308) UART_MODEM: uart_s[0;32mI (318) UART_RS232: uart_driver_install OK[0m
-[0;32mI (318) UART_RS232: uart_set_pin OK[0m
-[0;32mI (318) UART_RS232: Uart RS232 inicializada[0m
-[0;32mI (318) UART: UARTs inicializadas correctamente.[0m
-[0;32mI (328) APP: Se creo la cola[0m
-[0;32mI (328) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (338) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (338) main_task: Returned from app_main()[0m
-[0;32mI (2338) GPRS: Respuesta AT+CIPSTATUS: [0m
-[0;33mW (2338) GPRS: Estado inesperado o desconectado: [0m
-[0;32mI (2338) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (2338) GPRS: Comando enviado: AT
-[0m
-[0;32mI (2468) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (2468) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (2468) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (4468) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (4468) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (6468) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (6468) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (6468) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (8468) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (8468) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (8608) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (8608) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (8608) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (8798) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (8798) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (8798) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (9688) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (9688) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (9688) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (11688) GPRS: IP obtenida: AT+CIFSR
-100.81.25.98
-[0m
-[0;32mI (11688) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (11688) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (16688) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (26818) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:38:20 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c09c-043df15719c10c380607e032"
-  }, 
-  "origin": "170.51.87.214"
-[0m
-[0;32mI (26858) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (26868) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (29708) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;32mI (29708) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (29708) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (31708) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (31708) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (31708) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (31718) GPRS: Comando enviado: AT
-[0m
-[0;32mI (31848) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (31848) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (31848) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (33848) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (33848) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (35848) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (35848) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (35848) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (37848) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (37848) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (37988) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (37988) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (37988) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (38178) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (38178) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (38178) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (38888) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (38888) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (38888) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (40888) GPRS: IP obtenida: AT+CIFSR
-10.129.162.110
-[0m
-[0;32mI (40888) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (40888) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (45888) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (53418) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:38:47 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c0b6-4991fd732914f2fb730863bb"
-  }, 
-  "origin": "181.238.64.23"
-[0m
-[0;32mI (53458) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (53468) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (56138) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (56138) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (61138) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (61138) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (63138) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (63138) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (63138) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (63148) GPRS: Comando enviado: AT
-[0m
-[0;32mI (63278) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (63278) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (63278) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (65278) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (65278) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (67278) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (67278) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (67278) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (69278) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (69278) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (69418) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (69418) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (69418) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (69608) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (69608) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (69608) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (70288) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (70288) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (70288) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (72288) GPRS: IP obtenida: AT+CIFSR
-10.198.234.82
-[0m
-[0;32mI (72288) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (72288) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (77288) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (88998) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:39:22 GMT
-Content-Type: application/json
-Content-Length: 197
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c0d9-3d2a3d1a1674a7892718b03b"
-  }, 
-  "origin": "186.12.60.58",
-[0m
-[0;32mI (89038) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (89048) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (91788) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (91788) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (96788) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (96788) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (98788) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (98788) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (98788) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (98798) GPRS: Comando enviado: AT
-[0m
-[0;32mI (98928) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (98928) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (98928) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (100928) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (100928) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (102928) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (102928) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (102928) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (104928) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (104928) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (105068) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (105068) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (105068) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (105258) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (105258) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (105258) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (106068) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (106068) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (106068) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (108068) GPRS: IP obtenida: AT+CIFSR
-10.137.166.91
-[0m
-[0;32mI (108068) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (108068) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (113068) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (120728) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:39:54 GMT
-Content-Type: application/json
-Content-Length: 199
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c0f9-22e7ccbf67fefad96a54f2e4"
-  }, 
-  "origin": "186.157.160.73
-[0m
-[0;32mI (120758) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (120768) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (123648) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (123648) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (128648) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (128648) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (130648) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (130648) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;31mE (130648) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
-[0;32mI (160658) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (160658) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (162658) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (162658) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (162658) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (162668) GPRS: Comando enviado: AT
-[0m
-[0;32mI (162798) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (162798) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (162798) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (164798) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (164798) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (166798) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (166798) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (166798) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (168798) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (168798) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (168938) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (168938) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (168938) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (169128) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (169128) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (169128) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (169968) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (169968) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (169968) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (171968) GPRS: IP obtenida: AT+CIFSR
-10.133.125.140
-[0m
-[0;32mI (171968) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (171968) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (176968) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (184738) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:40:58 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c139-2ee6195e55176d331f5efe0d"
-  }, 
-  "origin": "181.239.44.15"
-[0m
-[0;32mI (184778) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (184788) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (187728) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;32mI (187728) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (187728) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (189728) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (189728) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (189728) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (189738) GPRS: Comando enviado: AT
-[0m
-[0;32mI (189868) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (189868) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (189868) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (191868) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (191868) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (193868) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (193868) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (193868) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (195868) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (195868) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (196008) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (196008) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (196008) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (196198) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (196198) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (196198) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (196928) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (196928) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (196928) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (198928) GPRS: IP obtenida: AT+CIFSR
-10.96.225.218
-[0m
-[0;32mI (198928) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (198928) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (203928) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (215278) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:41:29 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c158-3b3d57c3046595e40d035e03"
-  }, 
-  "origin": "186.12.40.195"
-[0m
-[0;32mI (215318) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (215328) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (218108) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (218108) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (223108) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (223108) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (225108) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (225108) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (225108) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (225118) GPRS: Comando enviado: AT
-[0m
-[0;32mI (225248) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (225248) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (225248) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (227248) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (227248) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (229248) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (229248) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (229248) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (231248) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (231248) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (231388) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (231388) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (231388) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (231578) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (231578) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (231578) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (232268) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (232268) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (232268) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (234268) GPRS: IP obtenida: AT+CIFSR
-10.61.67.221
-[0m
-[0;32mI (234268) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (234268) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (239268) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (250678) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:42:04 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c17a-117d1157406d999f47870c65"
-  }, 
-  "origin": "186.12.12.172"
-[0m
-[0;32mI (250718) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (250728) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (253478) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (253478) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (258478) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (258478) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (260478) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (260478) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (260478) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (260488) GPRS: Comando enviado: AT
-[0m
-[0;32mI (260618) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (260618) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (260618) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (262618) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (262618) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (264618) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (264618) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (264618) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (266618) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (266618) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (266758) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (266758) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (266758) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (266948) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (266948) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (266948) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (268068) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (268068) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (268068) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (270068) GPRS: IP obtenida: AT+CIFSR
-100.94.115.222
-[0m
-[0;32mI (270068) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (270068) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (275068) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (284638) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:42:38 GMT
-Content-Type: application/json
-Content-Length: 197
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c19e-4df37b3900bc9cee5360dbd6"
-  }, 
-  "origin": "170.51.89.92",
-[0m
-[0;32mI (284678) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (284688) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (287558) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (287558) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (292558) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (292558) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (294558) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (294558) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;31mE (294558) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
-[0;32mI (324568) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (324568) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (326568) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (326568) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (326568) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (326578) GPRS: Comando enviado: AT
-[0m
-[0;32mI (326708) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (326708) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (326708) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (328708) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (328708) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (330708) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (330708) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (330708) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (332708) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (332708) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (332848) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (332848) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (332848) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (333038) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (333038) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (333038) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (333788) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (333788) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (333788) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (335788) GPRS: IP obtenida: AT+CIFSR
-10.220.94.95
-[0m
-[0;32mI (335788) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (335788) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (340788) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (351538) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:43:45 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c1e0-000bf8cb564224b7256d009d"
-  }, 
-  "origin": "186.12.64.173"
-[0m
-[0;32mI (351578) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (351588) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (354428) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;32mI (354428) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (354428) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (356428) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (356428) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (356428) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (356438) GPRS: Comando enviado: AT
-[0m
-[0;32mI (356568) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (356568) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (356568) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (358568) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (358568) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (360568) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (360568) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (360568) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (362568) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (362568) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (362708) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (362708) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (362708) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (362898) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (362898) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (362898) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (363668) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (363668) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (363668) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (365668) GPRS: IP obtenida: AT+CIFSR
-10.189.220.51
-[0m
-[0;32mI (365668) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (365668) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (370668) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (377838) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:44:11 GMT
-Content-Type: application/json
-Content-Length: 200
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c1fb-01a666245e7936df10e0f51c"
-  }, 
-  "origin": "181.239.159.23
-[0m
-[0;32mI (377878) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (377888) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (380648) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (380648) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (385648) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (385648) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (387648) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (387648) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (387648) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (387658) GPRS: Comando enviado: AT
-[0m
-[0;32mI (387788) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (387788) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (387788) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (389788) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (389788) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (391788) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (391788) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (391788) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (393788) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (393788) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (393928) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (393928) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (393928) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (394118) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (394118) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (394118) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (394808) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (394808) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (394808) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (396808) GPRS: IP obtenida: AT+CIFSR
-10.186.101.78
-[0m
-[0;32mI (396808) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (396808) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (401808) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (411378) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:44:45 GMT
-Content-Type: application/json
-Content-Length: 200
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c21d-5d8f4aae3bd43b712d234a02"
-  }, 
-  "origin": "181.117.237.16
-[0m
-[0;32mI (411418) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (411428) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (414368) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (414368) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (419368) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (419368) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (421368) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (421368) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (421368) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (421378) GPRS: Comando enviado: AT
-[0m
-[0;32mI (421508) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (421508) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (421508) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (423508) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (423508) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (425508) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (425508) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (425508) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (427508) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (427508) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (427648) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (427648) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (427648) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (427838) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (427838) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (427838) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (428648) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (428648) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (428648) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (430648) GPRS: IP obtenida: AT+CIFSR
-10.189.220.51
-[0m
-[0;32mI (430648) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (430648) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (435648) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (442778) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:45:16 GMT
-Content-Type: application/json
-Content-Length: 200
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c23c-6bf6440c7dc337a414963242"
-  }, 
-  "origin": "181.239.159.16
-[0m
-[0;32mI (442818) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (442828) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (445828) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (445828) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (450828) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (450828) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (452828) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (452828) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;31mE (452828) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
-[0;32mI (482838) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (482838) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (484838) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (484838) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (484838) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (484848) GPRS: Comando enviado: AT
-[0m
-[0;32mI (484978) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (484978) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (484978) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (486978) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (486978) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (488978) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (488978) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (488978) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (490978) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (490978) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (491118) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (491118) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (491118) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (491308) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (491308) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (491308) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (492108) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (492108) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (492108) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (494108) GPRS: IP obtenida: AT+CIFSR
-10.137.134.205
-[0m
-[0;32mI (494108) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (494108) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (499108) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (506438) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:46:20 GMT
-Content-Type: application/json
-Content-Length: 199
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c27b-034b6be4370a911d00e0a2f8"
-  }, 
-  "origin": "181.239.44.157
-[0m
-[0;32mI (506478) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (506488) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (509228) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;32mI (509228) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (509228) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (511228) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (511228) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (511228) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (511238) GPRS: Comando enviado: AT
-[0m
-[0;32mI (511368) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (511368) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (511368) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (513368) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (513368) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (515368) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (515368) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (515368) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (517368) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (517368) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (517508) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (517508) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (517508) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (517698) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (517698) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (517698) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (518408) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (518408) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (518408) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (520408) GPRS: IP obtenida: AT+CIFSR
-10.154.237.110
-[0m
-[0;32mI (520408) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (520408) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (525408) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (536198) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:46:49 GMT
-Content-Type: application/json
-Content-Length: 199
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c299-0df181252322e0ec7549a303"
-  }, 
-  "origin": "181.117.229.80
-[0m
-[0;32mI (536238) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (536248) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (539188) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (539188) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (544188) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (544188) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (546188) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (546188) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (546188) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (546198) GPRS: Comando enviado: AT
-[0m
-[0;32mI (546328) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (546328) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (546328) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (548328) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (548328) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (550328) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (550328) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (550328) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (552328) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (552328) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (552468) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (552468) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (552468) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (552658) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (552658) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (552658) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (553408) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (553408) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (553408) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (555408) GPRS: IP obtenida: AT+CIFSR
-10.157.194.155
-[0m
-[0;32mI (555408) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (555408) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (560408) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (569658) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:47:23 GMT
-Content-Type: application/json
-Content-Length: 199
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c2b9-19d51f7d2637da433a4edcb7"
-  }, 
-  "origin": "181.238.13.116
-[0m
-[0;32mI (569698) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (569708) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (572768) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (572768) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (577768) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (577768) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (579768) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (579768) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (579768) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (579778) GPRS: Comando enviado: AT
-[0m
-[0;32mI (579908) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (579908) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (579908) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (581908) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (581908) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (583908) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (583908) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (583908) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (585908) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (585908) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (586048) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (586048) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (586048) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (586238) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (586238) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (586238) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (587028) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (587028) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (587028) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (589028) GPRS: IP obtenida: AT+CIFSR
-10.153.249.101
-[0m
-[0;32mI (589028) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (589028) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (594028) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (601178) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:47:54 GMT
-Content-Type: application/json
-Content-Length: 199
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c2da-315ad7964e6216ea6ae075f6"
-  }, 
-  "origin": "186.157.161.40
-[0m
-[0;32mI (601218) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (601228) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (604368) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (604368) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (609368) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (609368) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (611368) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (611368) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;31mE (611368) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
-[0;32mI (641378) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (641378) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (643378) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (643378) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (643378) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (643388) GPRS: Comando enviado: AT
-[0m
-[0;32mI (643518) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (643518) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (643518) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (645518) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (645518) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (647518) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (647518) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (647518) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (649518) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (649518) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (649658) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (649658) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (649658) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (649848) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (649848) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (649848) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (650648) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (650648) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (650648) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (652648) GPRS: IP obtenida: AT+CIFSR
-10.153.249.101
-[0m
-[0;32mI (652648) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (652648) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (657648) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (666878) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:49:00 GMT
-Content-Type: application/json
-Content-Length: 200
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c31a-25006c17772527f637af7dc6"
-  }, 
-  "origin": "186.157.161.21
-[0m
-[0;32mI (666918) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (666928) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (669908) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;32mI (669908) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (669908) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (671908) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (671908) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (671908) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (671918) GPRS: Comando enviado: AT
-[0m
-[0;32mI (672048) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (672048) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (672048) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (674048) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (674048) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (676048) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (676048) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (676048) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (678048) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (678048) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (678188) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (678188) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (678188) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (678378) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (678378) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (678378) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (679148) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (679148) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (679148) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (681148) GPRS: IP obtenida: AT+CIFSR
-10.145.134.0
-[0m
-[0;32mI (681148) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (681148) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (686148) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (695438) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:49:28 GMT
-Content-Type: application/json
-Content-Length: 199
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c336-674502997efb76883dcabeca"
-  }, 
-  "origin": "181.238.12.239
-[0m
-[0;32mI (695478) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (695488) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (698428) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (698428) GPRS: Intento 1 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (703428) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (703428) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (705428) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (705428) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (705428) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (705438) GPRS: Comando enviado: AT
-[0m
-[0;32mI (705568) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (705568) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (705568) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (707568) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (707568) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (709568) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (709568) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (709568) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (711568) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (711568) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (711708) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (711708) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (711708) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (711898) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (711898) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (711898) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (712668) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (712668) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (712668) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (714668) GPRS: IP obtenida: AT+CIFSR
-100.78.42.80
-[0m
-[0;32mI (714668) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (714668) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (719668) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (729898) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:50:03 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c35b-26fc3ecc3f26ded36b9d8ab8"
-  }, 
-  "origin": "170.51.84.139"
-[0m
-[0;32mI (729938) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (729948) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (732708) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (732708) GPRS: Intento 2 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (737708) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (737708) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (739708) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (739708) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (739708) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (739718) GPRS: Comando enviado: AT
-[0m
-[0;32mI (739848) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (739848) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (739848) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (741848) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (741848) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (743848) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (743848) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (743848) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (745848) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (745848) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (745988) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (745988) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (745988) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
-[0m
-[0;32mI (746178) GPRS: Respuesta OK recibida: AT+CSTT="igprs.claro.com.ar","",""
-OK
-[0m
-[0;32mI (746178) GPRS: Iniciando conexión con AT+CIICR...[0m
-[0;32mI (746178) GPRS: Comando enviado: AT+CIICR
-[0m
-[0;32mI (746878) GPRS: Respuesta OK recibida: AT+CIICR
-OK
-[0m
-[0;32mI (746878) GPRS: Obteniendo IP con AT+CIFSR...[0m
-[0;32mI (746878) GPRS: Comando enviado: AT+CIFSR
-[0m
-[0;32mI (748878) GPRS: IP obtenida: AT+CIFSR
-10.76.211.30
-[0m
-[0;32mI (748878) GPRS: Conexión GPRS establecida correctamente[0m
-[0;32mI (748878) GPRS: Comando enviado: AT+CIPSTART="TCP","httpbin.org",80
-[0m
-[0;32mI (753878) GPRS: Comando enviado: AT+CIPSEND
-[0m
-[0;32mI (766198) GPRS: Respuesta HTTP: AT+CIPSTART="TCP","httpbin.org",80
-OK
-
-CONNECT OK
-AT+CIPSEND
-> GET /get HTTP/1.1
-Host: httpbin.org
-
-
-SEND OK
-HTTP/1.1 200 OK
-Date: Fri, 23 May 2025 18:50:39 GMT
-Content-Type: application/json
-Content-Length: 198
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-
-{
-  "args": {}, 
-  "headers": {
-    "Host": "httpbin.org", 
-    "X-Amzn-Trace-Id": "Root=1-6830c37d-4b06d10b1cae0db95f1a8be4"
-  }, 
-  "origin": "186.12.44.180"
-[0m
-[0;32mI (766238) GPRS: Cerrando sesión IP con AT+CIPSHUT...[0m
-[0;32mI (766248) GPRS: Comando enviado: AT+CIPSHUT
-[0m
-[0;32mI (768848) GPRS: Respuesta OK recibida: AT+CIPSHUT
-SHUT OK
-[0m
-[0;33mW (768848) GPRS: Intento 3 fallido en conexión GPRS. Esperando 5 segundos...[0m
-[0;32mI (773848) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (773848) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (775848) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (775848) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;31mE (775848) GPRS: No se pudo reconectar GPRS después de 3 intentos. Reintentando en 30 segundos...[0m
-[0;32mI (805858) GPRS: Enviando comando AT+CIPSTATUS para verificar estado GPRS...[0m
-[0;32mI (805858) GPRS: Comando enviado: AT+CIPSTATUS
-[0m
-[0;32mI (807858) GPRS: Respuesta AT+CIPSTATUS: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;33mW (807858) GPRS: Estado inesperado o desconectado: AT+CIPSTATUS
-OK
-
-STATE: IP INITIAL
-[0m
-[0;32mI (807858) GPRS: Verificando comunicación con AT...[0m
-[0;32mI (807868) GPRS: Comando enviado: AT
-[0m
-[0;32mI (807998) GPRS: Respuesta OK recibida: AT
-OK
-[0m
-[0;32mI (807998) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
-[0;32mI (807998) GPRS: Comando enviado: AT+CPIN?
-[0m
-[0;32mI (809998) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
-[0;32mI (809998) GPRS: Comando enviado: AT+CSQ
-[0m
-[0;32mI (811998) GPRS: Calidad de señal: AT+CSQ
-+CSQ: 31,0
-
-OK
-[0m
-[0;32mI (811998) GPRS: Verificando registro en red con AT+CREG?...[0m
-[0;32mI (811998) GPRS: Comando enviado: AT+CREG?
-[0m
-[0;32mI (813998) GPRS: Activando GPRS con AT+CGATT=1...[0m
-[0;32mI (813998) GPRS: Comando enviado: AT+CGATT=1
-[0m
-[0;32mI (814138) GPRS: Respuesta OK recibida: AT+CGATT=1
-OK
-[0m
-[0;32mI (814138) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
-[0;32mI (814138) GPRS: Comando enviado: AT+C
