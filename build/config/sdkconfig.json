@@ -706,7 +706,7 @@
     "SPI_MASTER_ISR_IN_IRAM": true,
     "SPI_SLAVE_IN_IRAM": false,
     "SPI_SLAVE_ISR_IN_IRAM": true,
-    "TWAI_ERRATA_FIX_LISTEN_ONLY_DOM": true,
+    "TWAI_ERRATA_FIX_LISTEN_ONLY_DOM": false,
     "TWAI_ISR_IN_IRAM": false,
     "UART_ISR_IN_IRAM": false,
     "UNITY_ENABLE_64BIT": false,

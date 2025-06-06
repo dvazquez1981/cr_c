@@ -685,7 +685,7 @@ char http_request[512]; // suficiente para todo
 sprintf(http_request,
   "POST /api/v2/km100fuegos/feeds/transito/data HTTP/1.1\r\n"
   "Host: io.adafruit.com\r\n"
-
+  "X-AIO-Key: aio_WEev22ksUMyPCkLpLEFs8VYYUCnL\r\n"
   "Content-Type: application/json\r\n"
   "Content-Length: %d\r\n"
   "Connection: close\r\n"
@@ -713,7 +713,7 @@ const uint8_t connect_packet[] = {
         // Verificar estado de conexión GPRS
         //gprs_conectado = gprs_is_connected();
 
-         gprs_connect();
+        // gprs_connect();
         //tcp_connect(host, port);
         //tcp_send(http_request);
         //*/
@@ -730,21 +730,22 @@ const uint8_t connect_packet[] = {
         gprs_disconnect();
        */
     
-      // if (!gprs_is_connected()) {
+      if (!gprs_is_connected()) {
             ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
-            /*if (!gprs_connect()) {
+            if (!gprs_connect()) {
                 ESP_LOGE(TAG_GPRS, "No se pudo conectar GPRS, reintentando en 5s...");
                 vTaskDelay(pdMS_TO_TICKS(5000));
                 gprs_disconnect();
                 continue;
             }
             ESP_LOGI(TAG_GPRS, "GPRS conectado");
-      //  }
-*/
+        }
+
         if (!tcp_is_connected()) {
             ESP_LOGW(TAG_GPRS, "TCP desconectado, conectando...");
             if (!tcp_connect(host, port)) {
                 ESP_LOGE(TAG_GPRS, "No se pudo conectar TCP, reintentando en 5s...");
+                gprs_disconnect();
                 vTaskDelay(pdMS_TO_TICKS(5000));
                 continue;
             }
