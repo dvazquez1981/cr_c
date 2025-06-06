@@ -13,6 +13,9 @@
 #include "esp_http_client.h"
 #include "esp_netif.h"
 
+#include "esp_sntp.h"
+#include <time.h>
+
 
 #include "driver/uart.h"
 //#include "mqtt_client.h"
@@ -65,7 +68,6 @@ static bool mqtt_ready = false;
 static bool uart_instalado_modem = false;
 static bool uart_instalado_r232 = false;
 static bool gprs_conectado=false;
-
 
 
 static bool uart_modem_init()
@@ -190,8 +192,6 @@ static void send_at_command(const char* t,uart_port_t un, const char *cmd) {
     uart_write_bytes(un, cmd_with_crlf, strlen(cmd_with_crlf));
     ESP_LOGI(t, "Comando enviado: %s", cmd_with_crlf);
 }
-
-
 
 
 static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,const char* t,uart_port_t un) {
@@ -424,7 +424,6 @@ static bool gprs_connect()
     }
 
    
-    
     ESP_LOGI(TAG_GPRS, "Verificando estado de SIM con AT+CPIN?...");
     uart_flush(UART_MODEM_NUM);
     send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CPIN?");
@@ -489,8 +488,6 @@ static bool gprs_connect()
        ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CGREG?");
        }
     buf[len] = 0;
-
-
 
 
     ESP_LOGI(TAG_GPRS, "Activando GPRS con AT+CGATT=1...");
@@ -628,7 +625,7 @@ ESP_LOGI("HTTP", "Enviando solicitud:\n%s", data);
 ESP_LOGI("HTTP", "Longitud: %u", len);
 uart_write_bytes(UART_MODEM_NUM, data, len);
 
-//vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
+vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
 
 
 const char end_char = 0x1A;  // Ctrl+Z
@@ -674,13 +671,30 @@ static void gprs_mqtt_task(void *pvParameters)
 //unsigned int len=  strlen(http_request);
 //int port = 80;
 
-const char* host = "io.adafruit.com";
-const int port = 80;
-
-const char *body = "{\"value\":\"{\\\"id\\\":\\\"1\\\",\\\"carril\\\":\\\"1\\\",\\\"liv\\\":\\\"64\\\"}\"}";
 
 
+char fecha_str[20];
+time_t now;
+struct tm timeinfo;
 
+time(&now);
+localtime_r(&now, &timeinfo);
+
+const char *api_key = "37LWUG2UF6DGG5QY";
+
+int id = 1;
+int timestamp = 70;
+int carril = 1;
+int pesado = 1013;
+int liviano = 500;
+
+char get_request[256];
+
+
+int port =  80;
+
+
+/*
 char http_request[512]; // suficiente para todo
 sprintf(http_request,
   "POST /api/v2/km100fuegos/feeds/transito/data HTTP/1.1\r\n"
@@ -692,13 +706,17 @@ sprintf(http_request,
   "\r\n"
   "%s", strlen(body), body);
 
- unsigned int len=  strlen(http_request);
-
-/*const char *host="test.mosquitto.org";
-const uint8_t connect_packet[] = {
-    0x10, 0x12, 0x00, 0x04, 'M','Q','T','T', 0x04, 0x02, 0x00, 0x3C, 0x00, 0x04, 't','e','s','t'
+ //unsigned int len=  strlen(http_request);
+*/
+const char *host="api.thingspeak.com";
+/*const uint8_t connect_packet[18] = {
+  0x10, 0x10,
+  0x00, 0x04, 'M','Q','T','T',
+  0x04, 0x02, 0x00, 0x3C,
+  0x00, 0x04, 't','e','s','t'
 };
 */
+
 //signed int len = sizeof(connect_packet);
 //int port =  1883;
     
@@ -729,7 +747,37 @@ const uint8_t connect_packet[] = {
         tcp_disconnect();
         gprs_disconnect();
        */
-    
+// Obtener fecha y hora actual
+time(&now);
+localtime_r(&now, &timeinfo);
+
+// Armar string tipo 20250606162045
+strftime(fecha_str, sizeof(fecha_str), "%Y%m%d%H%M%S", &timeinfo);
+
+// Convertir a número grande (unsigned long long)
+unsigned long long fecha_num = strtoull(fecha_str, NULL, 10);
+
+// Otros valores
+int id = 55;  // por ejemplo
+int carril = 1;
+int pesado = 1013;
+int liviano = 500;
+
+
+// Crear el GET para ThingSpeak (fecha en field1)
+sprintf(get_request,
+  "GET /update?api_key=%s&field1=%d&field2=%llu&field3=%d&field4=%d&field5=%d HTTP/1.1\r\n"
+  "Host: api.thingspeak.com\r\n"
+  "Connection: close\r\n"
+  "\r\n",
+  "37LWUG2UF6DGG5QY",  // clave de ejemplo
+  id,
+  fecha_num,          
+  carril,
+  pesado,
+  liviano);
+
+    unsigned int len=  strlen(get_request);
       if (!gprs_is_connected()) {
             ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
             if (!gprs_connect()) {
@@ -740,6 +788,8 @@ const uint8_t connect_packet[] = {
             }
             ESP_LOGI(TAG_GPRS, "GPRS conectado");
         }
+         
+        
 
         if (!tcp_is_connected()) {
             ESP_LOGW(TAG_GPRS, "TCP desconectado, conectando...");
@@ -753,9 +803,9 @@ const uint8_t connect_packet[] = {
         }
 
          // Enviar datos
-
+        
     
-        if (!tcp_send(http_request,len)) {
+        if (!tcp_send(get_request,len)) {
             ESP_LOGE(TAG_GPRS, "Error enviando datos, cerrando TCP");
             //tcp_disconnect();
             vTaskDelay(pdMS_TO_TICKS(2000));
@@ -763,14 +813,14 @@ const uint8_t connect_packet[] = {
         }
         
         char response[1272];
-        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 5000);
+        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 3000);
         if (l > 0) {
          response[l] = '\0';
          ESP_LOGI(TAG_GPRS,"Respuesta: %s\n", response);
          } else {
             ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
         }
-        
+
         //tcp_disconnect();
         gprs_disconnect();
           
