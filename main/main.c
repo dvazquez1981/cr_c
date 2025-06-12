@@ -9,12 +9,14 @@
 #include "esp_chip_info.h"
 #include "esp_flash.h"
 #include "esp_system.h"
-#include "esp_log.h"
+
 #include "esp_http_client.h"
 #include "esp_netif.h"
 
 #include "esp_sntp.h"
 #include <time.h>
+
+#include "esp_log.h"
 
 
 #include "driver/uart.h"
@@ -28,6 +30,7 @@ static const char *TAG_UART = "UART";
 static const char *TAG_UART_MODEM = "UART_MODEM";
 static const char *TAG_UART_RS232 = "UART_RS232";
 
+static bool received_pingresp = false;
 
 #define UART_MODEM_NUM     UART_NUM_1
 #define UART_RS232_NUM     UART_NUM_0
@@ -46,15 +49,22 @@ static const char *TAG_UART_RS232 = "UART_RS232";
 #define UART_TIMEOUT_MS 1000
 #define COLA_TAMANO 10
 
+ #define CONNECTION_TIMEOUT  120  // Timeout extendido a 120 segundos
 // APN 
 const char *apn = "igprs.claro.com.ar";
 const char *gprsUser = "";
 const char *gprsPass = "";
 //MQTT
+
+
+
 const char *mqttUri =       "mqtt://broker.hivemq.com";
-const char *mqttTopicData = "dnv/contador1/transito";
-const char *mqttTopicCmd  = "dnv/contador1/cmd";
-const char *mqttTopicResp = "dnv/contador1/response";
+
+
+
+const char *mqttTopicData = "dispositivo/123/datos";
+const char *mqttTopicCmd  = "dispositivo/123/comando";
+const char *mqttTopicResp = "dispositivo/123/respuesta ";
 
 //static esp_mqtt_client_handle_t mqtt_client = NULL;
 static QueueHandle_t dataQueue;
@@ -68,6 +78,8 @@ static bool mqtt_ready = false;
 static bool uart_instalado_modem = false;
 static bool uart_instalado_r232 = false;
 static bool gprs_conectado=false;
+
+ #define MAX_MQTT_PACKET_SIZE 256  // ajustable si necesitás más
 
 
 static bool uart_modem_init()
@@ -399,7 +411,17 @@ static bool gprs_is_connected() {
     int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
     if (len <= 0) return false;
     buf[len] = 0;
-    return (strstr(buf, "+CGATT: 1") != NULL);
+    
+
+
+    if (strstr((char*)buf, "+CGATT: 1")) {
+      ESP_LOGI(TAG_GPRS, "+CGATT: 1 OK");
+      return true; 
+    }
+
+    // Estado típico "STATE: CONNECT OK" si está conectado
+    ESP_LOGE(TAG_GPRS, "Error: +CGATT: 1");
+    return false;
 }
 
 static bool tcp_is_connected() {
@@ -410,8 +432,16 @@ static bool tcp_is_connected() {
     int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
     if (len <= 0) return false;
     buf[len] = 0;
+    
+    if (strstr((char*)buf, "STATE: CONNECT OK")) {
+      ESP_LOGI(TAG_GPRS, "STATE: CONNECT OK");
+      return true; 
+    }
+
     // Estado típico "STATE: CONNECT OK" si está conectado
-    return (strstr(buf, "STATE: CONNECT OK") != NULL);
+    ESP_LOGE(TAG_GPRS, "Error: STATE: CONNECT OK");
+
+    return false;
 }
 
 
@@ -555,16 +585,18 @@ static bool tcp_connect(const char* host, int port) {
     char buf[64] = {0};
     char cmd[128];
     uart_flush(UART_MODEM_NUM);
-    snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%d", host, port);
+
+    snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%d", host,port);
+   // snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%d,%d", host, port, CONNECTION_TIMEOUT);
     send_at_command(TAG_GPRS,UART_MODEM_NUM,cmd);   
-    vTaskDelay(pdMS_TO_TICKS(5000));
+    vTaskDelay(pdMS_TO_TICKS(3000));
     int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(5000));
     if (len <= 0) {
         ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSTART");
         return false;
     }
     buf[len] = 0;
-    if (!strstr(buf, "OK")|| !strstr(buf, "CONNECT OK") ) {
+   if (!(strstr(buf, "OK") && strstr(buf, "CONNECT OK"))) {
         ESP_LOGW(TAG_GPRS, "No funciono AT+CIPSTART: %s", buf);
         return false;
     }
@@ -576,77 +608,82 @@ static bool tcp_connect(const char* host, int port) {
 
 }
 
-static bool tcp_send(char* data,unsigned int len) {
+static bool wait_for_mqtt_connack(TickType_t timeout_ms) {
+    uint8_t buf[64];
+    size_t idx = 0;
+    TickType_t start = xTaskGetTickCount();
 
-char buf[128] = {0};
-
-uart_flush(UART_MODEM_NUM);
-// 2. Enviar comando para enviar datos
-send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CIPSEND");
-
-
-
-// Esperar el símbolo '>' dinámicamente
-bool prompt_found = false;
-int total = 0;
-TickType_t start = xTaskGetTickCount();
-
-while ((xTaskGetTickCount() - start) < pdMS_TO_TICKS(5000)) {
-    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf + total, sizeof(buf) - total, pdMS_TO_TICKS(500));
-    if (len > 0) {
-        total += len;
-        for (int i = 0; i < total; i++) {
-            if (buf[i] == '>') {
-                prompt_found = true;
-                break;
+    while (xTaskGetTickCount() - start < pdMS_TO_TICKS(timeout_ms)) {
+        int n = uart_read_bytes(UART_MODEM_NUM, buf + idx, sizeof(buf) - idx, pdMS_TO_TICKS(100));
+        if (n > 0) {
+            idx += n;
+            ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, buf, idx, ESP_LOG_INFO);
+            for (size_t i = 0; i + 3 < idx; ++i) {
+                if (buf[i]   == 0x20 &&
+                    buf[i+1] == 0x02 &&
+                    buf[i+2] == 0x00 &&
+                    buf[i+3] == 0x00) {
+                    ESP_LOGI(TAG_GPRS, "CONNACK recibido, MQTT conectado");
+                    return true;
+                }
             }
-  
-
-            // Verificar si ya está cerrado antes de enviar
-            if (strstr(buf, "CLOSED")) {
-                ESP_LOGW(TAG_GPRS, "Conexión cerrada antes de enviar");
+            if (strstr((char*)buf, "CLOSED")) {
+                ESP_LOGW(TAG_GPRS, "Broker cerró antes de enviar CONNACK");
                 return false;
             }
-
         }
-        if (prompt_found) break;
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
-    vTaskDelay(pdMS_TO_TICKS(100));
-}
 
-if (!prompt_found) {
-    ESP_LOGE(TAG_GPRS, "No se recibió el símbolo '>' después de AT+CIPSEND");
+    ESP_LOGW(TAG_GPRS, "No se recibió CONNACK en %lu ms", timeout_ms);
     return false;
 }
 
+static bool tcp_send(const uint8_t* data, unsigned int len) {
+    char buf[128];
+    char cmd[32];
 
-uart_flush(UART_MODEM_NUM);
-ESP_LOGI("HTTP", "Enviando solicitud:\n%s", data);
-ESP_LOGI("HTTP", "Longitud: %u", len);
-uart_write_bytes(UART_MODEM_NUM, data, len);
+    // 1) Solicitar envío de “len” bytes
+    snprintf(cmd, sizeof(cmd), "AT+CIPSEND=%u", len);
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, cmd);
 
-vTaskDelay(pdMS_TO_TICKS(100));  // Esperar un poco
-
-
-const char end_char = 0x1A;  // Ctrl+Z
-uart_write_bytes(UART_MODEM_NUM, &end_char, 1);
-uart_flush(UART_MODEM_NUM);
-vTaskDelay(pdMS_TO_TICKS(100));
-
-len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(5000));
-if (len <= 0) {
-    ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CIPSEND");
-    return false;
-}
- buf[len] = 0;
- if ( !strstr(buf,"SEND OK") ) {
-         ESP_LOGW(TAG_GPRS, "No funciono AT+CIPSEND: %s", buf);
+    // 2) Esperar prompt ‘>’
+    TickType_t start = xTaskGetTickCount();
+    while (xTaskGetTickCount() - start < pdMS_TO_TICKS(5000)) {
+        int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf)-1, pdMS_TO_TICKS(100));
+        if (n > 0 && strchr(buf, '>')) {
+            break;
+        }
+    }
+    if (!strchr(buf, '>')) {
+        ESP_LOGE(TAG_GPRS, "No vino '>' tras CIPSEND");
         return false;
     }
-ESP_LOGI(TAG_GPRS, "Se envió correctamente");
-return true;
 
+    // 3) Enviar dato binario
+    ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, data, len, ESP_LOG_INFO);
+    uart_write_bytes(UART_MODEM_NUM, (const char*)data, len);
+
+    // 4) Confirmar SEND OK
+    start = xTaskGetTickCount();
+    while (xTaskGetTickCount() - start < pdMS_TO_TICKS(5000)) {
+        int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf)-1, pdMS_TO_TICKS(200));
+        if (n > 0) {
+            buf[n] = '\0';
+            if (strstr(buf, "SEND OK")) {
+                ESP_LOGI(TAG_GPRS, "CIPSEND OK: %s", buf);
+                return true;
+            }
+            if (strstr(buf, "ERROR") || strstr(buf, "CLOSED")) {
+                ESP_LOGW(TAG_GPRS, "Fallo tras CIPSEND: %s", buf);
+                return false;
+            }
+        }
+    }
+    ESP_LOGE(TAG_GPRS, "Timeout esperando SEND OK");
+    return false;
 }
+
 
 static bool gprs_disconnect() {
 
@@ -659,6 +696,169 @@ static bool gprs_disconnect() {
     return true;
 }
 
+
+static bool mqtt_publish(const char* topic, const char* payload) {
+    uint16_t topic_len   = strlen(topic);
+    uint16_t payload_len = strlen(payload);
+    uint16_t rem_len     = 2 + topic_len + payload_len;
+
+    if (rem_len + 2 > MAX_MQTT_PACKET_SIZE) {
+        ESP_LOGE(TAG_GPRS, "MQTT publish demasiado largo: %u bytes", rem_len + 2);
+        return false;
+    }
+
+    uint8_t publish_packet[MAX_MQTT_PACKET_SIZE];
+    size_t  publish_len = 2 + rem_len;
+
+    publish_packet[0] = 0x30;         // PUBLISH, QoS 0
+    publish_packet[1] = rem_len;
+    publish_packet[2] = (topic_len >> 8) & 0xFF;
+    publish_packet[3] = (topic_len     ) & 0xFF;
+
+    memcpy(&publish_packet[4], topic, topic_len);
+    memcpy(&publish_packet[4 + topic_len], payload, payload_len);
+
+    if (!tcp_send(publish_packet, publish_len)) {
+        ESP_LOGE(TAG_GPRS, "Error enviando PUBLISH: %s -> %s", topic, payload);
+        return false;
+    }
+
+    ESP_LOGI(TAG_GPRS, "PUBLISH enviado: %s -> %s", topic, payload);
+    return true;
+}
+
+static bool mqtt_subscribe(const char* topic) {
+    uint16_t topic_len = strlen(topic);
+    uint16_t rem_len = 2 + 2 + topic_len + 1; // MsgID (2) + TopicLen (2) + topic + QoS (1)
+    
+    if (rem_len + 2 > MAX_MQTT_PACKET_SIZE) {
+        ESP_LOGE(TAG_GPRS, "MQTT subscribe demasiado largo");
+        return false;
+    }
+
+    uint8_t subscribe_packet[MAX_MQTT_PACKET_SIZE];
+    size_t  packet_len = 2 + rem_len;
+
+    subscribe_packet[0] = 0x82; // SUBSCRIBE packet
+    subscribe_packet[1] = rem_len;
+
+    // Message ID = 0x0001 (puede cambiarse si necesitás distinguir respuestas)
+    subscribe_packet[2] = 0x00;
+    subscribe_packet[3] = 0x01;
+
+    // Topic
+    subscribe_packet[4] = (topic_len >> 8) & 0xFF;
+    subscribe_packet[5] = (topic_len     ) & 0xFF;
+    memcpy(&subscribe_packet[6], topic, topic_len);
+
+    // QoS
+    subscribe_packet[6 + topic_len] = 0x00;
+
+    if (!tcp_send(subscribe_packet, packet_len)) {
+        ESP_LOGE(TAG_GPRS, "Error enviando SUBSCRIBE a %s", topic);
+        return false;
+    }
+
+    ESP_LOGI(TAG_GPRS, "SUBSCRIBE enviado: %s", topic);
+    return true;
+}
+
+static int tcp_receive(uint8_t* buffer, size_t max_len, TickType_t timeout_ms) {
+    size_t total = 0;
+    TickType_t start = xTaskGetTickCount();
+
+    while ((xTaskGetTickCount() - start) < pdMS_TO_TICKS(timeout_ms)) {
+        int n = uart_read_bytes(UART_MODEM_NUM, buffer + total, max_len - total, pdMS_TO_TICKS(100));
+        if (n > 0) {
+            total += n;
+            // si recibimos al menos 2 bytes, podríamos saber el largo MQTT
+            if (total >= 2) {
+                uint8_t rem_len = buffer[1];
+                size_t packet_len = 2 + rem_len;
+
+                if (total >= packet_len) {
+                    // Ya recibimos todo el paquete
+                    return packet_len;
+                }
+            }
+        }
+    }
+
+    // Timeout o paquete incompleto
+    return total > 0 ? total : -1;
+}
+
+
+
+
+
+
+// --- MQTT: manejar paquetes entrantes ---
+void mqtt_handle_incoming(void) {
+    uint8_t buffer[512];
+    int len = tcp_receive(buffer, sizeof(buffer), 500);  // Timeout corto (polling)
+
+    if (len > 0) {
+        ESP_LOGI(TAG_GPRS, "MQTT packet recibido (%d bytes)", len);
+        ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, buffer, len, ESP_LOG_INFO);
+
+        if (buffer[0] == 0xD0 && buffer[1] == 0x00) {
+            received_pingresp = true;
+            ESP_LOGI(TAG_GPRS, "PINGRESP recibido");
+        }
+        // Acá podrías seguir parseando otros paquetes MQTT si querés
+    }
+}
+
+
+
+
+
+
+
+
+/*void mqtt_handle_incoming(uint8_t *buffer, size_t len) {
+    if (len == 0) return;
+
+    uint8_t packet_type = buffer[0] >> 4;
+    uint8_t flags = buffer[0] & 0x0F;
+    uint8_t remaining_len = buffer[1]; // Nota: esto es simplificado (1 byte)
+
+    switch (packet_type) {
+        case 13:  // PINGRESP
+            if (remaining_len == 0) {
+                ESP_LOGI(TAG_GPRS, "PINGRESP recibido");
+            }
+            break;
+
+        case 3:  // PUBLISH
+            if (remaining_len + 2 > len) {
+                ESP_LOGW(TAG_GPRS, "Paquete PUBLISH truncado");
+                break;
+            }
+
+            uint16_t topic_len = (buffer[2] << 8) | buffer[3];
+            char topic[128] = {0};
+            memcpy(topic, &buffer[4], topic_len);
+            topic[topic_len] = '\0';
+
+            uint16_t payload_offset = 4 + topic_len;
+            char payload[256] = {0};
+            memcpy(payload, &buffer[payload_offset], remaining_len - 2 - topic_len);
+            payload[remaining_len - 2 - topic_len] = '\0';
+
+            ESP_LOGI(TAG_GPRS, "PUBLISH recibido: %s -> %s", topic, payload);
+            // TODO: procesar comando, por ejemplo:
+            // if (strcmp(topic, "cmd/puerta") == 0) { ... }
+
+            break;
+
+        default:
+            ESP_LOGW(TAG_GPRS, "Paquete MQTT desconocido: tipo=%d len=%d", packet_type, len);
+            break;
+    }
+}
+*/
 static void gprs_mqtt_task(void *pvParameters)
 {
 //const char *host = "httpbin.org";
@@ -691,7 +891,7 @@ int liviano = 500;
 char get_request[256];
 
 
-int port =  80;
+//int port =  80;
 
 
 /*
@@ -708,17 +908,23 @@ sprintf(http_request,
 
  //unsigned int len=  strlen(http_request);
 */
-const char *host="api.thingspeak.com";
-/*const uint8_t connect_packet[18] = {
-  0x10, 0x10,
-  0x00, 0x04, 'M','Q','T','T',
-  0x04, 0x02, 0x00, 0x3C,
-  0x00, 0x04, 't','e','s','t'
-};
-*/
+//const char *host="api.thingspeak.com";
+const char* host = "test.mosquitto.org";
+//const char* host = "broker.hivemq.com";
 
-//signed int len = sizeof(connect_packet);
-//int port =  1883;
+static const uint8_t mqtt_connect_packet[26] = {
+  0x10, 0x18,             // CONNECT, Remaining Length = 24
+  0x00, 0x04,             // Len("MQTT") = 4
+   'M', 'Q', 'T', 'T',    // Protocol Name
+  0x04,                   // Protocol Level = 4 (3.1.1)
+  0x02,                   // Connect Flags: Clean Session
+  0x00, 0x3C,             // Keep Alive = 60 s
+  0x00, 0x0C,             // Client ID length = 12
+   'e','s','p','3','2','_','A','B','C','1','2','3'
+};
+
+signed int len = sizeof(mqtt_connect_packet);
+int port =  1883;
     
     bool mqtt_iniciado = false;
     bool gprs_conectado = false;
@@ -777,18 +983,11 @@ sprintf(get_request,
   pesado,
   liviano);
 
-    unsigned int len=  strlen(get_request);
-      if (!gprs_is_connected()) {
-            ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
-            if (!gprs_connect()) {
-                ESP_LOGE(TAG_GPRS, "No se pudo conectar GPRS, reintentando en 5s...");
-                vTaskDelay(pdMS_TO_TICKS(5000));
-                gprs_disconnect();
-                continue;
-            }
-            ESP_LOGI(TAG_GPRS, "GPRS conectado");
-        }
-         
+    //unsigned int len=  strlen(get_request);
+     
+        ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
+        gprs_connect();
+        ESP_LOGI(TAG_GPRS, "GPRS conectado");
         
 
         if (!tcp_is_connected()) {
@@ -802,25 +1001,108 @@ sprintf(get_request,
             ESP_LOGI(TAG_GPRS, "TCP conectado");
         }
 
-         // Enviar datos
-        
-    
-        if (!tcp_send(get_request,len)) {
-            ESP_LOGE(TAG_GPRS, "Error enviando datos, cerrando TCP");
-            //tcp_disconnect();
+        // Enviar datos
+       if (!tcp_send(mqtt_connect_packet, len)) {
+       ESP_LOGE(TAG_GPRS, "Error enviando CONNECT, reconectando...");
+       gprs_disconnect();
+       vTaskDelay(pdMS_TO_TICKS(2000));
+       continue;
+}
+
+// 2) Esperar CONNACK
+if (!wait_for_mqtt_connack(10000)) {
+    ESP_LOGE(TAG_GPRS, "No CONNACK, reconectando...");
+    gprs_disconnect();
+    vTaskDelay(pdMS_TO_TICKS(2000));
+    continue;
+}
+
+   ESP_LOGI(TAG_GPRS, "MQTT conectado");
+
+     /*   // --- 4) PUBLISH de ejemplo ---
+        const char* topic   = "test/topic";
+        const char* payload = "¡hola mundo!";
+        uint16_t topic_len   = strlen(topic);
+        uint16_t payload_len = strlen(payload);
+        uint8_t rem_len = 2 + topic_len + payload_len;
+        uint8_t publish_packet[2 + 2 + topic_len + payload_len];
+        size_t  publish_len  = 2 + rem_len;
+
+        publish_packet[0] = 0x30;
+        publish_packet[1] = rem_len;
+        publish_packet[2] = (topic_len >> 8) & 0xFF;
+        publish_packet[3] = (topic_len     ) & 0xFF;
+        memcpy(&publish_packet[4], topic, topic_len);
+        memcpy(&publish_packet[4 + topic_len], payload, payload_len);
+
+        if (!tcp_send(publish_packet, publish_len)) {
+            ESP_LOGE(TAG_GPRS, "Error enviando PUBLISH, reconectando...");
+            gprs_disconnect();
             vTaskDelay(pdMS_TO_TICKS(2000));
             continue;
         }
+        ESP_LOGI(TAG_GPRS, "PUBLISH enviado: %s -> %s", topic, payload);
+*/
+       
+       if (!mqtt_publish(mqttTopicData, "{\"hora\":\"12:03\",\"l1\":\"2321\",\"p1\":\"65\",\"l2\":\"23\",\"p2\":\"63\"}" )) {
+           gprs_disconnect();
+           vTaskDelay(pdMS_TO_TICKS(2000));
+           continue;
+        }
         
-        char response[1272];
-        int l  = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)response, sizeof(response)-1, 3000);
-        if (l > 0) {
-         response[l] = '\0';
-         ESP_LOGI(TAG_GPRS,"Respuesta: %s\n", response);
-         } else {
-            ESP_LOGE(TAG_GPRS,"No se recibió respuesta del servidor\n");
+         if (!mqtt_subscribe(mqttTopicCmd)) {
+           gprs_disconnect();
+           vTaskDelay(pdMS_TO_TICKS(2000));
+           continue;
         }
 
+
+        // --- 5) Bucle MQTT (keep-alive y lectura) ---
+      TickType_t last_activity = xTaskGetTickCount();
+
+
+     while (tcp_is_connected()) {
+
+          received_pingresp = false;
+          mqtt_handle_incoming();  // revisar paquetes espontáneos (PUBLISH, etc.)
+
+          //reviso Keep-Alive cada 15 s
+          if (xTaskGetTickCount() - last_activity > pdMS_TO_TICKS(15000)) {
+                 const uint8_t pingreq[2] = {0xC0, 0x00};
+           
+          ESP_LOGI(TAG_GPRS, "PINGREQ enviado");  
+          if (tcp_send(pingreq, 2)) {
+             mqtt_handle_incoming();
+             last_activity = xTaskGetTickCount();
+             // Esperar explícitamente PINGRESP
+             if(!received_pingresp)
+             {
+             TickType_t wait_start = xTaskGetTickCount();
+             while ((xTaskGetTickCount() - wait_start) < pdMS_TO_TICKS(3000)) {
+                 mqtt_handle_incoming();
+                 if (received_pingresp) break;
+                 vTaskDelay(pdMS_TO_TICKS(100));
+             }
+
+            if (!received_pingresp) {
+                ESP_LOGW(TAG_GPRS, "No se recibió PINGRESP a tiempo");
+                break;  // cortar la conexión
+            }
+            }
+
+        } else {
+            ESP_LOGW(TAG_GPRS, "Fallo PINGREQ, saliendo del loop");
+            break;
+        }
+    }
+
+    vTaskDelay(pdMS_TO_TICKS(100));
+}
+
+        // --- 6) Si salimos del loop, reconectar todo ---
+        ESP_LOGW(TAG_GPRS, "Conexión MQTT caída, reiniciando...");
+        gprs_disconnect();
+        vTaskDelay(pdMS_TO_TICKS(2000));
         //tcp_disconnect();
         gprs_disconnect();
           

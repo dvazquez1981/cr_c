@@ -1,0 +1,61 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/diego/proyectos/_/viejo/cr_c/build/bootloader/esp-idf/esptool_py && /home/diego/.espressif/python_env/idf5.2_py3.11_env/bin/python /home/diego/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/diego/proyectos/_/viejo/cr_c/build/bootloader/bootloader.bin
+Bootloader binary size 0x5170 bytes. 0x2e90 bytes (36%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'gprs_mqtt_task':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:912:10: warning: unused variable 'gprs_conectado' [-Wunused-variable]
+  912 |     bool gprs_conectado = false;
+      |          ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:911:10: warning: unused variable 'mqtt_iniciado' [-Wunused-variable]
+  911 |     bool mqtt_iniciado = false;
+      |          ^~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:873:5: warning: unused variable 'liviano' [-Wunused-variable]
+  873 | int liviano = 500;
+      |     ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:872:5: warning: unused variable 'pesado' [-Wunused-variable]
+  872 | int pesado = 1013;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:871:5: warning: unused variable 'carril' [-Wunused-variable]
+  871 | int carril = 1;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:870:5: warning: unused variable 'timestamp' [-Wunused-variable]
+  870 | int timestamp = 70;
+      |     ^~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:869:5: warning: unused variable 'id' [-Wunused-variable]
+  869 | int id = 1;
+      |     ^~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:867:13: warning: unused variable 'api_key' [-Wunused-variable]
+  867 | const char *api_key = "37LWUG2UF6DGG5QY";
+      |             ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: At top level:
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:406:13: warning: 'gprs_is_connected' defined but not used [-Wunused-function]
+  406 | static bool gprs_is_connected() {
+      |             ^~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:266:13: warning: 'rs232_lectura_tarea' defined but not used [-Wunused-function]
+  266 | static void rs232_lectura_tarea(void *arg)
+      |             ^~~~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:80:13: warning: 'gprs_conectado' defined but not used [-Wunused-variable]
+   80 | static bool gprs_conectado=false;
+      |             ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:72:13: warning: 'mqtt_ready' defined but not used [-Wunused-variable]
+   72 | static bool mqtt_ready = false;
+      |             ^~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:27:20: warning: 'TAG_MQTT' defined but not used [-Wunused-variable]
+   27 | static const char *TAG_MQTT = "CLIENT_MQTT";
+      |                    ^~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:26:20: warning: 'TAG_UART_MQTT' defined but not used [-Wunused-variable]
+   26 | static const char *TAG_UART_MQTT = "UART_MQTT";
+      |                    ^~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable cr_c.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32c3 image...
+Merged 2 ELF sections
+Successfully created esp32c3 image.
+Generated /home/diego/proyectos/_/viejo/cr_c/build/cr_c.bin
+[9/9] cd /home/diego/proyectos/_/viejo/cr_c/build/esp-idf/esptool_py && /home/diego/.espressif/python_env/idf5.2_py3.11_env/bin/python /home/diego/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/diego/proyectos/_/viejo/cr_c/build/partition_table/partition-table.bin /home/diego/proyectos/_/viejo/cr_c/build/cr_c.bin
+cr_c.bin binary size 0x3c030 bytes. Smallest app partition is 0x100000 bytes. 0xc3fd0 bytes (77%) free.

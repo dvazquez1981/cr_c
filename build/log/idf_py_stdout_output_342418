@@ -1,0 +1,51 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/diego/proyectos/_/viejo/cr_c/build/bootloader/esp-idf/esptool_py && /home/diego/.espressif/python_env/idf5.2_py3.11_env/bin/python /home/diego/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/diego/proyectos/_/viejo/cr_c/build/bootloader/bootloader.bin
+Bootloader binary size 0x5170 bytes. 0x2e90 bytes (36%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'gprs_mqtt_task':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:930:10: warning: unused variable 'gprs_conectado' [-Wunused-variable]
+  930 |     bool gprs_conectado = false;
+      |          ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:929:10: warning: unused variable 'mqtt_iniciado' [-Wunused-variable]
+  929 |     bool mqtt_iniciado = false;
+      |          ^~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:889:5: warning: unused variable 'liviano' [-Wunused-variable]
+  889 | int liviano = 500;
+      |     ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:888:5: warning: unused variable 'pesado' [-Wunused-variable]
+  888 | int pesado = 1013;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:887:5: warning: unused variable 'carril' [-Wunused-variable]
+  887 | int carril = 1;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:886:5: warning: unused variable 'timestamp' [-Wunused-variable]
+  886 | int timestamp = 70;
+      |     ^~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:885:5: warning: unused variable 'id' [-Wunused-variable]
+  885 | int id = 1;
+      |     ^~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:883:13: warning: unused variable 'api_key' [-Wunused-variable]
+  883 | const char *api_key = "37LWUG2UF6DGG5QY";
+      |             ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: At top level:
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:406:13: warning: 'gprs_is_connected' defined but not used [-Wunused-function]
+  406 | static bool gprs_is_connected() {
+      |             ^~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:266:13: warning: 'rs232_lectura_tarea' defined but not used [-Wunused-function]
+  266 | static void rs232_lectura_tarea(void *arg)
+      |             ^~~~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:80:13: warning: 'gprs_conectado' defined but not used [-Wunused-variable]
+   80 | static bool gprs_conectado=false;
+      |             ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:72:13: warning: 'mqtt_ready' defined but not used [-Wunused-variable]
+   72 | static bool mqtt_ready = false;
+      |             ^~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:27:20: warning: 'TAG_MQTT' defined but not used [-Wunused-variable]
+   27 | static const char *TAG_MQTT = "CLIENT_MQTT";
+      |                    ^~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:26:20: warning: 'TAG_UART_MQTT' defined but not used [-Wunused-variable]
+   26 | static const char *TAG_UART_MQTT = "UART_MQTT";
+      |                    ^~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a

@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/home/diego/esp/esp-idf-v4.4.5/components/bootloader/subproject"
+  "/home/diego/esp/esp-idf/components/bootloader/subproject"
   "/home/diego/proyectos/_/viejo/cr_c/build/bootloader"
   "/home/diego/proyectos/_/viejo/cr_c/build/bootloader-prefix"
   "/home/diego/proyectos/_/viejo/cr_c/build/bootloader-prefix/tmp"

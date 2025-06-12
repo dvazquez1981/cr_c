@@ -1,0 +1,85 @@
+[1/12] Performing build step for 'bootloader'
+[1/1] cd /home/diego/proyectos/_/viejo/cr_c/build/bootloader/esp-idf/esptool_py && /home/diego/.espressif/python_env/idf5.2_py3.11_env/bin/python /home/diego/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/diego/proyectos/_/viejo/cr_c/build/bootloader/bootloader.bin
+Bootloader binary size 0x5170 bytes. 0x2e90 bytes (36%) free.
+[2/12] Linking C static library esp-idf/mqtt/libmqtt.a
+[3/12] No install step for 'bootloader'
+[4/12] Completed 'bootloader'
+[5/12] Linking C static library esp-idf/wifi_provisioning/libwifi_provisioning.a
+[6/12] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj 
+/home/diego/.espressif/tools/riscv32-esp-elf/esp-13.2.0_20230928/riscv32-esp-elf/bin/riscv32-esp-elf-gcc -DESP_PLATFORM -DIDF_VER=\"v5.2\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/home/diego/proyectos/_/viejo/cr_c/build/config -I/home/diego/proyectos/_/viejo/cr_c/main -I/home/diego/esp/esp-idf/components/newlib/platform_include -I/home/diego/esp/esp-idf/components/freertos/config/include -I/home/diego/esp/esp-idf/components/freertos/config/include/freertos -I/home/diego/esp/esp-idf/components/freertos/config/riscv/include -I/home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include -I/home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include/freertos -I/home/diego/esp/esp-idf/components/freertos/esp_additions/include -I/home/diego/esp/esp-idf/components/esp_hw_support/include -I/home/diego/esp/esp-idf/components/esp_hw_support/include/soc -I/home/diego/esp/esp-idf/components/esp_hw_support/include/soc/esp32c3 -I/home/diego/esp/esp-idf/components/heap/include -I/home/diego/esp/esp-idf/components/log/include -I/home/diego/esp/esp-idf/components/soc/include -I/home/diego/esp/esp-idf/components/soc/esp32c3 -I/home/diego/esp/esp-idf/components/soc/esp32c3/include -I/home/diego/esp/esp-idf/components/hal/platform_port/include -I/home/diego/esp/esp-idf/components/hal/esp32c3/include -I/home/diego/esp/esp-idf/components/hal/include -I/home/diego/esp/esp-idf/components/esp_rom/include -I/home/diego/esp/esp-idf/components/esp_rom/include/esp32c3 -I/home/diego/esp/esp-idf/components/esp_rom/esp32c3 -I/home/diego/esp/esp-idf/components/esp_common/include -I/home/diego/esp/esp-idf/components/esp_system/include -I/home/diego/esp/esp-idf/components/esp_system/port/soc -I/home/diego/esp/esp-idf/components/esp_system/port/include/riscv -I/home/diego/esp/esp-idf/components/esp_system/port/include/private -I/home/diego/esp/esp-idf/components/riscv/include -I/home/diego/esp/esp-idf/components/lwip/include -I/home/diego/esp/esp-idf/components/lwip/include/apps -I/home/diego/esp/esp-idf/components/lwip/include/apps/sntp -I/home/diego/esp/esp-idf/components/lwip/lwip/src/include -I/home/diego/esp/esp-idf/components/lwip/port/include -I/home/diego/esp/esp-idf/components/lwip/port/freertos/include -I/home/diego/esp/esp-idf/components/lwip/port/esp32xx/include -I/home/diego/esp/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/diego/esp/esp-idf/components/lwip/port/esp32xx/include/sys -I/home/diego/esp/esp-idf/components/esp_event/include -I/home/diego/esp/esp-idf/components/spi_flash/include -I/home/diego/esp/esp-idf/components/driver/include -I/home/diego/esp/esp-idf/components/driver/deprecated -I/home/diego/esp/esp-idf/components/driver/analog_comparator/include -I/home/diego/esp/esp-idf/components/driver/dac/include -I/home/diego/esp/esp-idf/components/driver/gpio/include -I/home/diego/esp/esp-idf/components/driver/gptimer/include -I/home/diego/esp/esp-idf/components/driver/i2c/include -I/home/diego/esp/esp-idf/components/driver/i2s/include -I/home/diego/esp/esp-idf/components/driver/ledc/include -I/home/diego/esp/esp-idf/components/driver/mcpwm/include -I/home/diego/esp/esp-idf/components/driver/parlio/include -I/home/diego/esp/esp-idf/components/driver/pcnt/include -I/home/diego/esp/esp-idf/components/driver/rmt/include -I/home/diego/esp/esp-idf/components/driver/sdio_slave/include -I/home/diego/esp/esp-idf/components/driver/sdmmc/include -I/home/diego/esp/esp-idf/components/driver/sigma_delta/include -I/home/diego/esp/esp-idf/components/driver/spi/include -I/home/diego/esp/esp-idf/components/driver/temperature_sensor/include -I/home/diego/esp/esp-idf/components/driver/touch_sensor/include -I/home/diego/esp/esp-idf/components/driver/twai/include -I/home/diego/esp/esp-idf/components/driver/uart/include -I/home/diego/esp/esp-idf/components/driver/usb_serial_jtag/include -I/home/diego/esp/esp-idf/components/esp_pm/include -I/home/diego/esp/esp-idf/components/esp_ringbuf/include -I/home/diego/esp/esp-idf/components/esp_netif/include -I/home/diego/esp/esp-idf/components/esp_http_client/include -march=rv32imc_zicsr_zifencei  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -nostartfiles -Og -fno-shrink-wrap -fmacro-prefix-map=/home/diego/proyectos/_/viejo/cr_c=. -fmacro-prefix-map=/home/diego/esp/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -MF esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -c /home/diego/proyectos/_/viejo/cr_c/main/main.c
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'uart_modem_init':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:95:9: error: implicit declaration of function 'ESP_LOGE'; did you mean 'ESP_OK'? [-Werror=implicit-function-declaration]
+   95 |         ESP_LOGE(TAG_UART_MODEM, "Error en uart_driver_install: %s", esp_err_to_name(err));
+      |         ^~~~~~~~
+      |         ESP_OK
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:99:5: error: implicit declaration of function 'ESP_LOGI'; did you mean 'ESP_OK'? [-Werror=implicit-function-declaration]
+   99 |     ESP_LOGI(TAG_UART_MODEM, "uart_driver_install OK");
+      |     ^~~~~~~~
+      |     ESP_OK
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'gprs_connect':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:473:10: error: implicit declaration of function 'ESP_LOGW'; did you mean 'ESP_OK'? [-Werror=implicit-function-declaration]
+  473 |          ESP_LOGW(TAG_GPRS, "No registrado en red");
+      |          ^~~~~~~~
+      |          ESP_OK
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'wait_for_mqtt_connack':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:591:13: error: implicit declaration of function 'ESP_LOG_BUFFER_HEXDUMP' [-Werror=implicit-function-declaration]
+  591 |             ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, buf, idx, ESP_LOG_INFO);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:591:56: error: 'ESP_LOG_INFO' undeclared (first use in this function)
+  591 |             ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, buf, idx, ESP_LOG_INFO);
+      |                                                        ^~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:591:56: note: each undeclared identifier is reported only once for each function it appears in
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'tcp_send':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:634:49: error: 'ESP_LOG_INFO' undeclared (first use in this function)
+  634 |     ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, data, len, ESP_LOG_INFO);
+      |                                                 ^~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'gprs_mqtt_task':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:859:13: error: implicit declaration of function 'mqtt_handle_incoming' [-Werror=implicit-function-declaration]
+  859 |             mqtt_handle_incoming();  // función que parsea CONNACK, PUBLISH, PINGRESP…
+      |             ^~~~~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:734:10: warning: unused variable 'gprs_conectado' [-Wunused-variable]
+  734 |     bool gprs_conectado = false;
+      |          ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:733:10: warning: unused variable 'mqtt_iniciado' [-Wunused-variable]
+  733 |     bool mqtt_iniciado = false;
+      |          ^~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:695:5: warning: unused variable 'liviano' [-Wunused-variable]
+  695 | int liviano = 500;
+      |     ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:694:5: warning: unused variable 'pesado' [-Wunused-variable]
+  694 | int pesado = 1013;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:693:5: warning: unused variable 'carril' [-Wunused-variable]
+  693 | int carril = 1;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:692:5: warning: unused variable 'timestamp' [-Wunused-variable]
+  692 | int timestamp = 70;
+      |     ^~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:691:5: warning: unused variable 'id' [-Wunused-variable]
+  691 | int id = 1;
+      |     ^~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:689:13: warning: unused variable 'api_key' [-Wunused-variable]
+  689 | const char *api_key = "37LWUG2UF6DGG5QY";
+      |             ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: At top level:
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:395:13: warning: 'gprs_is_connected' defined but not used [-Wunused-function]
+  395 | static bool gprs_is_connected() {
+      |             ^~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:255:13: warning: 'rs232_lectura_tarea' defined but not used [-Wunused-function]
+  255 | static void rs232_lectura_tarea(void *arg)
+      |             ^~~~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:71:13: warning: 'gprs_conectado' defined but not used [-Wunused-variable]
+   71 | static bool gprs_conectado=false;
+      |             ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:63:13: warning: 'mqtt_ready' defined but not used [-Wunused-variable]
+   63 | static bool mqtt_ready = false;
+      |             ^~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:25:20: warning: 'TAG_MQTT' defined but not used [-Wunused-variable]
+   25 | static const char *TAG_MQTT = "CLIENT_MQTT";
+      |                    ^~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:24:20: warning: 'TAG_UART_MQTT' defined but not used [-Wunused-variable]
+   24 | static const char *TAG_UART_MQTT = "UART_MQTT";
+      |                    ^~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+ninja: build stopped: subcommand failed.
