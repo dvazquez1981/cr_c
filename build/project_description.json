@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "cr_c",
-    "project_version":    "0f064b4-dirty",
+    "project_version":    "0d9f3b4-dirty",
     "project_path":       "/home/diego/proyectos/_/viejo/cr_c",
     "idf_path":           "/home/diego/esp/esp-idf",
     "build_dir":          "/home/diego/proyectos/_/viejo/cr_c/build",

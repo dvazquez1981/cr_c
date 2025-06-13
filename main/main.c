@@ -909,7 +909,9 @@ sprintf(http_request,
  //unsigned int len=  strlen(http_request);
 */
 //const char *host="api.thingspeak.com";
-const char* host = "test.mosquitto.org";
+//const char* host = "test.mosquitto.org";
+const char* host = "broker.hivemq.com";
+
 static const uint8_t mqtt_connect_packet[26] = {
   0x10, 0x18,             // CONNECT, Remaining Length = 24
   0x00, 0x04,             // Len("MQTT") = 4
@@ -1008,7 +1010,7 @@ sprintf(get_request,
 }
 
 // 2) Esperar CONNACK
-if (!wait_for_mqtt_connack(30000) ){
+if (!wait_for_mqtt_connack(50000) ){
     ESP_LOGE(TAG_GPRS, "No CONNACK, reconectando...");
     gprs_disconnect();
     vTaskDelay(pdMS_TO_TICKS(2000));
@@ -1064,11 +1066,15 @@ if (!wait_for_mqtt_connack(30000) ){
           received_pingresp = false;
           mqtt_handle_incoming();  // revisar paquetes espontáneos (PUBLISH, etc.)
 
-          //reviso Keep-Alive cada 60 s
-          if (xTaskGetTickCount() - last_activity > pdMS_TO_TICKS(60000)) {
+          //reviso Keep-Alive cada 20 s
+          if (xTaskGetTickCount() - last_activity > pdMS_TO_TICKS(20000)) {
                  const uint8_t pingreq[2] = {0xC0, 0x00};
            
           ESP_LOGI(TAG_GPRS, "PINGREQ enviado");  
+          // limpieza previa
+          uint8_t dummy[64];
+          uart_read_bytes(UART_MODEM_NUM, dummy, sizeof(dummy), pdMS_TO_TICKS(10));  
+
           if (tcp_send(pingreq, 2)) {
              mqtt_handle_incoming();
              last_activity = xTaskGetTickCount();
