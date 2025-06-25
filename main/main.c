@@ -30,6 +30,7 @@ static const char *TAG_UART = "UART";
 static const char *TAG_UART_MODEM = "UART_MODEM";
 static const char *TAG_UART_RS232 = "UART_RS232";
 
+static TickType_t last_activity = 0;
 static bool received_pingresp = false;
 
 #define UART_MODEM_NUM     UART_NUM_1
@@ -44,7 +45,7 @@ static bool received_pingresp = false;
 
 #define INTENTOSCONEXION 3
 
-#define BUF_SIZE 1024
+#define BUF_SIZE 512
 #define UART_BUF_SIZE 256
 #define UART_TIMEOUT_MS 1000
 #define COLA_TAMANO 10
@@ -55,6 +56,7 @@ const char *apn = "igprs.claro.com.ar";
 const char *gprsUser = "";
 const char *gprsPass = "";
 //MQTT
+
 
 
 
@@ -78,8 +80,62 @@ static bool mqtt_ready = false;
 static bool uart_instalado_modem = false;
 static bool uart_instalado_r232 = false;
 static bool gprs_conectado=false;
+static bool mode_mqtt=false;
+#define MAX_MQTT_PACKET_SIZE 512  // ajustable si necesitás más
 
- #define MAX_MQTT_PACKET_SIZE 256  // ajustable si necesitás más
+
+// manejo del buffer circular.
+#define BUFFER_SIZE 512
+
+typedef struct {
+    uint8_t data[BUFFER_SIZE];
+    volatile uint16_t head;
+    volatile uint16_t tail;
+} ring_buffer_t;
+
+static ring_buffer_t uart_rx_buffer;
+
+static void ring_buffer_init(ring_buffer_t *rb) {
+    rb->head = 0;
+    rb->tail = 0;
+}
+
+
+static bool ring_buffer_put(ring_buffer_t *rb, uint8_t byte) {
+    uint16_t next = (rb->head + 1) % BUFFER_SIZE;
+    if (next == rb->tail) return false; // buffer lleno
+    rb->data[rb->head] = byte;
+    rb->head = next;
+    return true;
+}
+
+static bool ring_buffer_get(ring_buffer_t *rb, uint8_t *byte) {
+    if (rb->head == rb->tail) return false; // buffer vacío
+    *byte = rb->data[rb->tail];
+    rb->tail = (rb->tail + 1) % BUFFER_SIZE;
+    return true;
+}
+int read_remaining_length(int *length) {
+    uint8_t byte;
+    int multiplier = 1;
+    int value = 0;
+    int count = 0;
+
+    do {
+        int n = uart_read_bytes(UART_MODEM_NUM, &byte, 1, pdMS_TO_TICKS(500));
+        if (n != 1) return -1; // error de lectura
+
+        value += (byte & 127) * multiplier;
+        multiplier *= 128;
+        count++;
+
+        if (count > 4) return -2; // error: largo inválido
+    } while (byte & 128);
+
+    *length = value;
+    return count; // cantidad de bytes usados para el remaining length
+}
+
 
 
 static bool uart_modem_init()
@@ -621,9 +677,10 @@ static bool wait_for_mqtt_connack(TickType_t timeout_ms) {
             for (size_t i = 0; i + 3 < idx; ++i) {
                 if (buf[i]   == 0x20 &&
                     buf[i+1] == 0x02 &&
-                    buf[i+2] == 0x00 &&
+                    (buf[i+2] == 0x00 || buf[i+2] == 0x01) && // Session Present: 0 o 1
                     buf[i+3] == 0x00) {
                     ESP_LOGI(TAG_GPRS, "CONNACK recibido, MQTT conectado");
+                    mode_mqtt=true;
                     return true;
                 }
             }
@@ -642,7 +699,7 @@ static bool wait_for_mqtt_connack(TickType_t timeout_ms) {
 static bool tcp_send(const uint8_t* data, unsigned int len) {
     char buf[128];
     char cmd[32];
-
+     int total_read = 0;
     // 1) Solicitar envío de “len” bytes
     snprintf(cmd, sizeof(cmd), "AT+CIPSEND=%u", len);
     send_at_command(TAG_GPRS, UART_MODEM_NUM, cmd);
@@ -667,11 +724,25 @@ static bool tcp_send(const uint8_t* data, unsigned int len) {
     // 4) Confirmar SEND OK
     start = xTaskGetTickCount();
     while (xTaskGetTickCount() - start < pdMS_TO_TICKS(5000)) {
-        int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf)-1, pdMS_TO_TICKS(200));
+        int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf)-1, pdMS_TO_TICKS(25));
         if (n > 0) {
             buf[n] = '\0';
-            if (strstr(buf, "SEND OK")) {
+            char* pos_ok = strstr(buf, "SEND OK");
+            if (pos_ok)  {
                 ESP_LOGI(TAG_GPRS, "CIPSEND OK: %s", buf);
+                if(mode_mqtt)
+                  { 
+                    ESP_LOGI(TAG_GPRS, "estoy en modo mqtt");// Buscar desde el final de "SEND OK" qué bytes siguen y son datos binarios
+                    char* datos_mqtt = pos_ok + strlen("SEND OK");
+                    int bytes_mqtt = (buf + n) - datos_mqtt;
+                    if (bytes_mqtt > 0) {
+                        ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, (uint8_t*)datos_mqtt, bytes_mqtt, ESP_LOG_INFO);
+                        for (int i = 0; i < bytes_mqtt; i++) {
+                            ring_buffer_put(&uart_rx_buffer, (uint8_t)datos_mqtt[i]);
+                        }
+                    }
+                  }
+
                 return true;
             }
             if (strstr(buf, "ERROR") || strstr(buf, "CLOSED")) {
@@ -684,6 +755,90 @@ static bool tcp_send(const uint8_t* data, unsigned int len) {
     return false;
 }
 
+/*
+
+
+static bool tcp_send(const uint8_t* data, unsigned int len) {
+    char buf[128];
+    char cmd[32];
+
+    // 1) Solicitar envío de “len” bytes
+    snprintf(cmd, sizeof(cmd), "AT+CIPSEND=%u", len);
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, cmd);
+
+    // 2) Esperar prompt ‘>’
+    TickType_t start = xTaskGetTickCount();
+    bool prompt_ok = false;
+    int total_read = 0;
+
+    while (xTaskGetTickCount() - start < pdMS_TO_TICKS(5000)) {
+        int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf + total_read, sizeof(buf) - 1 - total_read, pdMS_TO_TICKS(100));
+        if (n > 0) {
+            total_read += n;
+            buf[total_read] = '\0';
+            if (strchr(buf, '>')) {
+                prompt_ok = true;
+                break;
+            }
+        }
+    }
+    if (!prompt_ok) {
+        ESP_LOGE(TAG_GPRS, "No vino '>' tras CIPSEND");
+        return false;
+    }
+
+    // 3) Enviar dato binario
+    ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, data, len, ESP_LOG_INFO);
+    uart_write_bytes(UART_MODEM_NUM, (const char*)data, len);
+
+    // 4) Confirmar SEND OK y guardar cualquier byte MQTT posterior
+    start = xTaskGetTickCount();
+    bool send_ok_detectado = false;
+    total_read = 0;
+
+    while (xTaskGetTickCount() - start < pdMS_TO_TICKS(5000)) {
+        int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf + total_read, sizeof(buf) - 1 - total_read, pdMS_TO_TICKS(75));
+        if (n > 0) {
+            total_read += n;
+            buf[total_read] = '\0';
+
+            // 4.a) Si no detectamos SEND OK todavía, buscá "SEND OK"
+            if (!send_ok_detectado) {
+                if (strstr(buf, "SEND OK")) {
+                    send_ok_detectado = true;
+                    ESP_LOGI(TAG_GPRS, "CIPSEND OK: %s", buf);
+
+                if(mode_mqtt)
+                  { ESP_LOGI(TAG_GPRS, "estoy en modo mqtt");// Buscar desde el final de "SEND OK" qué bytes siguen y son datos binarios
+                    char* datos_mqtt = strstr(buf, "SEND OK") + strlen("SEND OK");
+
+                    int bytes_mqtt = &buf[total_read] - datos_mqtt;
+                    for (int i = 0; i < bytes_mqtt; i++) {
+                        ring_buffer_put(&uart_rx_buffer, datos_mqtt[i]);
+                    }
+                  }
+                    return true;
+                }
+
+                if (strstr(buf, "ERROR") || strstr(buf, "CLOSED")) {
+                    ESP_LOGW(TAG_GPRS, "Fallo tras CIPSEND: %s", buf);
+                    return false;
+                }
+
+            } else {
+                // 4.b) Ya vimos "SEND OK", todo lo que llegue es binario
+                for (int i = 0; i < n; i++) {
+                    ring_buffer_put(&uart_rx_buffer, buf[i]);
+                }
+                total_read = 0;
+            }
+        }
+    }
+
+    ESP_LOGE(TAG_GPRS, "Timeout esperando SEND OK");
+    return false;
+}
+*/
 
 static bool gprs_disconnect() {
 
@@ -790,23 +945,154 @@ static int tcp_receive(uint8_t* buffer, size_t max_len, TickType_t timeout_ms) {
 
 
 
+/*
 
 
-
-// --- MQTT: manejar paquetes entrantes ---
 void mqtt_handle_incoming(void) {
-    uint8_t buffer[512];
-    int len = tcp_receive(buffer, sizeof(buffer), 500);  // Timeout corto (polling)
+    uint8_t header[2];
+    int n = uart_read_bytes(UART_MODEM_NUM, header, 2, pdMS_TO_TICKS(500));
 
-    if (len > 0) {
-        ESP_LOGI(TAG_GPRS, "MQTT packet recibido (%d bytes)", len);
-        ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, buffer, len, ESP_LOG_INFO);
+    if (n < 2) {
+        ESP_LOGW(TAG, "No llegaron 2 bytes del header MQTT");
+        return;
+    }
 
-        if (buffer[0] == 0xD0 && buffer[1] == 0x00) {
-            received_pingresp = true;
-            ESP_LOGI(TAG_GPRS, "PINGRESP recibido");
+    uint8_t packet_type = header[0] & 0xF0;
+    uint8_t remaining_length = header[1];
+
+    if (packet_type == 0xD0 && remaining_length == 0x00) {
+        received_pingresp = true;
+        ESP_LOGI(TAG, "PINGRESP recibido");
+        return;
+    }
+
+    if (packet_type == 0x90) {  // SUBACK
+        ESP_LOGI(TAG, "Recibido SUBACK");
+        return;
+    }
+
+    if (packet_type == 0x30) {
+        bool retained = (header[0] & 0x01) != 0;
+        ESP_LOGI(TAG, "Mensaje Retained: %s", retained ? "Sí" : "No");
+
+        uint8_t body[remaining_length];
+        int m = uart_read_bytes(UART_MODEM_NUM, body, remaining_length, pdMS_TO_TICKS(1000));
+
+        if (m != remaining_length) {
+            ESP_LOGW(TAG, "No se recibió el paquete completo (%d/%d)", m, remaining_length);
+            return;
         }
-        // Acá podrías seguir parseando otros paquetes MQTT si querés
+
+        uint16_t topic_len = (body[0] << 8) | body[1];
+        if (topic_len + 2 > remaining_length) {
+            ESP_LOGW(TAG, "Topic demasiado largo o paquete mal formado");
+            return;
+        }
+
+        char topic[128] = {0};
+        memcpy(topic, &body[2], topic_len);
+
+        int payload_offset = 2 + topic_len;
+        int payload_len = remaining_length - payload_offset;
+
+        char payload[256] = {0};
+        memcpy(payload, &body[payload_offset], payload_len);
+        payload[payload_len] = '\0';
+
+        ESP_LOGI(TAG, "Mensaje MQTT:");
+        ESP_LOGI(TAG, "  Tópico: %s", topic);
+        ESP_LOGI(TAG, "  Payload: %s", payload);
+
+    } else {
+        ESP_LOGW(TAG, "Paquete MQTT no manejado: tipo 0x%02X", packet_type);
+    }
+}*/
+
+int uart_read_exact(uint8_t *buf, int len, int timeout_ms) {
+    int total = 0;
+    TickType_t start = xTaskGetTickCount();
+
+    while (total < len) {
+        int r = uart_read_bytes(UART_MODEM_NUM, buf + total, len - total, pdMS_TO_TICKS(100));
+        if (r > 0) total += r;
+        if ((xTaskGetTickCount() - start) > pdMS_TO_TICKS(timeout_ms)) break;
+    }
+
+    return total;
+}
+
+void mqtt_handle_incoming(void) {
+    uint8_t header[2];
+    int n = uart_read_exact(header, 2, 1000);  // Leer header: tipo + remaining length (1 byte)
+
+    if (n < 2) {
+        ESP_LOGW(TAG, "No llegaron 2 bytes del header MQTT");
+        return;
+    }
+
+    uint8_t packet_type = header[0] & 0xF0;
+    uint8_t flags       = header[0] & 0x0F;
+    uint8_t remaining_length = header[1];  // ❗️Solo funciona para payloads < 127 (un solo byte)
+
+    // ✅ Considerar que hubo actividad para evitar PINGREQ innecesarios
+    last_activity = xTaskGetTickCount();
+
+    switch (packet_type) {
+        case 0xD0:  // PINGRESP
+            if (remaining_length == 0x00) {
+                received_pingresp = true;
+                ESP_LOGI(TAG, "PINGRESP recibido");
+            }
+            break;
+
+        case 0x90:  // SUBACK
+            ESP_LOGI(TAG, "SUBACK recibido");
+            break;
+
+        case 0x30: {  // PUBLISH
+            bool retained = (flags & 0x01) != 0;
+            ESP_LOGI(TAG, "PUBLISH recibido. Retained: %s", retained ? "Sí" : "No");
+
+            if (remaining_length == 0 || remaining_length > sizeof(uint8_t) * 256) {
+                ESP_LOGW(TAG, "Longitud restante inválida: %u", remaining_length);
+                break;
+            }
+
+            uint8_t body[remaining_length];
+            int m = uart_read_exact(body, remaining_length, 2000);
+
+            if (m != remaining_length) {
+                ESP_LOGW(TAG, "No se recibió el paquete completo (%d/%d)", m, remaining_length);
+                break;
+            }
+
+            uint16_t topic_len = (body[0] << 8) | body[1];
+            if (topic_len + 2 > remaining_length || topic_len >= 128) {
+                ESP_LOGW(TAG, "Longitud de tópico inválida: %d", topic_len);
+                break;
+            }
+
+            char topic[128];
+            memcpy(topic, &body[2], topic_len);
+            topic[topic_len] = '\0';
+
+            int payload_offset = 2 + topic_len;
+            int payload_len = remaining_length - payload_offset;
+            if (payload_len >= 256) payload_len = 255;
+
+            char payload[256];
+            memcpy(payload, &body[payload_offset], payload_len);
+            payload[payload_len] = '\0';
+
+            ESP_LOGI(TAG, "Tópico: %s", topic);
+            ESP_LOGI(TAG, "Payload: %s", payload);
+
+            break;
+        }
+
+        default:
+            ESP_LOGW(TAG, "Paquete MQTT no manejado: tipo 0x%02X", packet_type);
+            break;
     }
 }
 
@@ -814,6 +1100,68 @@ void mqtt_handle_incoming(void) {
 
 
 
+
+
+
+/*
+
+void mqtt_handle_incoming(void) {
+    uint8_t header[2];
+
+    // Leer 2 bytes del header desde el ring buffer
+    for (int i = 0; i < 2; i++) {
+        if (!ring_buffer_get(&uart_rx_buffer, &header[i])) {
+            ESP_LOGW(TAG, "No llegaron 2 bytes del header MQTT");
+            return;
+        }
+    }
+
+    uint8_t packet_type = header[0] & 0xF0;
+    uint8_t remaining_length = header[1];
+
+    if (packet_type == 0xD0 && remaining_length == 0x00) {
+        received_pingresp = true;
+        ESP_LOGI(TAG, "PINGRESP recibido");
+        return;
+    }
+
+    if (packet_type == 0x30) {
+        // Es un PUBLISH
+        uint8_t body[256];  // Asegurate de que tenga lugar suficiente
+        for (int i = 0; i < remaining_length; i++) {
+            if (!ring_buffer_get(&uart_rx_buffer, &body[i])) {
+                ESP_LOGW(TAG, "No se recibió el paquete completo (%d/%d)", i, remaining_length);
+                return;
+            }
+        }
+
+        // Obtener longitud del tópico
+        uint16_t topic_len = (body[0] << 8) | body[1];
+        if (topic_len + 2 > remaining_length) {
+            ESP_LOGW(TAG, "Topic demasiado largo o paquete mal formado");
+            return;
+        }
+
+        char topic[128] = {0};
+        memcpy(topic, &body[2], topic_len);
+
+        int payload_offset = 2 + topic_len;
+        int payload_len = remaining_length - payload_offset;
+
+        char payload[256] = {0};
+        memcpy(payload, &body[payload_offset], payload_len);
+        payload[payload_len] = '\0';
+
+        ESP_LOGI(TAG, "Mensaje MQTT:");
+        ESP_LOGI(TAG, "  Tópico: %s", topic);
+        ESP_LOGI(TAG, "  Payload: %s", payload);
+
+    } else {
+        ESP_LOGW(TAG, "Paquete MQTT no manejado: tipo 0x%02X", packet_type);
+    }
+}
+
+*/
 
 
 
@@ -909,8 +1257,8 @@ sprintf(http_request,
  //unsigned int len=  strlen(http_request);
 */
 //const char *host="api.thingspeak.com";
-//const char* host = "test.mosquitto.org";
-const char* host = "broker.hivemq.com";
+const char* host = "test.mosquitto.org";
+//const char* host = "broker.hivemq.com";
 
 static const uint8_t mqtt_connect_packet[26] = {
   0x10, 0x18,             // CONNECT, Remaining Length = 24
@@ -1010,7 +1358,7 @@ sprintf(get_request,
 }
 
 // 2) Esperar CONNACK
-if (!wait_for_mqtt_connack(50000) ){
+if (!wait_for_mqtt_connack(40000) ){
     ESP_LOGE(TAG_GPRS, "No CONNACK, reconectando...");
     gprs_disconnect();
     vTaskDelay(pdMS_TO_TICKS(2000));
@@ -1018,6 +1366,7 @@ if (!wait_for_mqtt_connack(50000) ){
 }
 
    ESP_LOGI(TAG_GPRS, "MQTT conectado");
+        mode_mqtt=true;
 
      /*   // --- 4) PUBLISH de ejemplo ---
         const char* topic   = "test/topic";
@@ -1049,60 +1398,57 @@ if (!wait_for_mqtt_connack(50000) ){
            vTaskDelay(pdMS_TO_TICKS(2000));
            continue;
         }
-        
+       
+         mqtt_handle_incoming();
+         
          if (!mqtt_subscribe(mqttTopicCmd)) {
            gprs_disconnect();
            vTaskDelay(pdMS_TO_TICKS(2000));
            continue;
         }
-
-
-        // --- 5) Bucle MQTT (keep-alive y lectura) ---
-      TickType_t last_activity = xTaskGetTickCount();
-
-
-     while (tcp_is_connected()) {
-
-          received_pingresp = false;
-          mqtt_handle_incoming();  // revisar paquetes espontáneos (PUBLISH, etc.)
-
-          //reviso Keep-Alive cada 20 s
-          if (xTaskGetTickCount() - last_activity > pdMS_TO_TICKS(20000)) {
-                 const uint8_t pingreq[2] = {0xC0, 0x00};
-           
-          ESP_LOGI(TAG_GPRS, "PINGREQ enviado");  
-          // limpieza previa
-          uint8_t dummy[64];
-          uart_read_bytes(UART_MODEM_NUM, dummy, sizeof(dummy), pdMS_TO_TICKS(10));  
-
-          if (tcp_send(pingreq, 2)) {
+      // Esperar posibles mensajes retenidos inmediatamente después de suscribirse
+       for (int i = 0; i < 10; ++i) {
              mqtt_handle_incoming();
-             last_activity = xTaskGetTickCount();
-             // Esperar explícitamente PINGRESP
-             if(!received_pingresp)
-             {
-             TickType_t wait_start = xTaskGetTickCount();
-             while ((xTaskGetTickCount() - wait_start) < pdMS_TO_TICKS(3000)) {
-                 mqtt_handle_incoming();
-                 if (received_pingresp) break;
-                 vTaskDelay(pdMS_TO_TICKS(100));
-             }
+       vTaskDelay(pdMS_TO_TICKS(200));
+}
+     
+ // --- 5) Bucle MQTT (keep-alive y lectura) ---
+TickType_t last_activity = xTaskGetTickCount();
 
-            if (!received_pingresp) {
-                ESP_LOGW(TAG_GPRS, "No se recibió PINGRESP a tiempo");
-                break;  // cortar la conexión
-            }
-            }
+while (tcp_is_connected()) {
+    mqtt_handle_incoming();
 
-        } else {
+    if (xTaskGetTickCount() - last_activity > pdMS_TO_TICKS(60000)) {
+        const uint8_t pingreq[2] = {0xC0, 0x00};
+
+        ESP_LOGI(TAG_GPRS, "PINGREQ enviado");
+
+        if (!tcp_send(pingreq, 2)) {
             ESP_LOGW(TAG_GPRS, "Fallo PINGREQ, saliendo del loop");
+            mode_mqtt = false;
+            break;
+        }
+
+        last_activity = xTaskGetTickCount();
+        received_pingresp = false;
+
+        TickType_t wait_start = xTaskGetTickCount();
+        while ((xTaskGetTickCount() - wait_start) < pdMS_TO_TICKS(7000)) {
+            mqtt_handle_incoming();
+            if (received_pingresp) break;
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
+
+        if (!received_pingresp) {
+            ESP_LOGW(TAG_GPRS, "No se recibió PINGRESP a tiempo");
+            mode_mqtt = false;
             break;
         }
     }
 
-    vTaskDelay(pdMS_TO_TICKS(100));
+   vTaskDelay(pdMS_TO_TICKS(1));
 }
-
+        mode_mqtt=false;
         // --- 6) Si salimos del loop, reconectar todo ---
         ESP_LOGW(TAG_GPRS, "Conexión MQTT caída, reiniciando...");
         gprs_disconnect();
@@ -1139,6 +1485,9 @@ if (!wait_for_mqtt_connack(50000) ){
 void app_main(void)
 {
     ESP_LOGI(TAG, "Inicio Aplicación...");
+    ring_buffer_init(&uart_rx_buffer);
+
+
 
     if (!uart_init())
       {

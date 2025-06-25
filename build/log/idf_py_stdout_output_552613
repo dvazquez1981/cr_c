@@ -1,0 +1,1403 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xc (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Jun 12 2025 13:27:14[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c030020 size=0cd78h ( 52600) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=0001cda0 vaddr=3fc8c200 size=012c8h (  4808) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001e070 vaddr=40380000 size=01fa8h (  8104) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=22500h (140544) map[0m
+[0;32mI (146) esp_image: segment 4: paddr=00042528 vaddr=40381fa8 size=0a06ch ( 41068) load[0m
+[0;32mI (157) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (158) boot: Disabling RNG early entropy source...[0m
+[0;32mI (169) cpu_start: Unicore app[0m
+[0;32mI (178) cpu_start: Pro cpu start user code[0m
+[0;32mI (178) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (178) cpu_start: Application information:[0m
+[0;32mI (181) cpu_start: Project name:     cr_c[0m
+[0;32mI (186) cpu_start: App version:      572994f-dirty[0m
+[0;32mI (191) cpu_start: Compile time:     Jun 25 2025 16:47:12[0m
+[0;32mI (197) cpu_start: ELF file SHA256:  7fa3be6d075407c4...[0m
+[0;32mI (203) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (208) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (213) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (218) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (222) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (230) heap_init: At 3FC8E6B0 len 00031950 (198 KiB): RAM[0m
+[0;32mI (236) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (250) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (257) spi_flash: detected chip: generic[0m
+[0;32mI (261) spi_flash: flash io: dio[0m
+[0;33mW (265) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (278) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (284) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (292) main_task: Started on CPU0[0m
+[0;32mI (292) main_task: Calling app_main()[0m
+[0;32mI (292) APP: Inicio Aplicación...[0m
+[0;32mI (302) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (302) UART_MODEM: uart_param_config OK[0m
+[0;32mI (312) UART_MODEM: uart_s[0;32mI (322) UART_RS232: uart_driver_install OK[0m
+[0;32mI (322) UART_RS232: uart_set_pin OK[0m
+[0;32mI (322) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (322) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (332) APP: Se creo la cola[0m
+[0;33mW (332) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (342) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (342) GPRS: Comando enviado: AT
+[0m
+[0;32mI (352) main_task: Returned from app_main()[0m
+[0;32mI (472) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (472) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (472) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (2472) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (2472) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (4472) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (4472) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (4472) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (6472) GPRS: No registrado en red[0m
+[0;32mI (6472) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (6472) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (8472) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8472) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8602) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (8602) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8602) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8772) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (8772) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8772) GPRS: GPRS conectado[0m
+[0;32mI (8772) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (10772) GPRS: STATE: CONNECT OK[0m
+[0;32mI (10772) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (10902) GPRS: 0x3c03a17c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (10902) GPRS: 0x3c03a18c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (12322) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (16102) GPRS: 0x3fc95020   0d 0a 43 4c 4f 53 45 44  0d 0a                    |..CLOSED..|[0m
+[0;33mW (16102) GPRS: Broker cerró antes de enviar CONNACK[0m
+[0;31mE (16102) GPRS: No CONNACK, reconectando...[0m
+[0;32mI (18102) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (19882) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (19882) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (21882) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (21882) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (21882) GPRS: Comando enviado: AT
+[0m
+[0;32mI (22002) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (22002) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (22002) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (24002) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (24002) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (26002) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (26002) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (26002) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (28002) GPRS: No registrado en red[0m
+[0;32mI (28002) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (28002) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (30002) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (30002) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (30132) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (30132) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (30132) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (30292) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (30292) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (30292) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;31mE (35292) GPRS: Timeout esperando OK o ERROR: [0m
+[0;31mE (35292) GPRS: Error: no se pudo iniciar conexión GPRS (AT+CIICR)[0m
+[0;32mI (35292) GPRS: GPRS conectado[0m
+[0;32mI (35292) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (37642) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (37642) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (37642) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;33mW (45642) GPRS: No funciono AT+CIPSTART: 
++CME ERROR: 3
+[0m
+[0;31mE (45642) GPRS: No se pudo conectar TCP, reintentando en 5s...[0m
+[0;32mI (47642) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (48322) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (48322) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (53322) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (53322) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (53322) GPRS: Comando enviado: AT
+[0m
+[0;32mI (53442) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (53442) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (53442) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (55442) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (55442) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (57442) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (57442) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (57442) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (59442) GPRS: No registrado en red[0m
+[0;32mI (59442) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (59442) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (61442) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (61442) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (61572) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (61572) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (61572) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (61732) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (61732) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (61732) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (62502) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (62502) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (62502) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (64502) GPRS: IP obtenida: 
+10.93.181.155
+[0m
+[0;32mI (64502) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (64502) GPRS: Configurando módem...[0m
+[0;32mI (64502) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (64632) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (64632) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (64762) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (64762) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (64892) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (64892) GPRS: GPRS conectado[0m
+[0;32mI (64892) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (66892) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (66892) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (66892) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (74892) GPRS: Conexión TCP realizada[0m
+[0;32mI (74892) GPRS: TCP conectado[0m
+[0;32mI (74892) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (75022) GPRS: 0x3c03a17c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (75022) GPRS: 0x3c03a18c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (76422) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (76532) GPRS: 0x3fc95020   20 02 00 00                                       | ...|[0m
+[0;32mI (76532) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (76532) GPRS: MQTT conectado[0m
+[0;32mI (76532) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (76672) GPRS: 0x3fc94e50   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (76672) GPRS: 0x3fc94e60   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (76672) GPRS: 0x3fc94e70   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (76682) GPRS: 0x3fc94e80   33 32 31 22 2c 22 70 31  22 3a 22 36 35 22 2c 22  |321","p1":"65","|[0m
+[0;32mI (76692) GPRS: 0x3fc94e90   6c 32 22 3a 22 32 33 22  2c 22 70 32 22 3a 22 36  |l2":"23","p2":"6|[0m
+[0;32mI (76702) GPRS: 0x3fc94ea0   33 22 7d                                          |3"}|[0m
+[0;32mI (77522) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (77522) GPRS: estoy en modo mqtt[0m
+[0;32mI (77522) GPRS: 0x3fc94dc9   0d 0a                                             |..|[0m
+[0;32mI (77522) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2321","p1":"65","l2":"23","p2":"63"}[0m
+[0;33mW (78632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (78632) GPRS: Comando enviado: AT+CIPSEND=30
+[0m
+[0;32mI (78762) GPRS: 0x3fc94e60   82 1c 00 01 00 17 64 69  73 70 6f 73 69 74 69 76  |......dispositiv|[0m
+[0;32mI (78762) GPRS: 0x3fc94e70   6f 2f 31 32 33 2f 63 6f  6d 61 6e 64 6f 00        |o/123/comando.|[0m
+[0;32mI (80602) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (80602) GPRS: estoy en modo mqtt[0m
+[0;32mI (80602) GPRS: 0x3fc94dd9   0d 0a                                             |..|[0m
+[0;32mI (80602) GPRS: SUBSCRIBE enviado: dispositivo/123/comando[0m
+[0;32mI (80692) APP: SUBACK recibido[0m
+[0;33mW (80892) APP: Paquete MQTT no manejado: tipo 0x00[0m
+[0;33mW (82192) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (83492) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (84792) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (86092) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (86432) APP: PUBLISH recibido. Retained: Sí[0m
+[0;32mI (86432) APP: Tópico: dispositivo/123/comando[0m
+[0;32mI (86432) APP: Payload: un comandito2...[0m
+[0;33mW (87732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (89032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (90332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (90532) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (92532) GPRS: STATE: CONNECT OK[0m
+[0;33mW (93632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (93632) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (95632) GPRS: STATE: CONNECT OK[0m
+[0;33mW (96732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (96732) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (98732) GPRS: STATE: CONNECT OK[0m
+[0;33mW (99832) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (99832) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (101832) GPRS: STATE: CONNECT OK[0m
+[0;33mW (102932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (102932) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (104932) GPRS: STATE: CONNECT OK[0m
+[0;33mW (106032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (106032) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (108032) GPRS: STATE: CONNECT OK[0m
+[0;33mW (109132) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (109132) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (111132) GPRS: STATE: CONNECT OK[0m
+[0;33mW (112232) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (112232) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (114232) GPRS: STATE: CONNECT OK[0m
+[0;33mW (115332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (115332) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (117332) GPRS: STATE: CONNECT OK[0m
+[0;33mW (118432) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (118432) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (120432) GPRS: STATE: CONNECT OK[0m
+[0;33mW (121532) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (121532) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (123532) GPRS: STATE: CONNECT OK[0m
+[0;33mW (124632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (124632) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (126632) GPRS: STATE: CONNECT OK[0m
+[0;33mW (127732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (127732) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (129732) GPRS: STATE: CONNECT OK[0m
+[0;33mW (130832) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (130832) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (132832) GPRS: STATE: CONNECT OK[0m
+[0;33mW (133932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (133932) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (135932) GPRS: STATE: CONNECT OK[0m
+[0;33mW (137032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (137032) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (139032) GPRS: STATE: CONNECT OK[0m
+[0;33mW (140132) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (140132) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (142132) GPRS: STATE: CONNECT OK[0m
+[0;33mW (143232) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (143232) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (145232) GPRS: STATE: CONNECT OK[0m
+[0;33mW (146332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (146332) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (148332) GPRS: STATE: CONNECT OK[0m
+[0;33mW (149432) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (149432) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (151432) GPRS: STATE: CONNECT OK[0m
+[0;33mW (152532) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (152532) GPRS: PINGREQ enviado[0m
+[0;32mI (152532) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (152662) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (154022) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (154022) GPRS: estoy en modo mqtt[0m
+[0;32mI (154022) GPRS: 0x3fc94fe9   0d 0a                                             |..|[0m
+[0;32mI (154032) APP: PINGRESP recibido[0m
+[0;32mI (154032) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (156032) GPRS: STATE: CONNECT OK[0m
+[0;33mW (157132) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (157132) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (159132) GPRS: STATE: CONNECT OK[0m
+[0;33mW (160232) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (160232) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (162232) GPRS: STATE: CONNECT OK[0m
+[0;33mW (163332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (163332) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (165332) GPRS: STATE: CONNECT OK[0m
+[0;33mW (166432) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (166432) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (168432) GPRS: STATE: CONNECT OK[0m
+[0;33mW (169532) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (169532) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (171532) GPRS: STATE: CONNECT OK[0m
+[0;33mW (172632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (172632) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (174632) GPRS: STATE: CONNECT OK[0m
+[0;33mW (175732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (175732) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (177732) GPRS: STATE: CONNECT OK[0m
+[0;33mW (178832) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (178832) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (180832) GPRS: STATE: CONNECT OK[0m
+[0;33mW (181932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (181932) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (183932) GPRS: STATE: CONNECT OK[0m
+[0;33mW (185032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (185032) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (187032) GPRS: STATE: CONNECT OK[0m
+[0;33mW (188132) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (188132) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (190132) GPRS: STATE: CONNECT OK[0m
+[0;33mW (191232) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (191232) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (193232) GPRS: STATE: CONNECT OK[0m
+[0;33mW (194332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (194332) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (196332) GPRS: STATE: CONNECT OK[0m
+[0;33mW (197432) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (197432) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (199432) GPRS: STATE: CONNECT OK[0m
+[0;33mW (200532) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (200532) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (202532) GPRS: STATE: CONNECT OK[0m
+[0;33mW (203632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (203632) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (205632) GPRS: STATE: CONNECT OK[0m
+[0;33mW (206732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (206732) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (208732) GPRS: STATE: CONNECT OK[0m
+[0;33mW (209832) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (209832) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (211832) GPRS: STATE: CONNECT OK[0m
+[0;33mW (212932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (212932) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (214932) GPRS: STATE: CONNECT OK[0m
+[0;33mW (216032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (216032) GPRS: PINGREQ enviado[0m
+[0;32mI (216032) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (216162) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (217602) GPRS: CIPSEND OK: 
+SEND OK
+�
+[0;32mI (217602) GPRS: estoy en modo mqtt[0m
+[0;32mI (217602) GPRS: 0x3fc94fe9   0d 0a d0 00                                       |....|[0m
+[0;33mW (218702) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (219802) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (220902) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (222002) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (223102) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (224202) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (225302) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (225302) GPRS: No se recibió PINGRESP a tiempo[0m
+[0;33mW (225302) GPRS: Conexión MQTT caída, reiniciando...[0m
+[0;32mI (227302) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (230282) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (230282) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (234282) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (234412) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (234412) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (236412) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (236412) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (236412) GPRS: Comando enviado: AT
+[0m
+[0;32mI (236532) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (236532) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (236532) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (238532) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (238532) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (240532) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (240532) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (240532) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (242532) GPRS: No registrado en red[0m
+[0;32mI (242532) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (242532) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (244532) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (244532) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (244662) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (244662) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (244662) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (244822) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (244822) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (244822) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (245562) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (245562) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (245562) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (247562) GPRS: IP obtenida: 
+10.123.140.214
+[0m
+[0;32mI (247562) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (247562) GPRS: Configurando módem...[0m
+[0;32mI (247562) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (247692) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (247692) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (247822) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (247822) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (247952) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (247952) GPRS: GPRS conectado[0m
+[0;32mI (247952) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (249952) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (249952) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (249952) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (257952) GPRS: Conexión TCP realizada[0m
+[0;32mI (257952) GPRS: TCP conectado[0m
+[0;32mI (257952) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (258082) GPRS: 0x3c03a17c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (258082) GPRS: 0x3c03a18c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (259482) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (259592) GPRS: 0x3fc95020   20 02 00 00                                       | ...|[0m
+[0;32mI (259592) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (259592) GPRS: MQTT conectado[0m
+[0;32mI (259592) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (259732) GPRS: 0x3fc94e50   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (259732) GPRS: 0x3fc94e60   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (259732) GPRS: 0x3fc94e70   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (259742) GPRS: 0x3fc94e80   33 32 31 22 2c 22 70 31  22 3a 22 36 35 22 2c 22  |321","p1":"65","|[0m
+[0;32mI (259752) GPRS: 0x3fc94e90   6c 32 22 3a 22 32 33 22  2c 22 70 32 22 3a 22 36  |l2":"23","p2":"6|[0m
+[0;32mI (259762) GPRS: 0x3fc94ea0   33 22 7d                                          |3"}|[0m
+[0;32mI (260582) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (260582) GPRS: estoy en modo mqtt[0m
+[0;32mI (260582) GPRS: 0x3fc94dc9   0d 0a                                             |..|[0m
+[0;32mI (260582) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2321","p1":"65","l2":"23","p2":"63"}[0m
+[0;33mW (261692) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (261692) GPRS: Comando enviado: AT+CIPSEND=30
+[0m
+[0;32mI (261822) GPRS: 0x3fc94e60   82 1c 00 01 00 17 64 69  73 70 6f 73 69 74 69 76  |......dispositiv|[0m
+[0;32mI (261822) GPRS: 0x3fc94e70   6f 2f 31 32 33 2f 63 6f  6d 61 6e 64 6f 00        |o/123/comando.|[0m
+[0;32mI (263642) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (263642) GPRS: estoy en modo mqtt[0m
+[0;32mI (263642) GPRS: 0x3fc94dd9   0d 0a                                             |..|[0m
+[0;32mI (263642) GPRS: SUBSCRIBE enviado: dispositivo/123/comando[0m
+[0;32mI (263652) APP: SUBACK recibido[0m
+[0;33mW (263852) APP: Paquete MQTT no manejado: tipo 0x00[0m
+[0;33mW (265152) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (266452) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (266652) APP: PUBLISH recibido. Retained: Sí[0m
+[0;32mI (266652) APP: Tópico: dispositivo/123/comando[0m
+[0;32mI (266652) APP: Payload: un comandito2...[0m
+[0;33mW (267952) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (269252) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (270552) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (271852) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (273152) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (273352) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (275352) GPRS: STATE: CONNECT OK[0m
+[0;33mW (276452) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (276452) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (278452) GPRS: STATE: CONNECT OK[0m
+[0;33mW (279552) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (279552) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (281552) GPRS: STATE: CONNECT OK[0m
+[0;33mW (282652) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (282652) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (284652) GPRS: STATE: CONNECT OK[0m
+[0;33mW (285752) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (285752) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (287752) GPRS: STATE: CONNECT OK[0m
+[0;33mW (288852) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (288852) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (290852) GPRS: STATE: CONNECT OK[0m
+[0;33mW (291952) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (291952) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (293952) GPRS: STATE: CONNECT OK[0m
+[0;33mW (295052) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (295052) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (297052) GPRS: STATE: CONNECT OK[0m
+[0;33mW (298152) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (298152) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (300152) GPRS: STATE: CONNECT OK[0m
+[0;33mW (301252) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (301252) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (303252) GPRS: STATE: CONNECT OK[0m
+[0;33mW (304352) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (304352) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (306352) GPRS: STATE: CONNECT OK[0m
+[0;33mW (307452) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (307452) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (309452) GPRS: STATE: CONNECT OK[0m
+[0;33mW (310552) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (310552) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (312552) GPRS: STATE: CONNECT OK[0m
+[0;33mW (313652) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (313652) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (315652) GPRS: STATE: CONNECT OK[0m
+[0;33mW (316752) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (316752) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (318752) GPRS: STATE: CONNECT OK[0m
+[0;33mW (319852) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (319852) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (321852) GPRS: STATE: CONNECT OK[0m
+[0;33mW (322952) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (322952) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (324952) GPRS: STATE: CONNECT OK[0m
+[0;33mW (326052) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (326052) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (328052) GPRS: STATE: CONNECT OK[0m
+[0;33mW (329152) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (329152) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (331152) GPRS: STATE: CONNECT OK[0m
+[0;33mW (332252) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (332252) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (334252) GPRS: STATE: CONNECT OK[0m
+[0;33mW (335352) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (335352) GPRS: PINGREQ enviado[0m
+[0;32mI (335352) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (335482) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (336842) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (336842) GPRS: estoy en modo mqtt[0m
+[0;32mI (336842) GPRS: 0x3fc94fe9   0d 0a                                             |..|[0m
+[0;32mI (336932) APP: PINGRESP recibido[0m
+[0;32mI (336932) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (338932) GPRS: STATE: CONNECT OK[0m
+[0;33mW (340032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (340032) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (342032) GPRS: STATE: CONNECT OK[0m
+[0;33mW (343132) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (343132) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (345132) GPRS: STATE: CONNECT OK[0m
+[0;33mW (346232) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (346232) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (348232) GPRS: STATE: CONNECT OK[0m
+[0;33mW (349332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (349332) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (351332) GPRS: STATE: CONNECT OK[0m
+[0;33mW (352432) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (352432) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (354432) GPRS: STATE: CONNECT OK[0m
+[0;33mW (355532) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (355532) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (357532) GPRS: STATE: CONNECT OK[0m
+[0;33mW (358632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (358632) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (360632) GPRS: STATE: CONNECT OK[0m
+[0;33mW (361732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (361732) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (363732) GPRS: STATE: CONNECT OK[0m
+[0;33mW (364832) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (364832) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (366832) GPRS: STATE: CONNECT OK[0m
+[0;33mW (367932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (367932) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (369932) GPRS: STATE: CONNECT OK[0m
+[0;33mW (371032) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (371032) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (373032) GPRS: STATE: CONNECT OK[0m
+[0;33mW (374132) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (374132) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (376132) GPRS: STATE: CONNECT OK[0m
+[0;33mW (377232) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (377232) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (379232) GPRS: STATE: CONNECT OK[0m
+[0;33mW (380332) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (380332) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (382332) GPRS: STATE: CONNECT OK[0m
+[0;33mW (383432) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (383432) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (385432) GPRS: STATE: CONNECT OK[0m
+[0;33mW (386532) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (386532) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (388532) GPRS: STATE: CONNECT OK[0m
+[0;33mW (389632) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (389632) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (391632) GPRS: STATE: CONNECT OK[0m
+[0;33mW (392732) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (392732) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (394732) GPRS: STATE: CONNECT OK[0m
+[0;33mW (395832) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (395832) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (397832) GPRS: STATE: CONNECT OK[0m
+[0;33mW (398932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (398932) GPRS: PINGREQ enviado[0m
+[0;32mI (398932) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (399062) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (400422) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (400422) GPRS: estoy en modo mqtt[0m
+[0;32mI (400422) GPRS: 0x3fc94fe9   0d 0a                                             |..|[0m
+[0;32mI (400472) APP: PINGRESP recibido[0m
+[0;32mI (400472) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (402472) GPRS: STATE: CONNECT OK[0m
+[0;33mW (403572) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (403572) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (405572) GPRS: STATE: CONNECT OK[0m
+[0;33mW (406672) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (406672) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (408672) GPRS: STATE: CONNECT OK[0m
+[0;33mW (409772) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (409772) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (411772) GPRS: STATE: CONNECT OK[0m
+[0;33mW (412872) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (412872) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (414872) GPRS: STATE: CONNECT OK[0m
+[0;33mW (415972) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (415972) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (417972) GPRS: STATE: CONNECT OK[0m
+[0;33mW (419072) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (419072) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (421072) GPRS: STATE: CONNECT OK[0m
+[0;33mW (422172) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (422172) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (424172) GPRS: STATE: CONNECT OK[0m
+[0;33mW (425272) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (425272) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (427272) GPRS: STATE: CONNECT OK[0m
+[0;33mW (428372) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (428372) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (430372) GPRS: STATE: CONNECT OK[0m
+[0;33mW (431472) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (431472) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (433472) GPRS: STATE: CONNECT OK[0m
+[0;33mW (434572) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (434572) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (436572) GPRS: STATE: CONNECT OK[0m
+[0;33mW (437672) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (437672) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (439672) GPRS: STATE: CONNECT OK[0m
+[0;33mW (440772) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (440772) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (442892) GPRS: STATE: CONNECT OK[0m
+[0;33mW (443992) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (443992) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (445992) GPRS: STATE: CONNECT OK[0m
+[0;33mW (447092) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (447092) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (449092) GPRS: STATE: CONNECT OK[0m
+[0;33mW (450192) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (450192) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (452192) GPRS: STATE: CONNECT OK[0m
+[0;33mW (453292) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (453292) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (455292) GPRS: STATE: CONNECT OK[0m
+[0;33mW (456392) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (456392) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (458392) GPRS: STATE: CONNECT OK[0m
+[0;33mW (459492) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (459492) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (461492) GPRS: STATE: CONNECT OK[0m
+[0;33mW (462592) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (462592) GPRS: PINGREQ enviado[0m
+[0;32mI (462592) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (462722) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (464082) GPRS: CIPSEND OK: 
+SEND OK
+�
+[0;32mI (464082) GPRS: estoy en modo mqtt[0m
+[0;32mI (464082) GPRS: 0x3fc94fe9   0d 0a d0 00                                       |....|[0m
+[0;33mW (465182) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (466282) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (467382) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (468482) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (469582) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (470682) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (471782) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (471782) GPRS: No se recibió PINGRESP a tiempo[0m
+[0;33mW (471782) GPRS: Conexión MQTT caída, reiniciando...[0m
+[0;32mI (473782) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (476862) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (476862) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (480862) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (480992) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (480992) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (482992) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (482992) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (482992) GPRS: Comando enviado: AT
+[0m
+[0;32mI (483112) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (483112) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (483112) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (485112) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (485112) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (487112) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (487112) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (487112) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (489112) GPRS: No registrado en red[0m
+[0;32mI (489112) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (489112) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (491112) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (491112) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (491242) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (491242) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (491242) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (491402) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (491402) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (491402) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (492332) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (492332) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (492332) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (494332) GPRS: IP obtenida: 
+10.69.194.17
+[0m
+[0;32mI (494332) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (494332) GPRS: Configurando módem...[0m
+[0;32mI (494332) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (494462) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (494462) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (494592) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (494592) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (494722) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (494722) GPRS: GPRS conectado[0m
+[0;32mI (494722) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (496722) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (496722) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (496722) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (504722) GPRS: Conexión TCP realizada[0m
+[0;32mI (504722) GPRS: TCP conectado[0m
+[0;32mI (504722) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (504852) GPRS: 0x3c03a17c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (504852) GPRS: 0x3c03a18c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (506262) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (506372) GPRS: 0x3fc95020   20 02 00 00                                       | ...|[0m
+[0;32mI (506372) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (506372) GPRS: MQTT conectado[0m
+[0;32mI (506372) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (506512) GPRS: 0x3fc94e50   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (506512) GPRS: 0x3fc94e60   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (506512) GPRS: 0x3fc94e70   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (506522) GPRS: 0x3fc94e80   33 32 31 22 2c 22 70 31  22 3a 22 36 35 22 2c 22  |321","p1":"65","|[0m
+[0;32mI (506532) GPRS: 0x3fc94e90   6c 32 22 3a 22 32 33 22  2c 22 70 32 22 3a 22 36  |l2":"23","p2":"6|[0m
+[0;32mI (506542) GPRS: 0x3fc94ea0   33 22 7d                                          |3"}|[0m
+[0;32mI (507362) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (507362) GPRS: estoy en modo mqtt[0m
+[0;32mI (507362) GPRS: 0x3fc94dc9   0d 0a                                             |..|[0m
+[0;32mI (507362) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2321","p1":"65","l2":"23","p2":"63"}[0m
+[0;33mW (508472) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (508472) GPRS: Comando enviado: AT+CIPSEND=30
+[0m
+[0;32mI (508602) GPRS: 0x3fc94e60   82 1c 00 01 00 17 64 69  73 70 6f 73 69 74 69 76  |......dispositiv|[0m
+[0;32mI (508602) GPRS: 0x3fc94e70   6f 2f 31 32 33 2f 63 6f  6d 61 6e 64 6f 00        |o/123/comando.|[0m
+[0;32mI (510422) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (510422) GPRS: estoy en modo mqtt[0m
+[0;32mI (510422) GPRS: 0x3fc94dd9   0d 0a                                             |..|[0m
+[0;32mI (510422) GPRS: SUBSCRIBE enviado: dispositivo/123/comando[0m
+[0;32mI (510432) APP: SUBACK recibido[0m
+[0;33mW (510632) APP: Paquete MQTT no manejado: tipo 0x00[0m
+[0;33mW (511932) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (512752) APP: PUBLISH recibido. Retained: Sí[0m
+[0;32mI (512752) APP: Tópico: dispositivo/123/comando[0m
+[0;32mI (512752) APP: Payload: un comandito2...[0m
+[0;33mW (514062) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (515362) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (516662) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (517962) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (519262) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (520562) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (520762) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (522762) GPRS: STATE: CONNECT OK[0m
+[0;33mW (523862) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (523862) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (525862) GPRS: STATE: CONNECT OK[0m
+[0;33mW (526962) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (526962) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (528962) GPRS: STATE: CONNECT OK[0m
+[0;33mW (530062) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (530062) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (532062) GPRS: STATE: CONNECT OK[0m
+[0;33mW (533162) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (533162) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (535162) GPRS: STATE: CONNECT OK[0m
+[0;33mW (536262) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (536262) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (538262) GPRS: STATE: CONNECT OK[0m
+[0;33mW (539362) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (539362) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (541362) GPRS: STATE: CONNECT OK[0m
+[0;33mW (542462) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (542462) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (544462) GPRS: STATE: CONNECT OK[0m
+[0;33mW (545562) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (545562) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (547562) GPRS: STATE: CONNECT OK[0m
+[0;33mW (548662) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (548662) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (550662) GPRS: STATE: CONNECT OK[0m
+[0;33mW (551762) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (551762) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (553762) GPRS: STATE: CONNECT OK[0m
+[0;33mW (554862) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (554862) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (556862) GPRS: STATE: CONNECT OK[0m
+[0;33mW (557962) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (557962) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (559962) GPRS: STATE: CONNECT OK[0m
+[0;33mW (561062) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (561062) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (563062) GPRS: STATE: CONNECT OK[0m
+[0;33mW (564162) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (564162) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (566162) GPRS: STATE: CONNECT OK[0m
+[0;33mW (567262) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (567262) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (569262) GPRS: STATE: CONNECT OK[0m
+[0;33mW (570362) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (570362) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (572362) GPRS: STATE: CONNECT OK[0m
+[0;33mW (573462) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (573462) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (575462) GPRS: STATE: CONNECT OK[0m
+[0;33mW (576562) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (576562) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (578562) GPRS: STATE: CONNECT OK[0m
+[0;33mW (579662) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (579662) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (581662) GPRS: STATE: CONNECT OK[0m
+[0;33mW (582762) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (582762) GPRS: PINGREQ enviado[0m
+[0;32mI (582762) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (582892) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (584262) GPRS: CIPSEND OK: 
+SEND OK
+�
+[0;32mI (584262) GPRS: estoy en modo mqtt[0m
+[0;32mI (584262) GPRS: 0x3fc94fe9   0d 0a d0 00                                       |....|[0m
+[0;33mW (585362) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (586462) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (587562) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (588662) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (589762) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (590862) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (591962) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (591962) GPRS: No se recibió PINGRESP a tiempo[0m
+[0;33mW (591962) GPRS: Conexión MQTT caída, reiniciando...[0m
+[0;32mI (593962) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (596962) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (596962) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (600962) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (601092) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (601092) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (603092) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (603092) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (603092) GPRS: Comando enviado: AT
+[0m
+[0;32mI (603212) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (603212) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (603212) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (605212) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (605212) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (607212) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (607212) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (607212) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (609212) GPRS: No registrado en red[0m
+[0;32mI (609212) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (609212) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (611212) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (611212) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (611342) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (611342) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (611342) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (611502) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (611502) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (611502) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (612262) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (612262) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (612262) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (614262) GPRS: IP obtenida: 
+10.69.194.17
+[0m
+[0;32mI (614262) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (614262) GPRS: Configurando módem...[0m
+[0;32mI (614262) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (614392) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (614392) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (614522) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (614522) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (614652) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (614652) GPRS: GPRS conectado[0m
+[0;32mI (614652) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (616652) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (616652) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (616652) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (624652) GPRS: Conexión TCP realizada[0m
+[0;32mI (624652) GPRS: TCP conectado[0m
+[0;32mI (624652) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (624782) GPRS: 0x3c03a17c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (624782) GPRS: 0x3c03a18c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (626262) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (626412) GPRS: 0x3fc95020   20 02 00 00                                       | ...|[0m
+[0;32mI (626412) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (626412) GPRS: MQTT conectado[0m
+[0;32mI (626412) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (626552) GPRS: 0x3fc94e50   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (626552) GPRS: 0x3fc94e60   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (626552) GPRS: 0x3fc94e70   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (626562) GPRS: 0x3fc94e80   33 32 31 22 2c 22 70 31  22 3a 22 36 35 22 2c 22  |321","p1":"65","|[0m
+[0;32mI (626572) GPRS: 0x3fc94e90   6c 32 22 3a 22 32 33 22  2c 22 70 32 22 3a 22 36  |l2":"23","p2":"6|[0m
+[0;32mI (626582) GPRS: 0x3fc94ea0   33 22 7d                                          |3"}|[0m
+[0;32mI (627442) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (627442) GPRS: estoy en modo mqtt[0m
+[0;32mI (627442) GPRS: 0x3fc94dc9   0d 0a                                             |..|[0m
+[0;32mI (627442) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2321","p1":"65","l2":"23","p2":"63"}[0m
+[0;33mW (628552) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (628552) GPRS: Comando enviado: AT+CIPSEND=30
+[0m
+[0;32mI (628682) GPRS: 0x3fc94e60   82 1c 00 01 00 17 64 69  73 70 6f 73 69 74 69 76  |......dispositiv|[0m
+[0;32mI (628682) GPRS: 0x3fc94e70   6f 2f 31 32 33 2f 63 6f  6d 61 6e 64 6f 00        |o/123/comando.|[0m
+[0;32mI (630492) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (630492) GPRS: estoy en modo mqtt[0m
+[0;32mI (630492) GPRS: 0x3fc94dd9   0d 0a                                             |..|[0m
+[0;32mI (630492) GPRS: SUBSCRIBE enviado: dispositivo/123/comando[0m
+[0;32mI (630512) APP: SUBACK recibido[0m
+[0;33mW (630712) APP: Paquete MQTT no manejado: tipo 0x00[0m
+[0;33mW (632012) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (632212) APP: PUBLISH recibido. Retained: Sí[0m
+[0;32mI (632212) APP: Tópico: dispositivo/123/comando[0m
+[0;32mI (632212) APP: Payload: un comandito2...[0m
+[0;33mW (633512) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (634812) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (636112) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (637412) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (638712) APP: No llegaron 2 bytes del header MQTT[0m
+[0;33mW (640012) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (640212) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (642212) GPRS: STATE: CONNECT OK[0m
+[0;33mW (643312) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (643312) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (645312) GPRS: STATE: CONNECT OK[0m
+[0;33mW (646412) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (646412) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (648412) GPRS: STATE: CONNECT OK[0m
+[0;33mW (649512) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (649512) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (651512) GPRS: STATE: CONNECT OK[0m
+[0;33mW (652612) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (652612) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (654612) GPRS: STATE: CONNECT OK[0m
+[0;33mW (655712) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (655712) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (657712) GPRS: STATE: CONNECT OK[0m
+[0;33mW (658812) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (658812) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (660812) GPRS: STATE: CONNECT OK[0m
+[0;33mW (661912) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (661912) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (663912) GPRS: STATE: CONNECT OK[0m
+[0;33mW (665012) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (665012) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (667012) GPRS: STATE: CONNECT OK[0m
+[0;33mW (668112) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (668112) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (670112) GPRS: STATE: CONNECT OK[0m
+[0;33mW (671212) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (671212) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (673212) GPRS: STATE: CONNECT OK[0m
+[0;33mW (674312) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (674312) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (676312) GPRS: STATE: CONNECT OK[0m
+[0;33mW (677412) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (677412) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (679412) GPRS: STATE: CONNECT OK[0m
+[0;33mW (680512) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (680512) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (682512) GPRS: STATE: CONNECT OK[0m
+[0;33mW (683612) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (683612) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (685612) GPRS: STATE: CONNECT OK[0m
+[0;33mW (686712) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (686712) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (688712) GPRS: STATE: CONNECT OK[0m
+[0;33mW (689812) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (689812) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (691812) GPRS: STATE: CONNECT OK[0m
+[0;33mW (692912) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (692912) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (694912) GPRS: STATE: CONNECT OK[0m
+[0;33mW (696012) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (696012) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (698012) GPRS: STATE: CONNECT OK[0m
+[0;33mW (699112) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (699112) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (701112) GPRS: STATE: CONNECT OK[0m
+[0;33mW (702212) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (702212) GPRS: PINGREQ enviado[0m
+[0;32mI (702212) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (702342) GPRS: 0x3fc95088   c0 00                                             |..|[0m
+[0;32mI (703742) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (703742) GPRS: estoy en modo mqtt[0m
+[0;32mI (703742) GPRS: 0x3fc94fe9   0d 0a                                             |..|[0m
+[0;32mI (703772) APP: PINGRESP recibido[0m
+[0;32mI (703772) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (705772) GPRS: STATE: CONNECT OK[0m
+[0;33mW (706872) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (706872) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (708872) GPRS: STATE: CONNECT OK[0m
+[0;33mW (709972) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (709972) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (711972) GPRS: STATE: CONNECT OK[0m
+[0;33mW (713072) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (713072) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (715072) GPRS: STATE: CONNECT OK[0m
+[0;33mW (716172) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (716172) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (718172) GPRS: STATE: CONNECT OK[0m
+[0;33mW (719272) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (719272) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (721272) GPRS: STATE: CONNECT OK[0m
+[0;33mW (722372) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (722372) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (724372) GPRS: STATE: CONNECT OK[0m
+[0;33mW (725472) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (725472) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (727472) GPRS: STATE: CONNECT OK[0m
+[0;33mW (728572) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (728572) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (730572) GPRS: STATE: CONNECT OK[0m
+[0;33mW (731672) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (731672) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (733672) GPRS: STATE: CONNECT OK[0m
+[0;33mW (734772) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (734772) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (736772) GPRS: STATE: CONNECT OK[0m
+[0;33mW (737872) APP: No llegaron 2 bytes del header MQTT[0m
+[0;32mI (737872) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
