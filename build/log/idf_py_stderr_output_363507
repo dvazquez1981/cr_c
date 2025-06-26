@@ -1,0 +1,24 @@
+[0;33m--- esp-idf-monitor 1.6.2 on /dev/ttyUSB0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- Stack dump detected[0m
+[0;33m--- 0x40385bde: vPortExitCritical at /home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:623
+--- 0x40385bde: vPortExitCritical at /home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:623
+[0m
+[0;33m--- 0x4005890e: memset in ROM
+[0m
+[0;33m--- 0x40382620: esp_crosscore_int_send at /home/diego/esp/esp-idf/components/esp_system/crosscore_int.c:166
+[0m
+[0;33m--- 0x4038265e: esp_crosscore_int_send_yield at /home/diego/esp/esp-idf/components/esp_system/crosscore_int.c:173
+--- 0x40385c12: vPortYield at /home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:652 (discriminator 3)
+[0m
+[0;33m--- 0x40386aae: vTaskDelay at /home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:1567
+[0m
+[0;33m--- 0x4038265e: esp_crosscore_int_send_yield at /home/diego/esp/esp-idf/components/esp_system/crosscore_int.c:173
+--- 0x40385c12: vPortYield at /home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:652 (discriminator 3)
+[0m
+[0;33m--- 0x4005890e: memset in ROM
+--- 0x40000000: _start in ROM
+[0m
+[0;33m--- 0x40386aae: vTaskDelay at /home/diego/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:1567
+[0m
+[0m
