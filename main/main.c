@@ -51,6 +51,7 @@ static bool received_pingresp = false;
 #define UART_BUF_SIZE 256
 #define UART_TIMEOUT_MS 1000
 #define COLA_TAMANO 10
+#define MENSAJE_TAMANO 128
 
  #define CONNECTION_TIMEOUT  120  // Timeout extendido a 120 segundos
 // APN 
@@ -89,26 +90,6 @@ volatile bool tcp_conected=false;
 #define MAX_MQTT_PACKET_SIZE 512  // ajustable si necesitás más
 
 
-int read_remaining_length(int *length) {
-    uint8_t byte;
-    int multiplier = 1;
-    int value = 0;
-    int count = 0;
-
-    do {
-        int n = uart_read_bytes(UART_MODEM_NUM, &byte, 1, pdMS_TO_TICKS(500));
-        if (n != 1) return -1; // error de lectura
-
-        value += (byte & 127) * multiplier;
-        multiplier *= 128;
-        count++;
-
-        if (count > 4) return -2; // error: largo inválido
-    } while (byte & 128);
-
-    *length = value;
-    return count; // cantidad de bytes usados para el remaining length
-}
 
 static bool init_uart_mutex() {
     uart_mutex = xSemaphoreCreateMutex();
@@ -233,7 +214,6 @@ static bool uart_init()
 
 
 // Enviar comando 
-
 static void send_at_command(const char* t,uart_port_t un, const char *cmd) {
     // Añadir terminación CR+LF si no está
     char cmd_with_crlf[128];
@@ -243,11 +223,11 @@ static void send_at_command(const char* t,uart_port_t un, const char *cmd) {
 }
 
 
+// Enviar comando con wait ok
 static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,const char* t,uart_port_t un) {
     // Limpiar buffer UART antes de enviar comando
     uart_flush(un);
-
-  
+ 
     send_at_command(t,un,cmd);
 
     char resp[128] = {0};
@@ -297,6 +277,18 @@ static void encolar(char* msg)
             msg = NULL;
             }
     }
+}
+
+
+static char* desencolar(TickType_t timeout_ms)
+{
+    char* msg_recibido = NULL;
+
+    if (xQueueReceive(dataQueue, &msg_recibido, pdMS_TO_TICKS(timeout_ms)) == pdPASS) {
+        return msg_recibido;
+    }
+
+    return NULL;
 }
 
 // Tarea para leer respuestas del RS232 y ponerlas en cola
@@ -793,7 +785,7 @@ int uart_read_exact(uint8_t *buf, int len, int timeout_ms) {
 
     return total;
 }
-
+/*
 void mqtt_handle_incoming(void) {
     if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(1000)) == pdTRUE) {  // espera hasta 1s para el mutex
 
@@ -818,25 +810,25 @@ void mqtt_handle_incoming(void) {
             }
             break;
 
-        case 0x90:  // SUBACK
-            ESP_LOGI(TAG, "SUBACK recibido");
-            break;
-        case 0x20:  // CONNACK
-          ESP_LOGI(TAG, "CONNACK recibido");
-          break;
+          case 0x90:  // SUBACK
+             ESP_LOGI(TAG, "SUBACK recibido");
+             break;
+         case 0x20:  // CONNACK
+             ESP_LOGI(TAG, "CONNACK recibido");
+             break;
         case 0x40:  // PUBACK
-        ESP_LOGI(TAG, "PUBACK recibido");
-        break;
+             ESP_LOGI(TAG, "PUBACK recibido");
+             break;
         
         case 0x60:  // PUBREL
-        ESP_LOGI(TAG, "PUBREL recibido");
-         break;
+            ESP_LOGI(TAG, "PUBREL recibido");
+             break;
         case 0x70:  // PUBCOMP
-        ESP_LOGI(TAG, "PUBCOMP recibido");
+          ESP_LOGI(TAG, "PUBCOMP recibido");
         break;
         
         case 0x10:  // CONNECT
-        ESP_LOGW(TAG, "CONNECT recibido inesperadamente");
+          ESP_LOGW(TAG, "CONNECT recibido inesperadamente");
         break;
 
         case 0x30: {  // PUBLISH
@@ -889,7 +881,112 @@ void mqtt_handle_incoming(void) {
         ESP_LOGW(TAG, "Timeout esperando mutex UART");
     }
 }
+*/
 
+int read_remaining_length(uint32_t* length, int* consumed_bytes) {
+    *length = 0;
+    *consumed_bytes = 0;
+    int multiplier = 1;
+    uint8_t byte;
+
+    do {
+        if (uart_read_exact(&byte, 1, 1000) != 1) return -1;
+        *length += (byte & 0x7F) * multiplier;
+        multiplier *= 128;
+        (*consumed_bytes)++;
+
+        if (*consumed_bytes > 4) return -2; // Error: too long
+    } while (byte & 0x80);
+
+    return 0;
+}
+
+
+
+void mqtt_handle_incoming(void) {
+    if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(1000)) != pdTRUE) {
+        ESP_LOGW(TAG, "Timeout esperando mutex UART");
+        return;
+    }
+
+    uint8_t fixed_header;
+    if (uart_read_exact(&fixed_header, 1, 1000) != 1) {
+        xSemaphoreGive(uart_mutex);
+        return;
+    }
+
+    uint8_t packet_type = fixed_header & 0xF0;
+    uint8_t flags       = fixed_header & 0x0F;
+
+    // Leer Remaining Length (variable)
+    uint32_t remaining_length = 0;
+    int consumed_rl_bytes = 0;
+    if (read_remaining_length(&remaining_length, &consumed_rl_bytes) != 0) {
+        ESP_LOGW(TAG, "Fallo leyendo Remaining Length");
+        xSemaphoreGive(uart_mutex);
+        return;
+    }
+
+    if (remaining_length > 1024) {
+        ESP_LOGW(TAG, "Remaining Length demasiado grande: %lu", remaining_length);
+        xSemaphoreGive(uart_mutex);
+        return;
+    }
+
+    uint8_t body[1024];
+    int read_body = uart_read_exact(body, remaining_length, 2000);
+    if (read_body != remaining_length) {
+        ESP_LOGW(TAG, "No se recibió el paquete completo (%d/%lu)", read_body, remaining_length);
+        xSemaphoreGive(uart_mutex);
+        return;
+    }
+
+    last_activity = xTaskGetTickCount();
+
+    switch (packet_type) {
+        case 0xD0: ESP_LOGI(TAG, "PINGRESP recibido"); break;
+        case 0x90: ESP_LOGI(TAG, "SUBACK recibido"); break;
+        case 0x20: ESP_LOGI(TAG, "CONNACK recibido"); break;
+        case 0x40: ESP_LOGI(TAG, "PUBACK recibido"); break;
+        case 0x60: ESP_LOGI(TAG, "PUBREL recibido"); break;
+        case 0x70: ESP_LOGI(TAG, "PUBCOMP recibido"); break;
+        case 0x10: ESP_LOGW(TAG, "CONNECT recibido inesperadamente"); break;
+
+        case 0x30: {  // PUBLISH
+            bool retained = (flags & 0x01);
+            ESP_LOGI(TAG, "PUBLISH recibido. Retained: %s", retained ? "Sí" : "No");
+
+            if (remaining_length < 2) break;
+            uint16_t topic_len = (body[0] << 8) | body[1];
+            if (topic_len + 2 > remaining_length || topic_len >= 128) {
+                ESP_LOGW(TAG, "Longitud de tópico inválida: %d", topic_len);
+                break;
+            }
+
+            char topic[128];
+            memcpy(topic, &body[2], topic_len);
+            topic[topic_len] = '\0';
+
+            int payload_offset = 2 + topic_len;
+            int payload_len = remaining_length - payload_offset;
+            if (payload_len >= 256) payload_len = 255;
+
+            char payload[256];
+            memcpy(payload, &body[payload_offset], payload_len);
+            payload[payload_len] = '\0';
+
+            ESP_LOGI(TAG, "Tópico: %s", topic);
+            ESP_LOGI(TAG, "Payload: %s", payload);
+            break;
+        }
+
+        default:
+            ESP_LOGW(TAG, "Paquete MQTT no manejado: tipo 0x%02X", packet_type);
+            break;
+    }
+
+    xSemaphoreGive(uart_mutex);
+}
 
 
 static void gprs_mqtt_task(void *pvParameters)
@@ -943,8 +1040,10 @@ sprintf(http_request,
  //unsigned int len=  strlen(http_request);
 */
 //const char *host="api.thingspeak.com";
-//const char* host = "test.mosquitto.org";
-const char* host = "broker.hivemq.com";
+const char* host = "test.mosquitto.org";
+//const char* host = "broker.hivemq.com";
+
+
 
 static const uint8_t mqtt_connect_packet[26] = {
   0x10, 0x18,             // CONNECT, Remaining Length = 24
@@ -983,7 +1082,7 @@ int carril = 1;
 int pesado = 1013;
 int liviano = 500;
 
-
+mqtt_can_publish = true;
     //unsigned int len=  strlen(get_request);
      
         ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
@@ -1020,21 +1119,23 @@ if (!wait_for_mqtt_connack(40000) ){
 
    ESP_LOGI(TAG_GPRS, "MQTT conectado");
        
-  if (!mqtt_publish(mqttTopicData, "{\"hora\":\"12:03\",\"l1\":\"2321\",\"p1\":\"65\",\"l2\":\"23\",\"p2\":\"63\"}" )) {
+ /* if (!mqtt_publish(mqttTopicData, "{\"hora\":\"12:03\",\"l1\":\"2321\",\"p1\":\"65\",\"l2\":\"23\",\"p2\":\"63\"}" )) {
             gprs_disconnect();
            vTaskDelay(pdMS_TO_TICKS(2000));
            continue;
      }
-      
-     mqtt_handle_incoming();
-     vTaskDelay(pdMS_TO_TICKS(400)); 
-   
+*/   
+     //mqtt_handle_incoming();
+      uart_flush_input(UART_MODEM_NUM);  
+
+      vTaskDelay(pdMS_TO_TICKS(400));  // opcional  
      if (!mqtt_subscribe(mqttTopicCmd)) {
            gprs_disconnect();
            vTaskDelay(pdMS_TO_TICKS(2000));
            continue;
    
       }
+     
       // Esperar posibles mensajes retenidos inmediatamente después de suscribirse
       for (int i = 0; i < 15; ++i) {
                    mqtt_handle_incoming();
@@ -1055,9 +1156,22 @@ while (conectado_a_mqtt) {
     TickType_t now = xTaskGetTickCount();
      // Publicar solo si se puede y si pasó tiempo desde última publicación
     if (mqtt_can_publish && (now - last_publish) > publish_interval) {
-        if (mqtt_publish(mqttTopicData, "{\"hora\":\"12:03\",\"l1\":\"2321\",\"p1\":\"65\",\"l2\":\"23\",\"p2\":\"63\"}")) {
-            last_publish = now;
+        char* msg = NULL;
+        msg = desencolar(100);
+        
+        if (msg != NULL) {
+
+               if (mqtt_publish(mqttTopicData, msg)) {
+               last_publish = now;
+                    }
+              /*    else
+               {
+        
+              }*/
+             if(msg != NULL) {  free(msg);}
         }
+
+
     }
 
 
@@ -1113,25 +1227,6 @@ while (conectado_a_mqtt) {
         //tcp_disconnect();
         gprs_disconnect();
           
-        vTaskDelay(pdMS_TO_TICKS(2000));
-        // Si hay conexión GPRS y MQTT no iniciado, iniciar MQTT
-      /* if (gprs_conectado && !mqtt_iniciado) {
-            ESP_LOGI(TAG_MQTT, "Inicializando MQTT...");
-            if (mqtt_app_init() == 0) {
-                mqtt_iniciado = true;
-                ESP_LOGI(TAG_MQTT, "MQTT inicializado correctamente.");
-            } else {
-                ESP_LOGE(TAG_MQTT, "Error al inicializar el cliente MQTT.");
-                mqtt_iniciado = false;
-            }
-        }
-
-       // Si MQTT está listo y la cola de datos no está vacía, enviar datos
-        if (mqtt_iniciado && mqtt_ready && dataQueue != NULL) {
-            enviar_datos_cola_mqtt();
-        }
-     */ 
-        // Esperar un poco para no saturar la CPU
        
     }
 }
@@ -1161,16 +1256,27 @@ void app_main(void)
         return;
       }
     
-   
-     
+      char* msg = malloc(MENSAJE_TAMANO);
+      strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2321\",\"p1\":\"65\",\"l2\":\"23\",\"p2\":\"63\"}");
+      encolar(msg);
+      msg = malloc(MENSAJE_TAMANO);
+      strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2300\",\"p1\":\"63\",\"l2\":\"21\",\"p2\":\"60\"}");
+      encolar(msg);
+      msg = malloc(MENSAJE_TAMANO);
+      strcpy(msg,"{\"hora\":\"12:05\",\"l1\":\"23\",\"p1\":\"3\",\"l2\":\"1\",\"p2\":\"10\"}");
+      encolar(msg);
+      msg = malloc(MENSAJE_TAMANO);
+      strcpy(msg,"{\"hora\":\"12:06\",\"l1\":\"200\",\"p1\":\"6\",\"l2\":\"1\",\"p2\":\"6\"}");
+      encolar(msg);
+ 
  
       //Iniciar tarea para leer RS232
-     /* if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
+     if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
       {  
        ESP_LOGE(TAG, "No se pudo crear la tarea rs232_lectura_tarea");
        return;
       }
-    */
+    
       //Iniciar tarea para comunicar gprs y mqtt
       if (xTaskCreate(gprs_mqtt_task, "gprs_mqtt_task", 8192, NULL, 9, NULL)!= pdPASS)
       {  
