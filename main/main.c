@@ -32,7 +32,6 @@ static const char *TAG_UART_MODEM = "UART_MODEM";
 static const char *TAG_UART_RS232 = "UART_RS232";
 
 static TickType_t last_activity = 0;
-static bool received_pingresp = false;
 
 //uarts
 #define UART_MODEM_NUM     UART_NUM_1
@@ -62,6 +61,7 @@ const char *gprsPass = "";
 static volatile bool mqtt_can_publish = true;  // señal de seguridad
 
 static volatile SemaphoreHandle_t uart_mutex;
+static volatile bool received_pingresp = false;
 
 
 const char *mqttUri =       "mqtt://broker.hivemq.com";
@@ -944,7 +944,9 @@ void mqtt_handle_incoming(void) {
     last_activity = xTaskGetTickCount();
 
     switch (packet_type) {
-        case 0xD0: ESP_LOGI(TAG, "PINGRESP recibido"); break;
+        case 0xD0: ESP_LOGI(TAG, "PINGRESP recibido");
+        received_pingresp = true;
+         break;
         case 0x90: ESP_LOGI(TAG, "SUBACK recibido"); break;
         case 0x20: ESP_LOGI(TAG, "CONNACK recibido"); break;
         case 0x40: ESP_LOGI(TAG, "PUBACK recibido"); break;
@@ -1175,7 +1177,7 @@ while (conectado_a_mqtt) {
     }
 
 
-    if ((now - last_activity) > pdMS_TO_TICKS(30000)) {
+    if ((now - last_activity) > pdMS_TO_TICKS(40000)) {
         const uint8_t pingreq[2] = {0xC0, 0x00};
         ESP_LOGI(TAG_GPRS, "PINGREQ enviado");
         if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(500))) {
@@ -1200,7 +1202,8 @@ while (conectado_a_mqtt) {
         TickType_t wait_start = xTaskGetTickCount();
         while ((xTaskGetTickCount() - wait_start) < pdMS_TO_TICKS(7000)) {
             mqtt_handle_incoming();
-            if (received_pingresp) break;
+            if (received_pingresp)
+                break;
             vTaskDelay(pdMS_TO_TICKS(1));
         }
 
