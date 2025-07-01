@@ -1,0 +1,100 @@
+[1/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'tcp_send':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:583:10: warning: unused variable 'total_read' [-Wunused-variable]
+  583 |      int total_read = 0;
+      |          ^~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: In function 'gprs_mqtt_task':
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:983:5: warning: unused variable 'liviano' [-Wunused-variable]
+  983 | int liviano = 500;
+      |     ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:982:5: warning: unused variable 'pesado' [-Wunused-variable]
+  982 | int pesado = 1013;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:981:5: warning: unused variable 'carril' [-Wunused-variable]
+  981 | int carril = 1;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:980:5: warning: unused variable 'id' [-Wunused-variable]
+  980 | int id = 55;  // por ejemplo
+      |     ^~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:977:20: warning: unused variable 'fecha_num' [-Wunused-variable]
+  977 | unsigned long long fecha_num = strtoull(fecha_str, NULL, 10);
+      |                    ^~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:963:10: warning: unused variable 'gprs_conectado' [-Wunused-variable]
+  963 |     bool gprs_conectado = false;
+      |          ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:962:10: warning: unused variable 'mqtt_iniciado' [-Wunused-variable]
+  962 |     bool mqtt_iniciado = false;
+      |          ^~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:922:6: warning: unused variable 'get_request' [-Wunused-variable]
+  922 | char get_request[256];
+      |      ^~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:920:5: warning: unused variable 'liviano' [-Wunused-variable]
+  920 | int liviano = 500;
+      |     ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:919:5: warning: unused variable 'pesado' [-Wunused-variable]
+  919 | int pesado = 1013;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:918:5: warning: unused variable 'carril' [-Wunused-variable]
+  918 | int carril = 1;
+      |     ^~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:917:5: warning: unused variable 'timestamp' [-Wunused-variable]
+  917 | int timestamp = 70;
+      |     ^~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:916:5: warning: unused variable 'id' [-Wunused-variable]
+  916 | int id = 1;
+      |     ^~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:914:13: warning: unused variable 'api_key' [-Wunused-variable]
+  914 | const char *api_key = "37LWUG2UF6DGG5QY";
+      |             ^~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c: At top level:
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:743:12: warning: 'tcp_receive' defined but not used [-Wunused-function]
+  743 | static int tcp_receive(uint8_t* buffer, size_t max_len, TickType_t timeout_ms) {
+      |            ^~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:342:13: warning: 'gprs_is_connected' defined but not used [-Wunused-function]
+  342 | static bool gprs_is_connected() {
+      |             ^~~~~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:322:13: warning: 'tcp_disconnect' defined but not used [-Wunused-function]
+  322 | static bool tcp_disconnect() {
+      |             ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:85:15: warning: 'gprs_conectado' defined but not used [-Wunused-variable]
+   85 | static   bool gprs_conectado=false;
+      |               ^~~~~~~~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:30:20: warning: 'TAG_MQTT' defined but not used [-Wunused-variable]
+   30 | static const char *TAG_MQTT = "CLIENT_MQTT";
+      |                    ^~~~~~~~
+/home/diego/proyectos/_/viejo/cr_c/main/main.c:29:20: warning: 'TAG_UART_MQTT' defined but not used [-Wunused-variable]
+   29 | static const char *TAG_UART_MQTT = "UART_MQTT";
+      |                    ^~~~~~~~~~~~~
+[2/10] Linking C static library esp-idf/main/libmain.a
+[3/10] Performing build step for 'bootloader'
+[0/1] Re-running CMake...
+-- Building ESP-IDF components for target esp32c3
+-- Project sdkconfig file /home/diego/proyectos/_/viejo/cr_c/sdkconfig
+-- Adding linker script /home/diego/esp/esp-idf/components/soc/esp32c3/ld/esp32c3.peripherals.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script /home/diego/esp/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ld
+-- Adding linker script /home/diego/esp/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.api.ld
+-- Adding linker script /home/diego/esp/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libgcc.ld
+-- Adding linker script /home/diego/esp/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.newlib.ld
+-- Adding linker script /home/diego/esp/esp-idf/components/bootloader/subproject/main/ld/esp32c3/bootloader.ld
+-- Adding linker script /home/diego/esp/esp-idf/components/bootloader/subproject/main/ld/esp32c3/bootloader.rom.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_bootloader_format esp_common esp_hw_support esp_rom esp_system esptool_py freertos hal log main micro-ecc newlib partition_table riscv soc spi_flash
+-- Component paths: /home/diego/esp/esp-idf/components/bootloader /home/diego/esp/esp-idf/components/bootloader_support /home/diego/esp/esp-idf/components/efuse /home/diego/esp/esp-idf/components/esp_app_format /home/diego/esp/esp-idf/components/esp_bootloader_format /home/diego/esp/esp-idf/components/esp_common /home/diego/esp/esp-idf/components/esp_hw_support /home/diego/esp/esp-idf/components/esp_rom /home/diego/esp/esp-idf/components/esp_system /home/diego/esp/esp-idf/components/esptool_py /home/diego/esp/esp-idf/components/freertos /home/diego/esp/esp-idf/components/hal /home/diego/esp/esp-idf/components/log /home/diego/esp/esp-idf/components/bootloader/subproject/main /home/diego/esp/esp-idf/components/bootloader/subproject/components/micro-ecc /home/diego/esp/esp-idf/components/newlib /home/diego/esp/esp-idf/components/partition_table /home/diego/esp/esp-idf/components/riscv /home/diego/esp/esp-idf/components/soc /home/diego/esp/esp-idf/components/spi_flash
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/diego/proyectos/_/viejo/cr_c/build/bootloader
+[1/1] cd /home/diego/proyectos/_/viejo/cr_c/build/bootloader/esp-idf/esptool_py && /home/diego/.espressif/python_env/idf5.2_py3.11_env/bin/python /home/diego/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/diego/proyectos/_/viejo/cr_c/build/bootloader/bootloader.bin
+Bootloader binary size 0x5170 bytes. 0x2e90 bytes (36%) free.
+[4/10] No install step for 'bootloader'
+[5/10] Completed 'bootloader'
+[6/10] Generating ld/sections.ld
+[7/10] Building C object CMakeFiles/cr_c.elf.dir/project_elf_src_esp32c3.c.obj
+[8/10] Linking CXX executable cr_c.elf
+[9/10] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32c3 image...
+Merged 2 ELF sections
+Successfully created esp32c3 image.
+Generated /home/diego/proyectos/_/viejo/cr_c/build/cr_c.bin
+[10/10] cd /home/diego/proyectos/_/viejo/cr_c/build/esp-idf/esptool_py && /home/diego/.espressif/python_env/idf5.2_py3.11_env/bin/python /home/diego/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/diego/proyectos/_/viejo/cr_c/build/partition_table/partition-table.bin /home/diego/proyectos/_/viejo/cr_c/build/cr_c.bin
+cr_c.bin binary size 0x3d100 bytes. Smallest app partition is 0x100000 bytes. 0xc2f00 bytes (76%) free.

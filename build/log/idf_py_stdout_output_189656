@@ -1,0 +1,6 @@
+-- Component directory /home/diego/proyectos/_/viejo/cr_c/components/esp-mqtt does not contain a CMakeLists.txt file. No component will be added
+-- Building ESP-IDF components for target esp32c3
+NOTICE: Processing 1 dependencies:
+NOTICE: [1/1] idf (5.2.0)
+-- Configuring incomplete, errors occurred!
+See also "/home/diego/proyectos/_/viejo/cr_c/build/CMakeFiles/CMakeOutput.log".
