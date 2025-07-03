@@ -24,9 +24,9 @@
 
 #include "driver/uart.h"
 //#include "mqtt_client.h"
-static const char *TAG= "APP";
+static const char *TAG= "APP_ESP32C3_TST";
 
-static const char *TAG_UART_MQTT = "UART_MQTT";
+
 static const char *TAG_MQTT = "CLIENT_MQTT";
 static const char *TAG_GPRS = "GPRS";
 static const char *TAG_UART = "UART";
@@ -55,7 +55,7 @@ static TickType_t last_activity = 0;
 #define MENSAJE_TAMANO 128
 
 
-static volatile bool encriptado =true;  
+static volatile bool encriptado=true;  
 
 // Clave de 16 bytes
 const uint8_t aes_key[16] = "mikeysecreto1234";  
@@ -83,7 +83,7 @@ const char *mqttTopicData = "dispositivo/123/datos";
 const char *mqttTopicCmd  = "dispositivo/123/comando";
 //const char *mqttTopicResp = "dispositivo/123/respuesta ";
 
-//static esp_mqtt_client_handle_t mqtt_client = NULL;
+
 static QueueHandle_t dataQueue;
 
 
@@ -101,7 +101,7 @@ volatile bool tcp_conected=false;
 static bool init_uart_mutex() {
     uart_mutex = xSemaphoreCreateMutex();
     if (uart_mutex == NULL) {
-        ESP_LOGE(TAG, "Error creando mutex UART");
+        ESP_LOGE(TAG_UART, "Error creando mutex UART");
         return false;
     }
     return true;
@@ -234,7 +234,7 @@ static void send_at_command(const char* t,uart_port_t un, const char *cmd) {
 static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,const char* t,uart_port_t un) {
     //Limpiar buffer UART antes de enviar comando
     uart_flush(un);
-     send_at_command(t,un,cmd);
+    send_at_command(t,un,cmd);
     char resp[128] = {0};
     size_t len = 0;
     uint32_t start_tick = xTaskGetTickCount();
@@ -359,23 +359,30 @@ struct tm parse_cclk(const char* cclk_str) {
 
     const char* ptr = strstr(cclk_str, "+CCLK:");
     if (!ptr) {
-        ESP_LOGW("CCLK", "No se encontró +CCLK en la respuesta");
+        ESP_LOGW(TAG_GPRS, "No se encontró +CCLK en la respuesta");
         return t;
     }
 
     if (sscanf(ptr, "+CCLK: \"%2d/%2d/%2d,%2d:%2d:%2d%3d\"",
-               &year, &month, &day, &hour, &min, &sec, &tz_quarters) == 7) {
+               &year, &month, &day, &hour, &min, &sec, &tz_quarters) == 7  &&  (year + 2000)>2020 ) {
 
-        t.tm_year = 2000 + year - 1900;
+        
+        t.tm_year = (year < 70 ? 2000 + year : 1900 + year) - 1900;
+     
         t.tm_mon  = month - 1;
         t.tm_mday = day;
         t.tm_hour = hour;
         t.tm_min  = min;
         t.tm_sec  = sec;
+     // No tocar más la hora acá. El ajuste vendrá después con TZ.
+    
+    } else if ((year + 2000)<2020)
+    {
+      ESP_LOGW(TAG_GPRS, "Fecha inválida detectada (%d), esperando hora válida", (year + 2000));
 
-        // No tocar más la hora acá. El ajuste vendrá después con TZ.
-    } else {
-        ESP_LOGW("CCLK", "Error al parsear +CCLK");
+    }
+    else {
+        ESP_LOGW(TAG_GPRS, "Error al parsear +CCLK");
     }
 
     return t;
@@ -491,12 +498,19 @@ static bool gprs_connect()
     }
     ESP_LOGI(TAG_GPRS, "Calidad de señal: %s", buf);
 
+
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CLTS=1");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT&W"); // guarda config
+    vTaskDelay(pdMS_TO_TICKS(500));
+
+
     ESP_LOGI(TAG_GPRS, "Verificando registro en red con AT+CREG?...");
     uart_flush(UART_MODEM_NUM);
     send_at_command(TAG_GPRS,UART_MODEM_NUM,"AT+CREG?");
     vTaskDelay(pdMS_TO_TICKS(500));
     memset(buf, 0, sizeof(buf));
-    len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
+    len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(2000));
     if (len <= 0) {
         ESP_LOGE(TAG_GPRS, "No se recibió respuesta a AT+CREG?");
         return false;
@@ -513,6 +527,7 @@ static bool gprs_connect()
         buf[len] = 0;
         ESP_LOGI(TAG, "Ubicación: %s", buf);
     }
+
     ESP_LOGI(TAG_GPRS, "Activando GAT+CGREG?...");
     send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CGREG?");
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -629,7 +644,7 @@ static bool wait_for_mqtt_connack(TickType_t timeout_ms) {
         int n = uart_read_bytes(UART_MODEM_NUM, buf + idx, sizeof(buf) - idx, pdMS_TO_TICKS(100));
         if (n > 0) {
             idx += n;
-            ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, buf, idx, ESP_LOG_INFO);
+            ESP_LOG_BUFFER_HEXDUMP(TAG_MQTT, buf, idx, ESP_LOG_INFO);
             for (size_t i = 0; i + 3 < idx; ++i) {
                 if (buf[i]   == 0x20 &&
                     buf[i+1] == 0x02 &&
@@ -641,21 +656,21 @@ static bool wait_for_mqtt_connack(TickType_t timeout_ms) {
                 }
             }
             if (strstr((char*)buf, "CLOSED")) {
-                ESP_LOGW(TAG_GPRS, "Broker cerró antes de enviar CONNACK");
+                ESP_LOGW(TAG_MQTT, "Broker cerró antes de enviar CONNACK");
                 return false;
             }
         }
         vTaskDelay(pdMS_TO_TICKS(50));
     }
 
-    ESP_LOGW(TAG_GPRS, "No se recibió CONNACK en %lu ms", timeout_ms);
+    ESP_LOGW(TAG_MQTT , "No se recibió CONNACK en %lu ms", timeout_ms);
     return false;
 }
 
 static bool tcp_send(const uint8_t* data, unsigned int len) {
     char buf[128];
     char cmd[32];
-     int total_read = 0;
+    
     // 1) Solicitar envío de “len” bytes
     snprintf(cmd, sizeof(cmd), "AT+CIPSEND=%u", len);
     send_at_command(TAG_GPRS, UART_MODEM_NUM, cmd);
@@ -673,11 +688,11 @@ static bool tcp_send(const uint8_t* data, unsigned int len) {
         return false;
     }
 
-    // 3) Enviar dato binario
+    //Enviar dato binario
     ESP_LOG_BUFFER_HEXDUMP(TAG_GPRS, data, len, ESP_LOG_INFO);
     uart_write_bytes(UART_MODEM_NUM, (const char*)data, len);
 
-    // 4) Confirmar SEND OK
+    //Confirmar SEND OK
     start = xTaskGetTickCount();
     while (xTaskGetTickCount() - start < pdMS_TO_TICKS(7000)) {
         int n = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf)-1, pdMS_TO_TICKS(25));
@@ -714,11 +729,11 @@ static bool gprs_disconnect() {
 static bool mqtt_publish(const char* topic, const char* payload) {
 
 if (!mqtt_can_publish) {
-        ESP_LOGW(TAG, "Publicacion bloqueada temporalmente (esperando PINGRESP)");
+        ESP_LOGW(TAG_MQTT , "Publicacion bloqueada temporalmente (esperando PINGRESP)");
         return false;
     }
  if(uart_mutex == NULL) {
-    ESP_LOGE(TAG, "uart_mutex es NULL");
+    ESP_LOGE(TAG_MQTT, "uart_mutex es NULL");
     return false;
  }
 
@@ -729,7 +744,7 @@ if (!mqtt_can_publish) {
     uint16_t rem_len     = 2 + topic_len + payload_len;
 
     if (rem_len + 2 > MAX_MQTT_PACKET_SIZE) {
-        ESP_LOGE(TAG_GPRS, "MQTT publish demasiado largo: %u bytes", rem_len + 2);
+        ESP_LOGE(TAG_MQTT, "MQTT publish demasiado largo: %u bytes", rem_len + 2);
         xSemaphoreGive(uart_mutex); 
         return false;
     }
@@ -746,12 +761,12 @@ if (!mqtt_can_publish) {
     memcpy(&publish_packet[4 + topic_len], payload, payload_len);
 
     if (!tcp_send(publish_packet, publish_len)) {
-        ESP_LOGE(TAG_GPRS, "Error enviando PUBLISH: %s -> %s", topic, payload);
+        ESP_LOGE(TAG_MQTT, "Error enviando PUBLISH: %s -> %s", topic, payload);
         xSemaphoreGive(uart_mutex); 
         return false;
     }
 
-    ESP_LOGI(TAG_GPRS, "PUBLISH enviado: %s -> %s", topic, payload);
+    ESP_LOGI(TAG_MQTT, "PUBLISH enviado: %s -> %s", topic, payload);
     xSemaphoreGive(uart_mutex);
     return true;
     } else {
@@ -763,12 +778,12 @@ if (!mqtt_can_publish) {
 static bool mqtt_subscribe(const char* topic) {
 
       if (!mqtt_can_publish) {
-        ESP_LOGW(TAG, "subscripcion bloqueada temporalmente (esperando PINGRESP)");
+        ESP_LOGW(TAG_MQTT, "subscripcion bloqueada temporalmente (esperando PINGRESP)");
         return false;
     }
     
     if (uart_mutex == NULL) {
-    ESP_LOGE(TAG, "uart_mutex es NULL");
+    ESP_LOGE(TAG_MQTT, "uart_mutex es NULL");
     return false;
     }
 
@@ -801,16 +816,16 @@ static bool mqtt_subscribe(const char* topic) {
     subscribe_packet[6 + topic_len] = 0x00;
 
     if (!tcp_send(subscribe_packet, packet_len)) {
-        ESP_LOGE(TAG_GPRS, "Error enviando SUBSCRIBE a %s", topic);
+        ESP_LOGE(TAG_MQTT, "Error enviando SUBSCRIBE a %s", topic);
         xSemaphoreGive(uart_mutex); 
         return false;
     }
 
-    ESP_LOGI(TAG_GPRS, "SUBSCRIBE enviado: %s", topic);
+    ESP_LOGI(TAG_MQTT, "SUBSCRIBE enviado: %s", topic);
     xSemaphoreGive(uart_mutex);
     return true;
      } else {
-        ESP_LOGW(TAG, "No se pudo tomar mutex UART para subscribir");
+        ESP_LOGW(TAG_MQTT, "No se pudo tomar mutex UART para subscribir");
         return false;
     }
 }
@@ -876,7 +891,7 @@ int read_remaining_length(uint32_t* length, int* consumed_bytes) {
 
 void mqtt_handle_incoming(void) {
     if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(1000)) != pdTRUE) {
-        ESP_LOGW(TAG, "Timeout esperando mutex UART");
+        ESP_LOGW(TAG_MQTT, "Timeout esperando mutex UART");
         return;
     }
 
@@ -893,13 +908,13 @@ void mqtt_handle_incoming(void) {
     uint32_t remaining_length = 0;
     int consumed_rl_bytes = 0;
     if (read_remaining_length(&remaining_length, &consumed_rl_bytes) != 0) {
-        ESP_LOGW(TAG, "Fallo leyendo Remaining Length");
+        ESP_LOGW(TAG_MQTT, "Fallo leyendo Remaining Length");
         xSemaphoreGive(uart_mutex);
         return;
     }
 
     if (remaining_length > 1024) {
-        ESP_LOGW(TAG, "Remaining Length demasiado grande: %lu", remaining_length);
+        ESP_LOGW(TAG_MQTT, "Remaining Length demasiado grande: %lu", remaining_length);
         xSemaphoreGive(uart_mutex);
         return;
     }
@@ -907,7 +922,7 @@ void mqtt_handle_incoming(void) {
     uint8_t body[1024];
     int read_body = uart_read_exact(body, remaining_length, 2000);
     if (read_body != remaining_length) {
-        ESP_LOGW(TAG, "No se recibió el paquete completo (%d/%lu)", read_body, remaining_length);
+        ESP_LOGW(TAG_MQTT, "No se recibió el paquete completo (%d/%lu)", read_body, remaining_length);
         xSemaphoreGive(uart_mutex);
         return;
     }
@@ -915,24 +930,24 @@ void mqtt_handle_incoming(void) {
     last_activity = xTaskGetTickCount();
 
     switch (packet_type) {
-        case 0xD0: ESP_LOGI(TAG, "PINGRESP recibido");
+        case 0xD0: ESP_LOGI(TAG_MQTT, "PINGRESP recibido");
         received_pingresp = true;
          break;
-        case 0x90: ESP_LOGI(TAG, "SUBACK recibido"); break;
-        case 0x20: ESP_LOGI(TAG, "CONNACK recibido"); break;
-        case 0x40: ESP_LOGI(TAG, "PUBACK recibido"); break;
-        case 0x60: ESP_LOGI(TAG, "PUBREL recibido"); break;
-        case 0x70: ESP_LOGI(TAG, "PUBCOMP recibido"); break;
-        case 0x10: ESP_LOGW(TAG, "CONNECT recibido inesperadamente"); break;
+        case 0x90: ESP_LOGI(TAG_MQTT, "SUBACK recibido"); break;
+        case 0x20: ESP_LOGI(TAG_MQTT, "CONNACK recibido"); break;
+        case 0x40: ESP_LOGI(TAG_MQTT, "PUBACK recibido"); break;
+        case 0x60: ESP_LOGI(TAG_MQTT, "PUBREL recibido"); break;
+        case 0x70: ESP_LOGI(TAG_MQTT, "PUBCOMP recibido"); break;
+        case 0x10: ESP_LOGW(TAG_MQTT, "CONNECT recibido inesperadamente"); break;
 
         case 0x30: {  // PUBLISH
             bool retained = (flags & 0x01);
-            ESP_LOGI(TAG, "PUBLISH recibido. Retained: %s", retained ? "Sí" : "No");
+            ESP_LOGI(TAG_MQTT, "PUBLISH recibido. Retained: %s", retained ? "Sí" : "No");
 
             if (remaining_length < 2) break;
             uint16_t topic_len = (body[0] << 8) | body[1];
             if (topic_len + 2 > remaining_length || topic_len >= 128) {
-                ESP_LOGW(TAG, "Longitud de tópico inválida: %d", topic_len);
+                ESP_LOGW(TAG_MQTT, "Longitud de tópico inválida: %d", topic_len);
                 break;
             }
 
@@ -948,13 +963,13 @@ void mqtt_handle_incoming(void) {
             memcpy(payload, &body[payload_offset], payload_len);
             payload[payload_len] = '\0';
 
-            ESP_LOGI(TAG, "Tópico: %s", topic);
-            ESP_LOGI(TAG, "Payload: %s", payload);
+            ESP_LOGI(TAG_MQTT, "Tópico: %s", topic);
+            ESP_LOGI(TAG_MQTT, "Payload: %s", payload);
             break;
         }
 
         default:
-            ESP_LOGW(TAG, "Paquete MQTT no manejado: tipo 0x%02X", packet_type);
+            ESP_LOGW(TAG_MQTT, "Paquete MQTT no manejado: tipo 0x%02X", packet_type);
             break;
     }
 
@@ -965,10 +980,7 @@ void mqtt_handle_incoming(void) {
 static void gprs_mqtt_task(void *pvParameters)
 {
 
-
-
-
-
+//paquete para realizar la conexion
 static const uint8_t mqtt_connect_packet[26] = {
   0x10, 0x18,             // CONNECT, Remaining Length = 24
   0x00, 0x04,             // Len("MQTT") = 4
@@ -977,21 +989,17 @@ static const uint8_t mqtt_connect_packet[26] = {
   0x02,                   // Connect Flags: Clean Session
   0x00, 0x3C,             // Keep Alive = 60 s
   0x00, 0x0C,             // Client ID length = 12
-   'e','s','p','3','2','_','A','B','C','1','2','3'
+ 'e','s','p','3','2','_','C','3','_','D','A','V'
 };
 
 signed int len = sizeof(mqtt_connect_packet);
 
-    
-bool mqtt_iniciado = false;
-bool gprs_conectado = false;
-
+gprs_conected = false;
    
 while (1) {
 
-
-mqtt_can_publish = true;
-    //unsigned int len=  strlen(get_request);
+         mqtt_can_publish = true;
+    
      
         ESP_LOGW(TAG_GPRS, "GPRS desconectado, reconectando...");
 
@@ -1003,14 +1011,16 @@ mqtt_can_publish = true;
                 vTaskDelay(pdMS_TO_TICKS(5000));
                 continue;
                }
-               ESP_LOGI(TAG_GPRS, "GPRS conectado");
-                
+                ESP_LOGI(TAG_GPRS, "GPRS conectado");
+            
+
                 //Establecer zona horaria local ANTES del mktime
                 setenv("TZ", "ART3", 1);  // Argentina Time UTC-3
                 tzset();
-
+                time_t utc;
                 //Convertir a timestamp
-                time_t utc = mktime(&timeFromSIM800l);
+                if( (utc = mktime(&timeFromSIM800l))!= -1  && timeFromSIM800l.tm_year>=2020 )
+                {
 
                //Aplicar la hora al sistema
                struct timeval now = {
@@ -1019,11 +1029,12 @@ mqtt_can_publish = true;
                 };
                settimeofday(&now, NULL);
 
-              //Mostrar hora local
-              char hora_str[32];
-              strftime(hora_str, sizeof(hora_str), "%Y-%m-%d %H:%M:%S", localtime(&utc));
-              ESP_LOGI(TAG_GPRS, "Hora local ajustada: %s", hora_str);
-      
+                //Mostrar hora local
+                char hora_str[32];
+                strftime(hora_str, sizeof(hora_str), "%Y-%m-%d %H:%M:%S", localtime(&utc));
+                ESP_LOGI(TAG_GPRS, "Hora local ajustada: %s", hora_str);
+               }
+
          if (!(tcp_conected=tcp_is_connected())) {
             ESP_LOGW(TAG_GPRS, "TCP desconectado, conectando...");
             if (!(tcp_conected=tcp_connect(host, port))) {
@@ -1061,8 +1072,6 @@ if (!wait_for_mqtt_connack(40000) ){
 }
 
    ESP_LOGI(TAG_GPRS, "MQTT conectado");
-       
-
    uart_flush_input(UART_MODEM_NUM);  
 
       vTaskDelay(pdMS_TO_TICKS(400));  // opcional  
@@ -1076,7 +1085,7 @@ if (!wait_for_mqtt_connack(40000) ){
    
       }
      
-      // Esperar posibles mensajes retenidos inmediatamente después de suscribirse
+      //Esperar posibles mensajes retenidos inmediatamente después de suscribirse
       for (int i = 0; i < 15; ++i) {
                    mqtt_handle_incoming();
                    vTaskDelay(pdMS_TO_TICKS(200));
@@ -1132,7 +1141,7 @@ while (conectado_a_mqtt) {
             break;
         }
         
-        // durante los próximos 7s, NO publicar
+        //durante los próximos 7s, NO publicar
         mqtt_can_publish = false;
         last_activity = now;
         received_pingresp = false;
@@ -1153,11 +1162,11 @@ while (conectado_a_mqtt) {
         mqtt_can_publish = true;
         
     }
-
-    vTaskDelay(pdMS_TO_TICKS(5));  // para no quemar CPU
+     // para no quemar CPU
+    vTaskDelay(pdMS_TO_TICKS(5)); 
 }
 
-        // reconectar todo ---
+        // reconectar todo 
         ESP_LOGW(TAG_GPRS, "Conexión MQTT caída, reiniciando...");
         tcp_disconnect();
         tcp_conected=false;
@@ -1169,7 +1178,6 @@ while (conectado_a_mqtt) {
        
     }
 }
-
 
 
 
@@ -1229,7 +1237,7 @@ void app_main(void)
          hora_str);*/ 
       strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2300\",\"p1\":\"63\",\"l2\":\"21\",\"p2\":\"60\"}");
 
-      char* cifrado_b64 = encrypt_payload_base64(msg,aes_key);
+      
       if(encriptado)
       {
         char* cifrado_b64 = encrypt_payload_base64(msg,aes_key);
