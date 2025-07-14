@@ -313,10 +313,8 @@ static void rs232_lectura_tarea(void *pvParameter)
             if (msg != NULL) {
                 memcpy(msg, data, len);
                 msg[len] = '\0';
-                ESP_LOGI(TAG, "recibido UART: %s", msg);
-    
-               // Si usás cola que copia datos, podés enviar directamente:
-               encolar((char*)data);
+                ESP_LOGI(TAG_UART_RS232, "recibido UART DTEC: %s", msg);
+                encolar((char*)msg);
           }
         }
     }
