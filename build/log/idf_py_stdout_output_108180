@@ -1,0 +1,512 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xc (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Jul 14 2025 15:06:57[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c030020 size=0d1d0h ( 53712) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=0001d1f8 vaddr=3fc8c200 size=012d0h (  4816) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001e4d0 vaddr=40380000 size=01b48h (  6984) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=22ccch (142540) map[0m
+[0;32mI (146) esp_image: segment 4: paddr=00042cf4 vaddr=40381b48 size=0a630h ( 42544) load[0m
+[0;32mI (158) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (158) boot: Disabling RNG early entropy source...[0m
+[0;32mI (170) cpu_start: Unicore app[0m
+[0;32mI (179) cpu_start: Pro cpu start user code[0m
+[0;32mI (179) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (179) cpu_start: Application information:[0m
+[0;32mI (182) cpu_start: Project name:     cr_c[0m
+[0;32mI (186) cpu_start: App version:      f84417c-dirty[0m
+[0;32mI (192) cpu_start: Compile time:     Jul 14 2025 15:06:36[0m
+[0;32mI (198) cpu_start: ELF file SHA256:  ca05f774d8be9b2c...[0m
+[0;32mI (204) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (209) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (213) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (218) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (223) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (230) heap_init: At 3FC8E4B0 len 00031B50 (198 KiB): RAM[0m
+[0;32mI (236) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (250) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (257) spi_flash: detected chip: generic[0m
+[0;32mI (261) spi_flash: flash io: dio[0m
+[0;33mW (265) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (279) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (285) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (292) main_task: Started on CPU0[0m
+[0;32mI (292) main_task: Calling app_main()[0m
+[0;32mI (292) APP_ESP32C3: Inicio Aplicación...[0m
+[0;32mI (302) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (302) UART_MODEM: uart_param_config OK[0m
+[0;32mI (312) UART_MODEM: uart_[0;32mI (322) UART_RS232: uart_driver_install OK[0m
+[0;32mI (322) UART_RS232: uart_set_pin OK[0m
+[0;32mI (322) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (322) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (332) APP_ESP32C3: Se creo la cola[0m
+[0;32mI (332) APP_ESP32C3: leo la uart de clara[0m
+[0;33mW (342) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (342) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (352) GPRS: Comando enviado: AT
+[0m
+[0;32mI (352) main_task: Returned from app_main()[0m
+[0;32mI (472) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (472) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (472) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (1042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (1742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (2442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (2472) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (2472) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (3142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (3842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (4472) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (4472) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (4472) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (4542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (5242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (5942) APP_ESP32C3: leo la uart de clara[0m
+[0;33mW (6472) GPRS: No registrado en red[0m
+[0;32mI (6472) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (6472) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (6642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (7342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (8042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (8472) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8472) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8602) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (8602) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8602) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (8742) APP_ESP32C3: leo la uart de clara[0m
+[0;31mE (8772) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (8772) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8772) GPRS: GPRS conectado[0m
+[0;32mI (8772) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (9442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (10142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (10772) GPRS: STATE: CONNECT OK[0m
+[0;32mI (10772) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (10842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (10902) GPRS: 0x3c03a5d4   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (10902) GPRS: 0x3c03a5e4   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (11542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (12242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (12352) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (12942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (13642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (14342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (15042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (15742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (16132) GPRS: 0x3fc96360   0d 0a 43 4c 4f 53 45 44  0d 0a                    |..CLOSED..|[0m
+[0;33mW (16132) GPRS: Broker cerró antes de enviar CONNACK[0m
+[0;31mE (16132) GPRS: No CONNACK, reconectando...[0m
+[0;32mI (16442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (17142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (17842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (18132) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (18542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (18632) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (18632) GPRS: Conexión GPRS cerrada[0m
+[0;32mI (19242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (19942) APP_ESP32C3: leo la uart de clara[0m
+[0;33mW (20632) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (20632) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (20632) GPRS: Comando enviado: AT
+[0m
+[0;32mI (20642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (20752) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (20752) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (20752) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (21342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (22042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (22742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (22752) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (22752) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (23442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (24142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (24752) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (24752) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (24752) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (24842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (25542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (26242) APP_ESP32C3: leo la uart de clara[0m
+[0;33mW (26752) GPRS: No registrado en red[0m
+[0;32mI (26752) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (26752) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (26942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (27642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (28342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (28752) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (28752) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (28882) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (28882) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (28882) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (29042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (29042) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (29042) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (29042) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (29742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (29812) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (29812) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (29812) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (30442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (31142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (31812) GPRS: IP obtenida: 
+10.190.159.118
+[0m
+[0;32mI (31812) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (31812) GPRS: Configurando módem...[0m
+[0;32mI (31812) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (31842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (31942) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (31942) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (32072) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (32072) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (32202) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (32202) GPRS: GPRS conectado[0m
+[0;32mI (32202) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (32542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (33242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (33942) APP_ESP32C3: leo la uart de clara[0m
+[0;31mE (34202) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (34202) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (34202) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (34642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (35342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (36042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (36742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (37442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (38142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (38842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (39542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (40242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (40942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (41642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (42202) GPRS: Conexión TCP realizada[0m
+[0;32mI (42202) GPRS: TCP conectado[0m
+[0;32mI (42202) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (42332) GPRS: 0x3c03a5d4   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (42332) GPRS: 0x3c03a5e4   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (42342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (43042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (43742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (44442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (45142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (45842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (46502) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (46542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (46622) GPRS: 0x3fc96360   20 02 00 00                                       | ...|[0m
+[0;32mI (46622) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (46622) GPRS: MQTT conectado[0m
+[0;32mI (47022) GPRS: Comando enviado: AT+CIPSEND=30
+[0m
+[0;32mI (47152) GPRS: 0x3fc961a0   82 1c 00 01 00 17 64 69  73 70 6f 73 69 74 69 76  |......dispositiv|[0m
+[0;32mI (47152) GPRS: 0x3fc961b0   6f 2f 31 32 33 2f 63 6f  6d 61 6e 64 6f 00        |o/123/comando.|[0m
+[0;32mI (47242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (47942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (48212) GPRS: CIPSEND OK: 
+SEND OK
+�[0m
+[0;32mI (48212) GPRS: SUBSCRIBE enviado: dispositivo/123/comando[0m
+[0;32mI (48322) APP_ESP32C3: PUBLISH recibido. Retained: Sí[0m
+[0;32mI (48322) APP_ESP32C3: Tópico: dispositivo/123/comando[0m
+[0;32mI (48322) APP_ESP32C3: Payload: Hola, soy consola desde Mosquitto[0m
+[0;32mI (48642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (49342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (50042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (50742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (51442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (52142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (52842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (53542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (54242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (54942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (55642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (56342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (57042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (57742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (58442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (59142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (59842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (60542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (61242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (61942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (62642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (63342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (64042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (64742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (65442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (66142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (66842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (67542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (67832) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (67962) GPRS: 0x3fc96190   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (67962) GPRS: 0x3fc961a0   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (67962) GPRS: 0x3fc961b0   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (67972) GPRS: 0x3fc961c0   33 32 31 22 2c 22 70 31  22 3a 22 36 35 22 2c 22  |321","p1":"65","|[0m
+[0;32mI (67982) GPRS: 0x3fc961d0   6c 32 22 3a 22 32 33 22  2c 22 70 32 22 3a 22 36  |l2":"23","p2":"6|[0m
+[0;32mI (67992) GPRS: 0x3fc961e0   33 22 7d                                          |3"}|[0m
+[0;32mI (68242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (68942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (69532) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (69532) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2321","p1":"65","l2":"23","p2":"63"}[0m
+[0;32mI (69642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (70342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (71042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (71742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (72442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (73142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (73842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (74542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (75242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (75942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (76642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (77342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (78042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (78332) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (78462) GPRS: 0x3fc96190   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (78462) GPRS: 0x3fc961a0   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (78462) GPRS: 0x3fc961b0   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (78472) GPRS: 0x3fc961c0   33 30 30 22 2c 22 70 31  22 3a 22 36 33 22 2c 22  |300","p1":"63","|[0m
+[0;32mI (78482) GPRS: 0x3fc961d0   6c 32 22 3a 22 32 31 22  2c 22 70 32 22 3a 22 36  |l2":"21","p2":"6|[0m
+[0;32mI (78492) GPRS: 0x3fc961e0   30 22 7d                                          |0"}|[0m
+[0;32mI (78742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (79442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (79972) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (79972) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2300","p1":"63","l2":"21","p2":"60"}[0m
+[0;32mI (80142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (80842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (81542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (82242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (82942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (83642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (84342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (85042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (85742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (86442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (87142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (87842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (88542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (88772) GPRS: Comando enviado: AT+CIPSEND=79
+[0m
+[0;32mI (88902) GPRS: 0x3fc96190   30 4d 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0M..dispositivo/|[0m
+[0;32mI (88902) GPRS: 0x3fc961a0   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (88902) GPRS: 0x3fc961b0   3a 22 31 32 3a 30 35 22  2c 22 6c 31 22 3a 22 32  |:"12:05","l1":"2|[0m
+[0;32mI (88912) GPRS: 0x3fc961c0   33 22 2c 22 70 31 22 3a  22 33 22 2c 22 6c 32 22  |3","p1":"3","l2"|[0m
+[0;32mI (88922) GPRS: 0x3fc961d0   3a 22 31 22 2c 22 70 32  22 3a 22 31 30 22 7d     |:"1","p2":"10"}|[0m
+[0;32mI (89242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (89942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (90542) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (90542) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:05","l1":"23","p1":"3","l2":"1","p2":"10"}[0m
+[0;32mI (90642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (91342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (92042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (92742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (93442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (94142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (94842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (95542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (96242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (96942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (97642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (98342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (99042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (99342) GPRS: Comando enviado: AT+CIPSEND=79
+[0m
+[0;32mI (99472) GPRS: 0x3fc96190   30 4d 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0M..dispositivo/|[0m
+[0;32mI (99472) GPRS: 0x3fc961a0   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (99472) GPRS: 0x3fc961b0   3a 22 31 32 3a 30 36 22  2c 22 6c 31 22 3a 22 32  |:"12:06","l1":"2|[0m
+[0;32mI (99482) GPRS: 0x3fc961c0   30 30 22 2c 22 70 31 22  3a 22 36 22 2c 22 6c 32  |00","p1":"6","l2|[0m
+[0;32mI (99492) GPRS: 0x3fc961d0   22 3a 22 31 22 2c 22 70  32 22 3a 22 36 22 7d     |":"1","p2":"6"}|[0m
+[0;32mI (99742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (100442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (101042) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (101042) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:06","l1":"200","p1":"6","l2":"1","p2":"6"}[0m
+[0;32mI (101142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (101842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (102542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (103242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (103942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (104642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (105342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (106042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (106742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (107442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (107642) GPRS: PINGREQ enviado[0m
+[0;32mI (107642) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (107772) GPRS: 0x3fc963b8   c0 00                                             |..|[0m
+[0;32mI (108142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (108842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (109142) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (109162) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (109542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (110242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (110262) GPRS: Comando enviado: AT+CIPSEND=78
+[0m
+[0;32mI (110392) GPRS: 0x3fc96190   30 4c 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0L..dispositivo/|[0m
+[0;32mI (110392) GPRS: 0x3fc961a0   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (110392) GPRS: 0x3fc961b0   3a 22 31 32 3a 30 38 22  2c 22 6c 31 22 3a 22 32  |:"12:08","l1":"2|[0m
+[0;32mI (110402) GPRS: 0x3fc961c0   30 22 2c 22 70 31 22 3a  22 37 22 2c 22 6c 32 22  |0","p1":"7","l2"|[0m
+[0;32mI (110412) GPRS: 0x3fc961d0   3a 22 31 22 2c 22 70 32  22 3a 22 31 22 7d        |:"1","p2":"1"}|[0m
+[0;32mI (110942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (111642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (112342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (112432) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (112432) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:08","l1":"20","p1":"7","l2":"1","p2":"1"}[0m
+[0;32mI (113042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (113742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (114442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (115142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (115842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (116542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (117242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (117942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (118642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (119342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (120042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (120742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (121232) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (121362) GPRS: 0x3fc96190   30 18 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0...dispositivo/|[0m
+[0;32mI (121362) GPRS: 0x3fc961a0   31 32 33 2f 64 61 74 6f  73 ff                    |123/datos.|[0m
+[0;32mI (121442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (122142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (122792) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (122792) GPRS: PUBLISH enviado: dispositivo/123/datos -> �
+[0;32mI (122842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (123542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (124242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (124942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (125642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (126342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (127042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (127742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (128442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (129142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (129842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (130542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (131242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (131942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (132642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (133342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (134042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (134742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (135442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (136142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (136842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (137542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (138242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (138942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (139642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (140342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (141042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (141742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (142442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (143142) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (143842) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (144542) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (145242) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (145942) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (146642) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (147342) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (148042) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (148492) GPRS: PINGREQ enviado[0m
+[0;32mI (148492) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (148622) GPRS: 0x3fc963b8   c0 00                                             |..|[0m
+[0;32mI (148742) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (149442) APP_ESP32C3: leo la uart de clara[0m
+[0;32mI (150042) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (150092) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (150142) APP_ESP32C3: leo la uart de clara[0m

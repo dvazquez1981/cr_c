@@ -1,0 +1,5 @@
+[1/4] Performing build step for 'bootloader'
+[1/1] cd /home/sarmiento/proyectos/cr_c/build/bootloader/esp-idf/esptool_py && /home/sarmiento/.espressif/python_env/idf5.2_py3.9_env/bin/python /home/sarmiento/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/sarmiento/proyectos/cr_c/build/bootloader/bootloader.bin
+Bootloader binary size 0x5170 bytes. 0x2e90 bytes (36%) free.
+[2/2] cd /home/sarmiento/proyectos/cr_c/build/esp-idf/esptool_py && /home/sarmiento/.espressif/python_env/idf5.2_py3.9_env/bin/python /home/sarmiento/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/sarmiento/proyectos/cr_c/build/partition_table/partition-table.bin /home/sarmiento/proyectos/cr_c/build/cr_c.bin
+cr_c.bin binary size 0x3d3a0 bytes. Smallest app partition is 0x100000 bytes. 0xc2c60 bytes (76%) free.

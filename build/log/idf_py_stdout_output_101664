@@ -1,0 +1,417 @@
+[1/10] Performing build step for 'bootloader'
+[1/1] cd /home/sarmiento/proyectos/cr_c/build/bootloader/esp-idf/esptool_py && /home/sarmiento/.espressif/python_env/idf5.2_py3.9_env/bin/python /home/sarmiento/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/sarmiento/proyectos/cr_c/build/bootloader/bootloader.bin
+Bootloader binary size 0x5170 bytes. 0x2e90 bytes (36%) free.
+[2/8] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj 
+/home/sarmiento/.espressif/tools/riscv32-esp-elf/esp-13.2.0_20230928/riscv32-esp-elf/bin/riscv32-esp-elf-gcc -DESP_PLATFORM -DIDF_VER=\"v5.2\" -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -Iconfig -I../main -I/home/sarmiento/esp-idf/components/newlib/platform_include -I/home/sarmiento/esp-idf/components/freertos/config/include -I/home/sarmiento/esp-idf/components/freertos/config/include/freertos -I/home/sarmiento/esp-idf/components/freertos/config/riscv/include -I/home/sarmiento/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/sarmiento/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include -I/home/sarmiento/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include/freertos -I/home/sarmiento/esp-idf/components/freertos/esp_additions/include -I/home/sarmiento/esp-idf/components/esp_hw_support/include -I/home/sarmiento/esp-idf/components/esp_hw_support/include/soc -I/home/sarmiento/esp-idf/components/esp_hw_support/include/soc/esp32c3 -I/home/sarmiento/esp-idf/components/heap/include -I/home/sarmiento/esp-idf/components/log/include -I/home/sarmiento/esp-idf/components/soc/include -I/home/sarmiento/esp-idf/components/soc/esp32c3 -I/home/sarmiento/esp-idf/components/soc/esp32c3/include -I/home/sarmiento/esp-idf/components/hal/platform_port/include -I/home/sarmiento/esp-idf/components/hal/esp32c3/include -I/home/sarmiento/esp-idf/components/hal/include -I/home/sarmiento/esp-idf/components/esp_rom/include -I/home/sarmiento/esp-idf/components/esp_rom/include/esp32c3 -I/home/sarmiento/esp-idf/components/esp_rom/esp32c3 -I/home/sarmiento/esp-idf/components/esp_common/include -I/home/sarmiento/esp-idf/components/esp_system/include -I/home/sarmiento/esp-idf/components/esp_system/port/soc -I/home/sarmiento/esp-idf/components/esp_system/port/include/riscv -I/home/sarmiento/esp-idf/components/esp_system/port/include/private -I/home/sarmiento/esp-idf/components/riscv/include -I/home/sarmiento/esp-idf/components/lwip/include -I/home/sarmiento/esp-idf/components/lwip/include/apps -I/home/sarmiento/esp-idf/components/lwip/include/apps/sntp -I/home/sarmiento/esp-idf/components/lwip/lwip/src/include -I/home/sarmiento/esp-idf/components/lwip/port/include -I/home/sarmiento/esp-idf/components/lwip/port/freertos/include -I/home/sarmiento/esp-idf/components/lwip/port/esp32xx/include -I/home/sarmiento/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/sarmiento/esp-idf/components/lwip/port/esp32xx/include/sys -I/home/sarmiento/esp-idf/components/esp_event/include -I/home/sarmiento/esp-idf/components/spi_flash/include -I/home/sarmiento/esp-idf/components/driver/include -I/home/sarmiento/esp-idf/components/driver/deprecated -I/home/sarmiento/esp-idf/components/driver/analog_comparator/include -I/home/sarmiento/esp-idf/components/driver/dac/include -I/home/sarmiento/esp-idf/components/driver/gpio/include -I/home/sarmiento/esp-idf/components/driver/gptimer/include -I/home/sarmiento/esp-idf/components/driver/i2c/include -I/home/sarmiento/esp-idf/components/driver/i2s/include -I/home/sarmiento/esp-idf/components/driver/ledc/include -I/home/sarmiento/esp-idf/components/driver/mcpwm/include -I/home/sarmiento/esp-idf/components/driver/parlio/include -I/home/sarmiento/esp-idf/components/driver/pcnt/include -I/home/sarmiento/esp-idf/components/driver/rmt/include -I/home/sarmiento/esp-idf/components/driver/sdio_slave/include -I/home/sarmiento/esp-idf/components/driver/sdmmc/include -I/home/sarmiento/esp-idf/components/driver/sigma_delta/include -I/home/sarmiento/esp-idf/components/driver/spi/include -I/home/sarmiento/esp-idf/components/driver/temperature_sensor/include -I/home/sarmiento/esp-idf/components/driver/touch_sensor/include -I/home/sarmiento/esp-idf/components/driver/twai/include -I/home/sarmiento/esp-idf/components/driver/uart/include -I/home/sarmiento/esp-idf/components/driver/usb_serial_jtag/include -I/home/sarmiento/esp-idf/components/esp_pm/include -I/home/sarmiento/esp-idf/components/esp_ringbuf/include -I/home/sarmiento/esp-idf/components/esp_netif/include -I/home/sarmiento/esp-idf/components/esp_http_client/include -I/home/sarmiento/esp-idf/components/mbedtls/port/include -I/home/sarmiento/esp-idf/components/mbedtls/mbedtls/include -I/home/sarmiento/esp-idf/components/mbedtls/mbedtls/library -I/home/sarmiento/esp-idf/components/mbedtls/esp_crt_bundle/include -I/home/sarmiento/esp-idf/components/mbedtls/mbedtls/3rdparty/everest/include -I/home/sarmiento/esp-idf/components/mbedtls/mbedtls/3rdparty/p256-m -I/home/sarmiento/esp-idf/components/mbedtls/mbedtls/3rdparty/p256-m/p256-m -march=rv32imc_zicsr_zifencei  -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -nostartfiles -Og -fno-shrink-wrap -fmacro-prefix-map=/home/sarmiento/proyectos/cr_c=. -fmacro-prefix-map=/home/sarmiento/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -MF esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -c ../main/main.c
+../main/main.c: In function 'rs232_lectura_tarea':
+../main/main.c:300:31: error: macro "ESP_LOGI" requires 3 arguments, but only 1 given
+  300 |         ESP_LOGI("leo la uart");
+      |                               ^
+In file included from ../main/main.c:20:
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368: note: macro "ESP_LOGI" defined here
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      | 
+../main/main.c:300:9: error: 'ESP_LOGI' undeclared (first use in this function); did you mean 'ESP_LOG_INFO'?
+  300 |         ESP_LOGI("leo la uart");
+      |         ^~~~~~~~
+      |         ESP_LOG_INFO
+../main/main.c:300:9: note: each undeclared identifier is reported only once for each function it appears in
+../main/main.c:303:44: error: macro "ESP_LOGI" requires 3 arguments, but only 1 given
+  303 |            ESP_LOGI("lo que llego de clara");
+      |                                            ^
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368: note: macro "ESP_LOGI" defined here
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      | 
+../main/main.c:313:53: error: expected ')' before 'msg'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                                                     ^~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:88: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                                                        ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:436:60: note: to match this '('
+  436 |         if (level==ESP_LOG_ERROR )          { esp_log_write(ESP_LOG_ERROR,      tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                            ^
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:291:27: error: format '%lu' expects a matching 'long unsigned int' argument [-Werror=format=]
+  291 | #define LOG_COLOR(COLOR)  "\033[0;" COLOR "m"
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:294:27: note: in expansion of macro 'LOG_COLOR'
+  294 | #define LOG_COLOR_E       LOG_COLOR(LOG_COLOR_RED)
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:37: note: in expansion of macro 'LOG_COLOR_E'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                     ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:436:86: note: in expansion of macro 'LOG_FORMAT'
+  436 |         if (level==ESP_LOG_ERROR )          { esp_log_write(ESP_LOG_ERROR,      tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                      ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:291:27: error: format '%s' expects a matching 'char *' argument [-Werror=format=]
+  291 | #define LOG_COLOR(COLOR)  "\033[0;" COLOR "m"
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:294:27: note: in expansion of macro 'LOG_COLOR'
+  294 | #define LOG_COLOR_E       LOG_COLOR(LOG_COLOR_RED)
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:37: note: in expansion of macro 'LOG_COLOR_E'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                     ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:436:86: note: in expansion of macro 'LOG_FORMAT'
+  436 |         if (level==ESP_LOG_ERROR )          { esp_log_write(ESP_LOG_ERROR,      tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                      ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:53: error: expected ')' before 'msg'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                                                     ^~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:88: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                                                        ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:437:60: note: to match this '('
+  437 |         else if (level==ESP_LOG_WARN )      { esp_log_write(ESP_LOG_WARN,       tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                            ^
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:291:27: error: format '%lu' expects a matching 'long unsigned int' argument [-Werror=format=]
+  291 | #define LOG_COLOR(COLOR)  "\033[0;" COLOR "m"
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:295:27: note: in expansion of macro 'LOG_COLOR'
+  295 | #define LOG_COLOR_W       LOG_COLOR(LOG_COLOR_BROWN)
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:37: note: in expansion of macro 'LOG_COLOR_W'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                     ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:437:86: note: in expansion of macro 'LOG_FORMAT'
+  437 |         else if (level==ESP_LOG_WARN )      { esp_log_write(ESP_LOG_WARN,       tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                      ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:291:27: error: format '%s' expects a matching 'char *' argument [-Werror=format=]
+  291 | #define LOG_COLOR(COLOR)  "\033[0;" COLOR "m"
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:295:27: note: in expansion of macro 'LOG_COLOR'
+  295 | #define LOG_COLOR_W       LOG_COLOR(LOG_COLOR_BROWN)
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:37: note: in expansion of macro 'LOG_COLOR_W'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                     ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:437:86: note: in expansion of macro 'LOG_FORMAT'
+  437 |         else if (level==ESP_LOG_WARN )      { esp_log_write(ESP_LOG_WARN,       tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                      ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:53: error: expected ')' before 'msg'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                                                     ^~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:88: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                                                        ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:438:60: note: to match this '('
+  438 |         else if (level==ESP_LOG_DEBUG )     { esp_log_write(ESP_LOG_DEBUG,      tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                            ^
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:1: error: format '%lu' expects a matching 'long unsigned int' argument [-Werror=format=]
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      | ^          
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:59: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                           ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:1: error: format '%s' expects a matching 'char *' argument [-Werror=format=]
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      | ^          
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:59: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                           ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:53: error: expected ')' before 'msg'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                                                     ^~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:88: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                                                        ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:439:60: note: to match this '('
+  439 |         else if (level==ESP_LOG_VERBOSE )   { esp_log_write(ESP_LOG_VERBOSE,    tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                            ^
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:1: error: format '%lu' expects a matching 'long unsigned int' argument [-Werror=format=]
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      | ^          
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:59: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                           ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:1: error: format '%s' expects a matching 'char *' argument [-Werror=format=]
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      | ^          
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:59: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                           ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c:313:53: error: expected ')' before 'msg'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                                                     ^~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:88: note: in definition of macro 'LOG_FORMAT'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                                                                        ^~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:440:60: note: to match this '('
+  440 |         else                                { esp_log_write(ESP_LOG_INFO,       tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                            ^
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:291:27: error: format '%lu' expects a matching 'long unsigned int' argument [-Werror=format=]
+  291 | #define LOG_COLOR(COLOR)  "\033[0;" COLOR "m"
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:296:27: note: in expansion of macro 'LOG_COLOR'
+  296 | #define LOG_COLOR_I       LOG_COLOR(LOG_COLOR_GREEN)
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:37: note: in expansion of macro 'LOG_COLOR_I'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                     ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:440:86: note: in expansion of macro 'LOG_FORMAT'
+  440 |         else                                { esp_log_write(ESP_LOG_INFO,       tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                      ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:291:27: error: format '%s' expects a matching 'char *' argument [-Werror=format=]
+  291 | #define LOG_COLOR(COLOR)  "\033[0;" COLOR "m"
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:296:27: note: in expansion of macro 'LOG_COLOR'
+  296 | #define LOG_COLOR_I       LOG_COLOR(LOG_COLOR_GREEN)
+      |                           ^~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:308:37: note: in expansion of macro 'LOG_COLOR_I'
+  308 | #define LOG_FORMAT(letter, format)  LOG_COLOR_ ## letter #letter " (%" PRIu32 ") %s: " format LOG_RESET_COLOR "\n"
+      |                                     ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:440:86: note: in expansion of macro 'LOG_FORMAT'
+  440 |         else                                { esp_log_write(ESP_LOG_INFO,       tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                      ^~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:464:41: note: in expansion of macro 'ESP_LOG_LEVEL'
+  464 |         if ( LOG_LOCAL_LEVEL >= level ) ESP_LOG_LEVEL(level, tag, format, ##__VA_ARGS__); \
+      |                                         ^~~~~~~~~~~~~
+/home/sarmiento/esp-idf/components/log/include/esp_log.h:368:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  368 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../main/main.c:313:17: note: in expansion of macro 'ESP_LOGI'
+  313 |                 ESP_LOGI("lo que llego de clara: ", msg);
+      |                 ^~~~~~~~
+../main/main.c: In function 'tcp_send':
+../main/main.c:597:10: warning: unused variable 'total_read' [-Wunused-variable]
+  597 |      int total_read = 0;
+      |          ^~~~~~~~~~
+../main/main.c: In function 'gprs_mqtt_task':
+../main/main.c:995:5: warning: unused variable 'liviano' [-Wunused-variable]
+  995 | int liviano = 500;
+      |     ^~~~~~~
+../main/main.c:994:5: warning: unused variable 'pesado' [-Wunused-variable]
+  994 | int pesado = 1013;
+      |     ^~~~~~
+../main/main.c:993:5: warning: unused variable 'carril' [-Wunused-variable]
+  993 | int carril = 1;
+      |     ^~~~~~
+../main/main.c:992:5: warning: unused variable 'id' [-Wunused-variable]
+  992 | int id = 55;  // por ejemplo
+      |     ^~
+../main/main.c:989:20: warning: unused variable 'fecha_num' [-Wunused-variable]
+  989 | unsigned long long fecha_num = strtoull(fecha_str, NULL, 10);
+      |                    ^~~~~~~~~
+../main/main.c:975:10: warning: unused variable 'gprs_conectado' [-Wunused-variable]
+  975 |     bool gprs_conectado = false;
+      |          ^~~~~~~~~~~~~~
+../main/main.c:974:10: warning: unused variable 'mqtt_iniciado' [-Wunused-variable]
+  974 |     bool mqtt_iniciado = false;
+      |          ^~~~~~~~~~~~~
+../main/main.c:934:6: warning: unused variable 'get_request' [-Wunused-variable]
+  934 | char get_request[256];
+      |      ^~~~~~~~~~~
+../main/main.c:932:5: warning: unused variable 'liviano' [-Wunused-variable]
+  932 | int liviano = 500;
+      |     ^~~~~~~
+../main/main.c:931:5: warning: unused variable 'pesado' [-Wunused-variable]
+  931 | int pesado = 1013;
+      |     ^~~~~~
+../main/main.c:930:5: warning: unused variable 'carril' [-Wunused-variable]
+  930 | int carril = 1;
+      |     ^~~~~~
+../main/main.c:929:5: warning: unused variable 'timestamp' [-Wunused-variable]
+  929 | int timestamp = 70;
+      |     ^~~~~~~~~
+../main/main.c:928:5: warning: unused variable 'id' [-Wunused-variable]
+  928 | int id = 1;
+      |     ^~
+../main/main.c:926:13: warning: unused variable 'api_key' [-Wunused-variable]
+  926 | const char *api_key = "37LWUG2UF6DGG5QY";
+      |             ^~~~~~~
+../main/main.c: At top level:
+../main/main.c:757:12: warning: 'tcp_receive' defined but not used [-Wunused-function]
+  757 | static int tcp_receive(uint8_t* buffer, size_t max_len, TickType_t timeout_ms) {
+      |            ^~~~~~~~~~~
+../main/main.c:356:13: warning: 'gprs_is_connected' defined but not used [-Wunused-function]
+  356 | static bool gprs_is_connected() {
+      |             ^~~~~~~~~~~~~~~~~
+../main/main.c:337:13: warning: 'tcp_disconnect' defined but not used [-Wunused-function]
+  337 | static bool tcp_disconnect() {
+      |             ^~~~~~~~~~~~~~
+../main/main.c:88:13: warning: 'gprs_conectado' defined but not used [-Wunused-variable]
+   88 | static bool gprs_conectado=false;
+      |             ^~~~~~~~~~~~~~
+../main/main.c:81:13: warning: 'mqtt_ready' defined but not used [-Wunused-variable]
+   81 | static bool mqtt_ready = false;
+      |             ^~~~~~~~~~
+../main/main.c:27:20: warning: 'TAG_MQTT' defined but not used [-Wunused-variable]
+   27 | static const char *TAG_MQTT = "CLIENT_MQTT";
+      |                    ^~~~~~~~
+../main/main.c:26:20: warning: 'TAG_UART_MQTT' defined but not used [-Wunused-variable]
+   26 | static const char *TAG_UART_MQTT = "UART_MQTT";
+      |                    ^~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+ninja: build stopped: subcommand failed.
