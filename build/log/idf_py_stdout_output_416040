@@ -1,0 +1,1097 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xc (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Jul 14 2025 17:08:26[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0cc50h ( 52304) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=0001cc78 vaddr=3fc8c200 size=0126ch (  4716) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001deec vaddr=40380000 size=0212ch (  8492) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1eec0h (126656) map[0m
+[0;32mI (144) esp_image: segment 4: paddr=0003eee8 vaddr=4038212c size=0a03ch ( 41020) load[0m
+[0;32mI (155) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (155) boot: Disabling RNG early entropy source...[0m
+[0;32mI (167) cpu_start: Unicore app[0m
+[0;32mI (176) cpu_start: Pro cpu start user code[0m
+[0;32mI (176) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (176) cpu_start: Application information:[0m
+[0;32mI (179) cpu_start: Project name:     cr_c[0m
+[0;32mI (184) cpu_start: App version:      5df9959-dirty[0m
+[0;32mI (189) cpu_start: Compile time:     Jul 18 2025 13:32:11[0m
+[0;32mI (195) cpu_start: ELF file SHA256:  3f9787313b20f9d2...[0m
+[0;32mI (201) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (206) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (211) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (215) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (220) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (227) heap_init: At 3FC8E430 len 00031BD0 (198 KiB): RAM[0m
+[0;32mI (234) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (241) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (248) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (255) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (262) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (276) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (282) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (290) main_task: Started on CPU0[0m
+[0;32mI (290) main_task: Calling app_main()[0m
+[0;32mI (290) APP_ESP32C3: Inicio Aplicación...[0m
+[0;32mI (300) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (300) UART_MODEM: uart_param_config OK[0m
+[0;32mI (310) UART_MODEM: uart_s[0;32mI (320) UART_RS232: uart_driver_install OK[0m
+[0;32mI (320) UART_RS232: uart_set_pin OK[0m
+[0;32mI (320) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (320) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (330) APP_ESP32C3: Se creo la cola[0m
+[0;33mW (330) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (340) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (340) GPRS: Comando enviado: AT
+[0m
+[0;32mI (350) main_task: Returned from app_main()[0m
+[0;32mI (470) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (470) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (470) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (2470) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (2470) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (4010) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (4470) GPRS: Calidad de señal: 
++CSQ: 29,0
+
+OK
+[0m
+[0;32mI (4470) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (4470) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (6470) GPRS: No registrado en red[0m
+[0;32mI (6470) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (6470) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (8470) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8470) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8600) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (8600) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8600) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8770) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (8770) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8770) GPRS: GPRS conectado[0m
+[0;32mI (8770) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (9010) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (10770) GPRS: STATE: CONNECT OK[0m
+[0;32mI (10770) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (10900) GPRS: 0x3c02a44c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (10900) GPRS: 0x3c02a45c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (12340) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (14020) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (19020) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (20690) GPRS: 0x3fc96320   0d 0a 43 4c 4f 53 45 44  0d 0a                    |..CLOSED..|[0m
+[0;33mW (20690) GPRS: Broker cerró antes de enviar CONNACK[0m
+[0;31mE (20690) GPRS: No CONNACK, reconectando...[0m
+[0;32mI (20690) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;33mW (23740) GPRS: Timeout esperando respuesta a CIPCLOSE[0m
+[0;32mI (24030) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (25740) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (26320) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (26320) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (28320) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (28320) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (28320) GPRS: Comando enviado: AT
+[0m
+[0;32mI (28440) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (28440) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (28440) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (29030) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (29130) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (30440) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (30440) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (32440) GPRS: Calidad de señal: 
++CSQ: 30,0
+
+OK
+[0m
+[0;32mI (32440) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (32440) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;32mI (34040) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (34140) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;33mW (34440) GPRS: No registrado en red[0m
+[0;32mI (34440) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (34440) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (36440) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (36440) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (36570) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (36570) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (36570) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (36730) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (36730) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (36730) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (37480) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (37480) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (37480) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (39040) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (39140) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (39480) GPRS: IP obtenida: 
+10.94.98.218
+[0m
+[0;32mI (39480) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (39480) GPRS: Configurando módem...[0m
+[0;32mI (39480) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (39610) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (39610) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (39740) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (39740) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (39870) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;31mE (39870) GPRS: No se pudo conectar GPRS, reintentando en 3s...[0m
+[0;33mW (42870) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (42870) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (42870) GPRS: Comando enviado: AT
+[0m
+[0;32mI (42990) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (42990) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (42990) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (44050) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (44150) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (44990) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (44990) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (46990) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (46990) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (46990) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (48990) GPRS: No registrado en red[0m
+[0;32mI (48990) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (48990) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (49050) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (49150) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (50990) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (50990) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (51120) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (51120) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (51120) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (51290) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (51290) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (51290) GPRS: GPRS conectado[0m
+[0;32mI (51290) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (53290) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (53290) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (53290) GPRS: Comando enviado: AT+CIPSTART="TCP","broker.hivemq.com",1883
+[0m
+[0;32mI (54060) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (54160) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (59060) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (59160) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (61290) GPRS: Conexión TCP realizada[0m
+[0;32mI (61290) GPRS: TCP conectado[0m
+[0;32mI (61290) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (61420) GPRS: 0x3c02a44c   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (61420) GPRS: 0x3c02a45c   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (64070) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (64170) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (65700) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (69070) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (69170) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (74070) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (74170) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (79080) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (79180) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (81890) GPRS: 0x3fc96320   20 02 00 00                                       | ...|[0m
+[0;32mI (81890) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (81890) GPRS: MQTT conectado[0m
+[0;32mI (82290) GPRS: Comando enviado: AT+CIPSEND=30
+[0m
+[0;32mI (82420) GPRS: 0x3fc96160   82 1c 00 01 00 17 64 69  73 70 6f 73 69 74 69 76  |......dispositiv|[0m
+[0;32mI (82420) GPRS: 0x3fc96170   6f 2f 31 32 33 2f 63 6f  6d 61 6e 64 6f 00        |o/123/comando.|[0m
+[0;32mI (83460) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (83460) GPRS: SUBSCRIBE enviado: dispositivo/123/comando[0m
+[0;32mI (83470) APP_ESP32C3: SUBACK recibido[0m
+[0;32mI (83670) APP_ESP32C3: PUBLISH recibido. Retained: Sí[0m
+[0;32mI (83670) APP_ESP32C3: Tópico: dispositivo/123/comando[0m
+[0;32mI (83670) APP_ESP32C3: Payload: buen dia, como esta tu procesamiento de datos[0m
+buen dia, como esta tu procesamiento de datos[0;32mI (83680) UART_RS232: Enviado UART DTEC: buen dia, como esta tu procesamiento de datos[0m
+[0;32mI (84080) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (84180) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (89090) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (89190) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (94090) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (94190) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (99100) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (99200) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (101890) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (102020) GPRS: 0x3fc96150   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (102020) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (102020) GPRS: 0x3fc96170   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (102030) GPRS: 0x3fc96180   33 32 31 22 2c 22 70 31  22 3a 22 36 35 22 2c 22  |321","p1":"65","|[0m
+[0;32mI (102040) GPRS: 0x3fc96190   6c 32 22 3a 22 32 33 22  2c 22 70 32 22 3a 22 36  |l2":"23","p2":"6|[0m
+[0;32mI (102050) GPRS: 0x3fc961a0   33 22 7d                                          |3"}|[0m
+[0;32mI (103580) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (103580) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2321","p1":"65","l2":"23","p2":"63"}[0m
+[0;32mI (104100) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (109110) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (109210) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (112380) GPRS: Comando enviado: AT+CIPSEND=83
+[0m
+[0;32mI (112510) GPRS: 0x3fc96150   30 51 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0Q..dispositivo/|[0m
+[0;32mI (112510) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (112510) GPRS: 0x3fc96170   3a 22 31 32 3a 30 33 22  2c 22 6c 31 22 3a 22 32  |:"12:03","l1":"2|[0m
+[0;32mI (112520) GPRS: 0x3fc96180   33 30 30 22 2c 22 70 31  22 3a 22 36 33 22 2c 22  |300","p1":"63","|[0m
+[0;32mI (112530) GPRS: 0x3fc96190   6c 32 22 3a 22 32 31 22  2c 22 70 32 22 3a 22 36  |l2":"21","p2":"6|[0m
+[0;32mI (112540) GPRS: 0x3fc961a0   30 22 7d                                          |0"}|[0m
+[0;32mI (114100) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (114100) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:03","l1":"2300","p1":"63","l2":"21","p2":"60"}[0m
+[0;32mI (114110) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (119120) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (119220) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (122900) GPRS: Comando enviado: AT+CIPSEND=79
+[0m
+[0;32mI (123030) GPRS: 0x3fc96150   30 4d 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0M..dispositivo/|[0m
+[0;32mI (123030) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (123030) GPRS: 0x3fc96170   3a 22 31 32 3a 30 35 22  2c 22 6c 31 22 3a 22 32  |:"12:05","l1":"2|[0m
+[0;32mI (123040) GPRS: 0x3fc96180   33 22 2c 22 70 31 22 3a  22 33 22 2c 22 6c 32 22  |3","p1":"3","l2"|[0m
+[0;32mI (123050) GPRS: 0x3fc96190   3a 22 31 22 2c 22 70 32  22 3a 22 31 30 22 7d     |:"1","p2":"10"}|[0m
+[0;32mI (124120) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (124580) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (124580) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:05","l1":"23","p1":"3","l2":"1","p2":"10"}[0m
+[0;32mI (129130) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (129230) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (133380) GPRS: Comando enviado: AT+CIPSEND=79
+[0m
+[0;32mI (133510) GPRS: 0x3fc96150   30 4d 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0M..dispositivo/|[0m
+[0;32mI (133510) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (133510) GPRS: 0x3fc96170   3a 22 31 32 3a 30 36 22  2c 22 6c 31 22 3a 22 32  |:"12:06","l1":"2|[0m
+[0;32mI (133520) GPRS: 0x3fc96180   30 30 22 2c 22 70 31 22  3a 22 36 22 2c 22 6c 32  |00","p1":"6","l2|[0m
+[0;32mI (133530) GPRS: 0x3fc96190   22 3a 22 31 22 2c 22 70  32 22 3a 22 36 22 7d     |":"1","p2":"6"}|[0m
+[0;32mI (134130) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (135080) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (135080) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:06","l1":"200","p1":"6","l2":"1","p2":"6"}[0m
+[0;32mI (139140) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (139240) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (141680) GPRS: PINGREQ enviado[0m
+[0;32mI (141680) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (141810) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (143220) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (143230) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (144140) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (144240) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (144330) GPRS: Comando enviado: AT+CIPSEND=78
+[0m
+[0;32mI (144460) GPRS: 0x3fc96150   30 4c 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0L..dispositivo/|[0m
+[0;32mI (144460) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 7b 22 68 6f 72 61 22  |123/datos{"hora"|[0m
+[0;32mI (144460) GPRS: 0x3fc96170   3a 22 31 32 3a 30 38 22  2c 22 6c 31 22 3a 22 32  |:"12:08","l1":"2|[0m
+[0;32mI (144470) GPRS: 0x3fc96180   30 22 2c 22 70 31 22 3a  22 37 22 2c 22 6c 32 22  |0","p1":"7","l2"|[0m
+[0;32mI (144480) GPRS: 0x3fc96190   3a 22 31 22 2c 22 70 32  22 3a 22 31 22 7d        |:"1","p2":"1"}|[0m
+[0;32mI (146400) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (146400) GPRS: PUBLISH enviado: dispositivo/123/datos -> {"hora":"12:08","l1":"20","p1":"7","l2":"1","p2":"1"}[0m
+[0;32mI (149150) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (154150) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (154250) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (155200) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (155330) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (155330) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (155330) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (156860) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (156860) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (159160) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (164160) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (164260) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (165660) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (165790) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (165790) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (165790) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (167260) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (167260) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (169170) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (174170) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (174270) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (176060) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (176190) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (176190) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (176190) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (177680) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (177680) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (179180) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (182080) GPRS: PINGREQ enviado[0m
+[0;32mI (182080) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (182210) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (183630) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (183670) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (184180) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (184280) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (186970) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (187100) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (187100) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (187100) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (188620) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (188620) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (189190) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (194190) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (194290) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (197420) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (197550) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (197550) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (197550) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (199000) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (199000) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (199200) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (204200) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (204300) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (207800) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (207930) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (207930) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (207930) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (209210) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (209420) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (209420) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (214210) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (214310) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (218220) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (218350) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (218350) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (218350) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (219220) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (219840) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (219840) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (223140) GPRS: PINGREQ enviado[0m
+[0;32mI (223140) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (223270) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (224220) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (224320) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (224700) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (224710) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (229110) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (229230) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (229240) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (229240) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (229240) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (230760) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (230760) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (234230) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (234330) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (239240) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (239340) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (239560) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (239690) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (239690) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (239690) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (241140) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (241140) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (244240) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (249240) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (249340) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (249940) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (250070) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (250070) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (250070) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (251540) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (251540) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (254250) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (259250) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (259350) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (260340) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (260470) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (260470) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (260470) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (261960) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (261960) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (264160) GPRS: PINGREQ enviado[0m
+[0;32mI (264160) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (264260) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (264290) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (265710) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (265730) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (269260) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (269360) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (271230) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (271360) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (271360) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (271360) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (272940) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (272940) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (274270) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (279270) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (279370) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (281740) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (281870) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (281870) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (281870) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (283320) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (283320) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (284280) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (289280) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (289380) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (292120) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (292250) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (292250) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (292250) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (293720) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (293720) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (294290) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (299290) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (299390) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (302520) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (302650) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (302650) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (302650) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (304140) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (304140) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (304300) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (305240) GPRS: PINGREQ enviado[0m
+[0;32mI (305240) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (305370) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (307140) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (307150) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (309300) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (309400) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (312650) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (312780) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (312780) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (312780) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (314280) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (314280) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (314310) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (319310) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (319410) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (323080) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (323210) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (323210) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (323210) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (324320) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (324660) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (324660) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (329320) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (329420) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (333460) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (333590) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (333590) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (333590) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (334330) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (335080) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (335080) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (339330) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (339430) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (343880) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (344010) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (344010) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (344010) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (344340) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (345440) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (345440) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (346540) GPRS: PINGREQ enviado[0m
+[0;32mI (346540) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (346670) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (348570) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (348590) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (349340) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (349440) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (354090) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (354220) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (354220) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (354220) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (354350) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (355700) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (355700) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (359350) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (359450) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (364360) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (364460) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (364500) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (364630) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (364630) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (364630) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (366140) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (366140) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (369360) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (374370) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (374470) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (374940) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (375070) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (375070) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (375070) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (376560) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (376560) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (379370) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (384380) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (384480) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (385360) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (385490) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (385490) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (385490) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (386960) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (386960) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (388060) GPRS: PINGREQ enviado[0m
+[0;32mI (388060) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (388190) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (389180) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (389190) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (389380) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (394390) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (394490) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (395790) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (395920) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (395920) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (395920) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (397440) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (397440) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (399390) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (404400) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (404500) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (406240) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (406370) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (406370) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (406370) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (407880) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (407880) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (409400) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (414400) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (414500) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (416680) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (416810) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (416810) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (416810) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (418280) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (418280) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (419410) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (424410) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (424510) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (427080) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (427210) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (427210) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (427210) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (428780) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (428780) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (429420) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (429880) GPRS: PINGREQ enviado[0m
+[0;32mI (429880) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (430010) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (431900) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (431910) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (434420) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (434520) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (437410) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (437540) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (437540) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (437540) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (438980) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (438980) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (439430) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (444430) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (444530) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (447780) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (447910) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (447910) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (447910) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (449400) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (449400) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (449440) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (454440) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (454540) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (458200) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (458330) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (458330) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (458330) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (459450) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (459780) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (459780) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (464450) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (464550) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (468580) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (468710) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (468710) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (468710) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (469460) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (470190) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (470190) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (471290) GPRS: PINGREQ enviado[0m
+[0;32mI (471290) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (471420) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (473240) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (473250) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (474460) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (474560) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (478750) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (478880) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (478880) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (478880) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (479470) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (480360) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (480360) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (484470) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (484570) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (489160) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (489290) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (489290) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (489290) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (489480) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (490780) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (490780) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (494480) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (494580) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (499490) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (499580) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (499710) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (499710) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (499710) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (501240) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (501240) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (504490) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (504590) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (509500) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (509600) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (510040) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (510170) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (510170) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (510170) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (511640) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (511640) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (512740) GPRS: PINGREQ enviado[0m
+[0;32mI (512740) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (512870) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (514500) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (514760) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (514770) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (519510) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (519610) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (520270) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (520400) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (520400) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (520400) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (521820) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (521820) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (524510) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (529520) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (529620) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (530620) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (530750) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (530750) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (530750) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (532260) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (532260) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (534520) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (539530) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (539630) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (541060) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (541190) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (541190) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (541190) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (542660) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (542660) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (544530) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (549540) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (549640) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (551460) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (551590) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (551590) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (551590) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (553050) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (553050) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (554150) GPRS: PINGREQ enviado[0m
+[0;32mI (554150) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (554280) GPRS: 0x3fc9637c   c0 00                                             |..|[0m
+[0;32mI (554540) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (556200) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (556210) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (559550) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (559650) APP_ESP32C3: Error encolar mensaje RS232[0m
+[0;32mI (561710) GPRS: Comando enviado: AT+CIPSEND=37
+[0m
+[0;32mI (561840) GPRS: 0x3fc96150   30 23 00 15 64 69 73 70  6f 73 69 74 69 76 6f 2f  |0#..dispositivo/|[0m
+[0;32mI (561840) GPRS: 0x3fc96160   31 32 33 2f 64 61 74 6f  73 48 6f 6c 61 20 45 73  |123/datosHola Es|[0m
+[0;32mI (561840) GPRS: 0x3fc96170   70 33 32 0d 0a                                    |p32..|[0m
+[0;32mI (563370) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (563370) GPRS: PUBLISH enviado: dispositivo/123/datos -> Hola Esp32
+[0m
+[0;32mI (564550) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;32mI (569560) UART_RS232: recibido UART DTEC: Hola Esp32
+[0m
+[0;31mE (569660) APP_ESP32C3: Error encolar mensaje RS232[0m

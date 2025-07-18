@@ -20,6 +20,9 @@
 #include "esp_log.h"
 #include "driver/uart.h"
 
+#include "mbedtls/aes.h"
+#include "mbedtls/base64.h"
+
 //tags
 static const char *TAG= "APP_ESP32C3";
 static const char *TAG_GPRS = "GPRS";
@@ -29,8 +32,6 @@ static const char *TAG_UART_RS232 = "UART_RS232";
 
 static TickType_t last_activity = 0;
 
-//encritar flag
-#define ENCRIPTAR          0
 
 //uarts
 #define UART_MODEM_NUM     UART_NUM_1
@@ -64,9 +65,9 @@ static volatile SemaphoreHandle_t uart_mutex;
 static volatile bool received_pingresp = false;
 
 
-const char* host = "test.mosquitto.org";
+//const char* host = "test.mosquitto.org";
 
-//const char* host = "broker.hivemq.com";
+const char* host = "broker.hivemq.com";
 const int port =  1883;
 
 const char *mqttTopicData = "dispositivo/123/datos";
@@ -83,10 +84,33 @@ static  bool   gprs_conectado=false;
 static  bool   mode_mqtt=false;
 static  bool   tcp_conectado=false;
 
+//encritar flag
+static bool  encriptar=false;
+
+char clave[] = "1234567890abcdef";  // clave de 128 bits
+char mensaje_cifrado[33];  
 
 #define MAX_MQTT_PACKET_SIZE 512  // ajustable si necesitás más
 
+static void aes_encrypt_base64(const char *input, char *output_b64, const char *key)
+{
+    mbedtls_aes_context aes;
+    unsigned char input_block[16] = {0};
+    unsigned char encrypted_block[16] = {0};
+    size_t olen = 0;
 
+    // Copiar input a bloque de 16 bytes (padding cero)
+    strncpy((char *)input_block, input, 16);
+
+    mbedtls_aes_init(&aes);
+    mbedtls_aes_setkey_enc(&aes, (const unsigned char *)key, 128);
+    mbedtls_aes_crypt_ecb(&aes, MBEDTLS_AES_ENCRYPT, input_block, encrypted_block);
+    mbedtls_aes_free(&aes);
+
+    // Codificar a base64
+    mbedtls_base64_encode((unsigned char *)output_b64, 32, &olen, encrypted_block, 16);
+    output_b64[olen] = '\0'; // terminar string
+}
 
 static bool init_uart_mutex() {
     uart_mutex = xSemaphoreCreateMutex();
@@ -861,7 +885,7 @@ void mqtt_handle_incoming(void) {
     switch (packet_type) {
         case 0xD0: ESP_LOGI(TAG, "PINGRESP recibido");
         received_pingresp = true;
-         break;
+        break;
         case 0x90: ESP_LOGI(TAG, "SUBACK recibido"); break;
         case 0x20: ESP_LOGI(TAG, "CONNACK recibido"); break;
         case 0x40: ESP_LOGI(TAG, "PUBACK recibido"); break;
@@ -1022,9 +1046,20 @@ while (conectado_a_mqtt) {
         char* msg = NULL;
         msg = desencolar();
         
-        if (msg != NULL) {
+        if (msg != NULL) 
+         {     
+               bool publico=false;
+               if(encriptar)
+                { char mensaje_cifrado[33]; 
+                  aes_encrypt_base64(msg , mensaje_cifrado, clave);
+                  publico= mqtt_publish(mqttTopicData, mensaje_cifrado);
+                }
+                else
+                {
+                  publico= mqtt_publish(mqttTopicData,msg);
+                }
 
-               if (mqtt_publish(mqttTopicData, msg)) {
+               if (publico) {
                last_publish = now;
                 if(msg != NULL) 
                 { free(msg);msg= NULL;}  
@@ -1133,7 +1168,7 @@ void app_main(void)
         {free(msg);msg=NULL;}
       }
       msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2300\",\"p1\":\"63\",\"l2\":\"21\",\"p2\":\"60\"}");
+     strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2300\",\"p1\":\"63\",\"l2\":\"21\",\"p2\":\"60\"}");
      if(!encolar(msg))
       {
         ESP_LOGE(TAG, "No se pudo encolar");
