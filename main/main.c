@@ -67,11 +67,18 @@ static volatile bool received_pingresp = false;
 
 //const char* host = "test.mosquitto.org";
 
-const char* host = "broker.hivemq.com";
+//const char* host = "broker.hivemq.com";
+
+const char* host = "test.mosquitto.org";
 const int port =  1883;
 
-const char *mqttTopicData = "dispositivo/123/datos";
-const char *mqttTopicCmd  = "dispositivo/123/comando";
+// IP de tu PC donde corre Docker/Mosquitto
+//const char* host = "10.194.178.71";  
+//const int port = 1883;  
+
+
+const char *mqttTopicData = "/dispositivo/1/medicion";
+const char *mqttTopicCmd  = "/dispositivo/1/comando";
 
 
 static QueueHandle_t dataQueue;
@@ -90,7 +97,7 @@ static bool  encriptar=false;
 char clave[] = "1234567890abcdef";  // clave de 128 bits
 char mensaje_cifrado[33];  
 
-#define MAX_MQTT_PACKET_SIZE 512  // ajustable si necesitás más
+#define MAX_MQTT_PACKET_SIZE 720 // ajustable si necesitás más
 
 static void aes_encrypt_base64(const char *input, char *output_b64, const char *key)
 {
@@ -1160,7 +1167,8 @@ void app_main(void)
       }
     
       char* msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2321\",\"p1\":\"65\",\"l2\":\"23\",\"p2\":\"63\"}");
+      strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":1,\"fecha\":\"2025-10-13T20:00:00Z\"}");
+    
       if(!encolar(msg))
       {
         ESP_LOGE(TAG, "No se pudo encolar");
@@ -1168,7 +1176,7 @@ void app_main(void)
         {free(msg);msg=NULL;}
       }
       msg = malloc(MENSAJE_TAMANO);
-     strcpy(msg,"{\"hora\":\"12:03\",\"l1\":\"2300\",\"p1\":\"63\",\"l2\":\"21\",\"p2\":\"60\"}");
+     strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":1,\"fecha\":\"2025-10-13T20:00:00Z\"}");
      if(!encolar(msg))
       {
         ESP_LOGE(TAG, "No se pudo encolar");
@@ -1176,7 +1184,7 @@ void app_main(void)
         {free(msg);msg=NULL;}
       }
       msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"hora\":\"12:05\",\"l1\":\"23\",\"p1\":\"3\",\"l2\":\"1\",\"p2\":\"10\"}");
+      strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":1,\"fecha\":\"2025-10-13T20:00:00Z\"}");
       if(!encolar(msg))
       {
         ESP_LOGE(TAG, "No se pudo encolar");
@@ -1184,7 +1192,7 @@ void app_main(void)
         {free(msg);msg=NULL;}
       }
       msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"hora\":\"12:06\",\"l1\":\"200\",\"p1\":\"6\",\"l2\":\"1\",\"p2\":\"6\"}");
+      strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":2,\"fecha\":\"2025-10-13T20:00:00Z\"}");
       if(!encolar(msg))
       {
         ESP_LOGE(TAG, "No se pudo encolar");
@@ -1192,14 +1200,7 @@ void app_main(void)
         {free(msg);msg=NULL;}
       }
  
-      msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"hora\":\"12:08\",\"l1\":\"20\",\"p1\":\"7\",\"l2\":\"1\",\"p2\":\"1\"}");
-      if(!encolar(msg))
-      {
-        ESP_LOGE(TAG, "No se pudo encolar");
-        if(msg!=NULL) 
-        {free(msg);msg=NULL;}
-      }
+      
  
 
 
