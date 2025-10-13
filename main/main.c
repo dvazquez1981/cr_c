@@ -20,6 +20,8 @@
 #include "esp_log.h"
 #include "driver/uart.h"
 
+#include "cJSON.h"
+
 #include "mbedtls/aes.h"
 #include "mbedtls/base64.h"
 
@@ -79,6 +81,7 @@ const int port =  1883;
 
 const char *mqttTopicData = "/dispositivo/1/medicion";
 const char *mqttTopicCmd  = "/dispositivo/1/comando";
+const char *mqttTopicRsp  = "/dispositivo/1/respuesta";
 
 
 static QueueHandle_t dataQueue;
@@ -97,7 +100,14 @@ static bool  encriptar=false;
 char clave[] = "1234567890abcdef";  // clave de 128 bits
 char mensaje_cifrado[33];  
 
-#define MAX_MQTT_PACKET_SIZE 720 // ajustable si necesitás más
+#define MAX_MQTT_PACKET_SIZE 512 // ajustable si necesitás más
+
+typedef enum { TRANSITO, RESPUESTA } TipoMensaje;
+
+typedef struct {
+    char* json;        // El JSON que se genera
+    TipoMensaje tipo;  // Tipo del mensaje
+} Mensaje;
 
 static void aes_encrypt_base64(const char *input, char *output_b64, const char *key)
 {
@@ -305,9 +315,9 @@ static bool send_at_command_and_wait_ok(const char *cmd, uint32_t timeout_ms ,co
     return false;
 }
 
-static bool encolar(char* msg)
+static bool encolar(Mensaje* m)
 {
-    if (xQueueSend(dataQueue, &msg, pdMS_TO_TICKS(100)) != pdPASS) {
+    if (xQueueSend(dataQueue, &m, pdMS_TO_TICKS(100)) != pdPASS) {
         ESP_LOGE(TAG, "Error encolar mensaje RS232");
         return false;
     }
@@ -315,9 +325,9 @@ static bool encolar(char* msg)
 }
 
 
-static char* desencolar()
+static Mensaje* desencolar()
 {
-    char* msg_recibido = NULL;
+    Mensaje* msg_recibido = NULL;
 
     if (xQueueReceive(dataQueue, &msg_recibido, pdMS_TO_TICKS(100)) == pdPASS) {
         return msg_recibido;
@@ -957,7 +967,7 @@ signed int len = sizeof(mqtt_connect_packet);
 
     
 
-gprs_conectado = false;
+gprs_conectado=false;
 tcp_conectado=false;
 
    
@@ -991,7 +1001,7 @@ mqtt_can_publish = true;
             ESP_LOGI(TAG_GPRS, "TCP conectado");
         }
 
-        // Enviar datos
+        // Enviar datos connect
        if (!tcp_send(mqtt_connect_packet, len)) {
        ESP_LOGE(TAG_GPRS, "Error enviando CONNECT, reconectando...");
        tcp_disconnect();
@@ -1002,7 +1012,7 @@ mqtt_can_publish = true;
        continue;
 }
 
-// 2) Esperar CONNACK
+//Esperar CONNACK
 if (!wait_for_mqtt_connack(40000) ){
     ESP_LOGE(TAG_GPRS, "No CONNACK, reconectando...");
         tcp_disconnect();
@@ -1018,7 +1028,7 @@ if (!wait_for_mqtt_connack(40000) ){
 
       uart_flush_input(UART_MODEM_NUM);  
 
-      vTaskDelay(pdMS_TO_TICKS(400));  // opcional  
+      vTaskDelay(pdMS_TO_TICKS(400));   
      if (!mqtt_subscribe(mqttTopicCmd)) {
             tcp_disconnect();
             tcp_conectado=false;
@@ -1050,40 +1060,62 @@ while (conectado_a_mqtt) {
     TickType_t now = xTaskGetTickCount();
      // Publicar solo si se puede y si pasó tiempo desde última publicación
     if (mqtt_can_publish && (now - last_publish) > publish_interval) {
-        char* msg = NULL;
-        msg = desencolar();
+      
+
+        Mensaje* m = NULL;
+        m = desencolar();
         
-        if (msg != NULL) 
-         {     
-               bool publico=false;
-               if(encriptar)
-                { char mensaje_cifrado[33]; 
-                  aes_encrypt_base64(msg , mensaje_cifrado, clave);
-                  publico= mqtt_publish(mqttTopicData, mensaje_cifrado);
-                }
-                else
-                {
-                  publico= mqtt_publish(mqttTopicData,msg);
-                }
+        if (m != NULL) 
+        {     
+           bool publico = false;
+         
+               //transito
+               if (m->tipo == TRANSITO) 
+                   {
+                    if(!encriptar)
+                     publico = mqtt_publish(mqttTopicData, m->json);
+                    else 
+                    {
+                    char json_cifrado[512]; 
+                    aes_encrypt_base64(m->json , json_cifrado, clave);
+                    publico= mqtt_publish(mqttTopicData, mensaje_cifrado);
 
-               if (publico) {
-               last_publish = now;
-                if(msg != NULL) 
-                { free(msg);msg= NULL;}  
+                    }
+                  
+                    }
+              //respuesta comando
+              if (m->tipo == RESPUESTA) 
+                   {
+                  if(!encriptar)
+                    publico = mqtt_publish(mqttTopicRsp, m->json);
+                   else 
+                    {
+                    char json_cifrado[512]; 
+                    aes_encrypt_base64(m->json, json_cifrado,clave);
+                    publico= mqtt_publish(mqttTopicRsp, mensaje_cifrado);
+
+                    }
+  
+                  }  
                    
-                }
-               else
-               {
-                if(!encolar(msg))
-                 {
-                     if(msg!=NULL) 
-                      {free(msg);msg=NULL;}
-                  }
+              if (publico) 
+              {
+                 last_publish = now;
+                 free(m->json);
+                 free(m);
+              }
+             else
+               {// Si no se publicó, reencolar
+               if (!encolar(m)) {
+                   // Si falla reencolar, liberar memoria
+                    free(m->json);
+                    free(m);
+                      }
                }
-        }
+         }
 
-
-    }
+     }
+    
 
 
     if ((now - last_activity) > pdMS_TO_TICKS(40000)) {
@@ -1142,6 +1174,119 @@ while (conectado_a_mqtt) {
 }
 
 
+static void enviarRespuestaComando(int dispositivoId, int cmdId, char *valor, char* fecha) {
+    
+    cJSON *root = cJSON_CreateObject();
+    if (!root) {
+        ESP_LOGE(TAG, "Error creando JSON");
+        return;
+    }
+
+    //mensaje json
+    cJSON_AddStringToObject(root, "fecha", fecha);
+    cJSON_AddNumberToObject(root, "cmdId", cmdId);
+     cJSON_AddStringToObject(root, "valor", valor); 
+    cJSON_AddNumberToObject(root, "dispositivoId", dispositivoId);
+    
+    
+
+    // Convertir el JSON a string
+    char *jsonStr = cJSON_PrintUnformatted(root);
+    if (!jsonStr) {
+        ESP_LOGE(TAG, "Error convirtiendo JSON a string");
+        cJSON_Delete(root);
+        return;
+    }
+
+    // Crear estructura Mensaje
+    Mensaje* m = malloc(sizeof(Mensaje));
+    if (!m) {
+        ESP_LOGE(TAG, "No se pudo reservar memoria para Mensaje");
+        free(jsonStr);
+        cJSON_Delete(root);
+        return;
+    }
+
+    m->tipo = RESPUESTA;
+    m->json = strdup(jsonStr);  // copiamos el JSON generado
+
+    if (!m->json) {
+        ESP_LOGE(TAG, "No se pudo duplicar JSON");
+        free(m);
+        free(jsonStr);
+        cJSON_Delete(root);
+        return;
+    }
+
+    // Encolar mensaje
+    if (!encolar(m)) {
+        ESP_LOGE(TAG, "No se pudo encolar mensaje de respuesta");
+        free(m->json);
+        free(m);
+        m = NULL;
+    }
+
+    // Liberar memoria temporal
+    free(jsonStr);
+    cJSON_Delete(root);
+}
+
+static void enviarDatoTransito(int dispositivoid, int valor, int carril, int clasificacionId, char* fecha) {
+
+    cJSON *root = cJSON_CreateObject();
+    if (!root) {
+        ESP_LOGE(TAG, "Error creando JSON");
+        return;
+    }
+
+    cJSON_AddNumberToObject(root, "dispositivoId", dispositivoid);
+    cJSON_AddNumberToObject(root, "valor", valor);
+    cJSON_AddNumberToObject(root, "carril", carril);
+    cJSON_AddNumberToObject(root, "clasificacionId", clasificacionId);
+    cJSON_AddStringToObject(root, "fecha", fecha);
+
+    // NO agregamos "tipo" al JSON
+    // cJSON_AddStringToObject(root, "tipo", "transito");
+
+    // Convertir a string
+    char *jsonStr = cJSON_PrintUnformatted(root);
+    if (!jsonStr) {
+        ESP_LOGE(TAG, "Error convirtiendo JSON a string");
+        cJSON_Delete(root);
+        return;
+    }
+
+    // Crear la estructura Mensaje
+    Mensaje* m = malloc(sizeof(Mensaje));
+    if (!m) {
+        ESP_LOGE(TAG, "No se pudo reservar memoria para Mensaje");
+        free(jsonStr);
+        cJSON_Delete(root);
+        return;
+    }
+    // Guardamos el tipo fuera del JSON
+    // Duplicamos el string generado
+    m->tipo = TRANSITO;              
+    m->json = strdup(jsonStr);      
+    if (!m->json) {
+        ESP_LOGE(TAG, "No se pudo duplicar JSON");
+        free(m);
+        free(jsonStr);
+        cJSON_Delete(root);
+        return;
+    }
+
+    // Encolar la estructura
+    if (!encolar(m)) {               // encolar ahora recibe un Mensaje*
+        ESP_LOGE(TAG, "No se pudo encolar");
+        free(m->json);
+        free(m);
+        m = NULL;
+    }
+
+    free(jsonStr);
+    cJSON_Delete(root);
+}
 
 
 void app_main(void)
@@ -1166,44 +1311,9 @@ void app_main(void)
         return;
       }
     
-      char* msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":1,\"fecha\":\"2025-10-13T20:00:00Z\"}");
-    
-      if(!encolar(msg))
-      {
-        ESP_LOGE(TAG, "No se pudo encolar");
-        if(msg!=NULL) 
-        {free(msg);msg=NULL;}
-      }
-      msg = malloc(MENSAJE_TAMANO);
-     strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":1,\"fecha\":\"2025-10-13T20:00:00Z\"}");
-     if(!encolar(msg))
-      {
-        ESP_LOGE(TAG, "No se pudo encolar");
-        if(msg!=NULL) 
-        {free(msg);msg=NULL;}
-      }
-      msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":1,\"fecha\":\"2025-10-13T20:00:00Z\"}");
-      if(!encolar(msg))
-      {
-        ESP_LOGE(TAG, "No se pudo encolar");
-        if(msg!=NULL) 
-        {free(msg);msg=NULL;}
-      }
-      msg = malloc(MENSAJE_TAMANO);
-      strcpy(msg,"{\"dispositivoId\":1,\"valor\":55,\"carril\":2,\"clasificacionId\":2,\"fecha\":\"2025-10-13T20:00:00Z\"}");
-      if(!encolar(msg))
-      {
-        ESP_LOGE(TAG, "No se pudo encolar");
-        if(msg!=NULL) 
-        {free(msg);msg=NULL;}
-      }
- 
+      
       
  
-
-
       //Iniciar tarea para leer RS232
      if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
       {  
@@ -1217,4 +1327,14 @@ void app_main(void)
        ESP_LOGE(TAG, "No se pudo crear la tarea gprs_mqtt_task");
        return;
       }
+
+
+
+      enviarDatoTransito(1, 49, 2, 1, "2025-10-13T20:00:00Z");
+      
+      enviarDatoTransito(1, 33, 2, 1, "2025-10-13T20:03:00Z");
+ 
+      enviarDatoTransito(1, 55, 2, 1, "2025-10-13T20:10:00Z");
+
+      enviarRespuestaComando(1, 2,"OK", "2025-10-13T20:13:00Z");
     }
