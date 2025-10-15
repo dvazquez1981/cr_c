@@ -1,0 +1,766 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xc (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Oct 13 2025 15:52:46[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c030020 size=0d2a8h ( 53928) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=0001d2d0 vaddr=3fc8c200 size=01284h (  4740) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001e55c vaddr=40380000 size=01abch (  6844) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=25fc8h (155592) map[0m
+[0;32mI (148) esp_image: segment 4: paddr=00045ff0 vaddr=40381abc size=0a6b8h ( 42680) load[0m
+[0;32mI (160) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (160) boot: Disabling RNG early entropy source...[0m
+[0;32mI (172) cpu_start: Unicore app[0m
+[0;32mI (181) cpu_start: Pro cpu start user code[0m
+[0;32mI (181) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (181) cpu_start: Application information:[0m
+[0;32mI (184) cpu_start: Project name:     cr_c[0m
+[0;32mI (189) cpu_start: App version:      bc303b7-dirty[0m
+[0;32mI (194) cpu_start: Compile time:     Oct 15 2025 12:16:13[0m
+[0;32mI (200) cpu_start: ELF file SHA256:  087a95947c5e044c...[0m
+[0;32mI (206) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (211) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (215) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (220) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (225) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC8E450 len 00031BB0 (198 KiB): RAM[0m
+[0;32mI (238) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (245) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (252) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (260) spi_flash: detected chip: generic[0m
+[0;32mI (263) spi_flash: flash io: dio[0m
+[0;33mW (267) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (281) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (287) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (294) main_task: Started on CPU0[0m
+[0;32mI (294) main_task: Calling app_main()[0m
+[0;32mI (294) APP_ESP32C3: Inicio Aplicación...[0m
+[0;32mI (304) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (304) UART_MODEM: uart_param_config OK[0m
+[0;32mI (314) UART_MODEM: uart_[0;32mI (324) UART_RS232: uart_driver_install OK[0m
+[0;32mI (324) UART_RS232: uart_set_pin OK[0m
+[0;32mI (324) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (324) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (334) APP_ESP32C3: Se creo la cola[0m
+[0;33mW (334) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (344) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (344) GPRS: Comando enviado: AT
+[0m
+[0;32mI (354) main_task: Returned from app_main()[0m
+[0;32mI (474) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (474) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (474) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (2474) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (2474) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (4474) GPRS: Calidad de señal: 
++CSQ: 26,0
+
+OK
+[0m
+[0;32mI (4474) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (4474) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (6474) GPRS: No registrado en red[0m
+[0;32mI (6474) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (6474) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (8474) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8474) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8604) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (8604) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8604) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8774) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (8774) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8774) GPRS: GPRS conectado[0m
+[0;32mI (8774) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;32mI (10774) GPRS: STATE: CONNECT OK[0m
+[0;32mI (10774) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (10904) GPRS: 0x3c03a5b0   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (10904) GPRS: 0x3c03a5c0   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (12314) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (16194) GPRS: 0x3fc960b0   0d 0a 43 4c 4f 53 45 44  0d 0a                    |..CLOSED..|[0m
+[0;33mW (16194) GPRS: Broker cerró antes de enviar CONNACK[0m
+[0;31mE (16194) GPRS: No CONNACK, reconectando...[0m
+[0;32mI (16194) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;33mW (19244) GPRS: Timeout esperando respuesta a CIPCLOSE[0m
+[0;32mI (21244) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (21834) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (21834) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (23834) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (23834) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (23834) GPRS: Comando enviado: AT
+[0m
+[0;32mI (23954) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (23954) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (23954) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (25954) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (25954) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (27954) GPRS: Calidad de señal: 
++CSQ: 23,0
+
+OK
+[0m
+[0;32mI (27954) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (27954) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (29954) GPRS: No registrado en red[0m
+[0;32mI (29954) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (29954) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (31954) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (31954) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (32084) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (32084) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (32084) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (32244) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (32244) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (32244) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (33054) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (33054) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (33054) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (35054) GPRS: IP obtenida: 
+10.14.240.199
+[0m
+[0;32mI (35054) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (35054) GPRS: Configurando módem...[0m
+[0;32mI (35054) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (35184) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (35184) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (35314) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (35314) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (35444) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;31mE (35444) GPRS: No se pudo conectar GPRS, reintentando en 3s...[0m
+[0;33mW (38444) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (38444) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (38444) GPRS: Comando enviado: AT
+[0m
+[0;32mI (38564) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (38564) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (38564) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (40564) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (40564) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (42564) GPRS: Calidad de señal: 
++CSQ: 24,0
+
+OK
+[0m
+[0;32mI (42564) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (42564) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (44564) GPRS: No registrado en red[0m
+[0;32mI (44564) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (44564) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (46564) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (46564) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (46694) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (46694) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (46694) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (46864) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (46864) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (46864) GPRS: GPRS conectado[0m
+[0;32mI (46864) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (48864) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (48864) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (48864) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (56864) GPRS: Conexión TCP realizada[0m
+[0;32mI (56864) GPRS: TCP conectado[0m
+[0;32mI (56864) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (56994) GPRS: 0x3c03a5b0   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (56994) GPRS: 0x3c03a5c0   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;31mE (61994) GPRS: Timeout esperando SEND OK[0m
+[0;31mE (61994) GPRS: Error enviando CONNECT, reconectando...[0m
+[0;32mI (61994) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (62134) GPRS: TCP desconectado exitosamente[0m
+[0;32mI (64134) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (64654) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (64654) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (66654) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (66654) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (66654) GPRS: Comando enviado: AT
+[0m
+[0;32mI (66774) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (66774) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (66774) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (68774) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (68774) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (70774) GPRS: Calidad de señal: 
++CSQ: 25,0
+
+OK
+[0m
+[0;32mI (70774) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (70774) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (72774) GPRS: No registrado en red[0m
+[0;32mI (72774) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (72774) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (74774) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (74774) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (74904) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (74904) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (74904) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (75064) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (75064) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (75064) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (75994) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (75994) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (75994) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (77994) GPRS: IP obtenida: 
+10.97.94.143
+[0m
+[0;32mI (77994) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (77994) GPRS: Configurando módem...[0m
+[0;32mI (77994) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (78124) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (78124) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (78254) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (78254) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (78384) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;31mE (78384) GPRS: No se pudo conectar GPRS, reintentando en 3s...[0m
+[0;33mW (81384) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (81384) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (81384) GPRS: Comando enviado: AT
+[0m
+[0;32mI (81504) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (81504) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (81504) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (83504) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (83504) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (85504) GPRS: Calidad de señal: 
++CSQ: 24,0
+
+OK
+[0m
+[0;32mI (85504) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (85504) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (87504) GPRS: No registrado en red[0m
+[0;32mI (87504) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (87504) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (89504) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (89504) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (89634) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (89634) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (89634) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (89804) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (89804) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (89804) GPRS: GPRS conectado[0m
+[0;32mI (89804) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (91804) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (91804) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (91804) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (99804) GPRS: Conexión TCP realizada[0m
+[0;32mI (99804) GPRS: TCP conectado[0m
+[0;32mI (99804) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (99934) GPRS: 0x3c03a5b0   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (99934) GPRS: 0x3c03a5c0   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;31mE (104934) GPRS: Timeout esperando SEND OK[0m
+[0;31mE (104934) GPRS: Error enviando CONNECT, reconectando...[0m
+[0;32mI (104934) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (105074) GPRS: TCP desconectado exitosamente[0m
+[0;32mI (107074) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (108174) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (108174) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (110174) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (110174) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (110174) GPRS: Comando enviado: AT
+[0m
+[0;32mI (110294) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (110294) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (110294) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (112294) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (112294) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (114294) GPRS: Calidad de señal: 
++CSQ: 22,0
+
+OK
+[0m
+[0;32mI (114294) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (114294) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (116294) GPRS: No registrado en red[0m
+[0;32mI (116294) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (116294) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (118294) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (118294) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (118424) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (118424) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (118424) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (118584) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (118584) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (118584) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (119494) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (119494) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (119494) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (121494) GPRS: IP obtenida: 
+10.97.161.55
+[0m
+[0;32mI (121494) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (121494) GPRS: Configurando módem...[0m
+[0;32mI (121494) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (121624) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (121624) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (121754) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (121754) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (121884) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;31mE (121884) GPRS: No se pudo conectar GPRS, reintentando en 3s...[0m
+[0;33mW (124884) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (124884) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (124884) GPRS: Comando enviado: AT
+[0m
+[0;32mI (125004) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (125004) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (125004) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (127004) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (127004) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (129004) GPRS: Calidad de señal: 
++CSQ: 23,0
+
+OK
+[0m
+[0;32mI (129004) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (129004) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (131004) GPRS: No registrado en red[0m
+[0;32mI (131004) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (131004) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (133004) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (133004) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (133134) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (133134) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (133134) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (133304) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (133304) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (133304) GPRS: GPRS conectado[0m
+[0;32mI (133304) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (135314) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (135314) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (135314) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (143314) GPRS: Conexión TCP realizada[0m
+[0;32mI (143314) GPRS: TCP conectado[0m
+[0;32mI (143314) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (143444) GPRS: 0x3c03a5b0   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (143444) GPRS: 0x3c03a5c0   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (144954) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (145064) GPRS: 0x3fc960b0   20 02 00 00                                       | ...|[0m
+[0;32mI (145064) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (145064) GPRS: MQTT conectado[0m
+[0;32mI (145464) GPRS: Comando enviado: AT+CIPSEND=29
+[0m
+[0;32mI (145594) GPRS: 0x3fc95ef0   82 1b 00 01 00 16 2f 64  69 73 70 6f 73 69 74 69  |....../dispositi|[0m
+[0;32mI (145594) GPRS: 0x3fc95f00   76 6f 2f 31 2f 63 6f 6d  61 6e 64 6f 00           |vo/1/comando.|[0m
+[0;32mI (146794) GPRS: CIPSEND OK: 
+SEND OK
+�[0m
+[0;32mI (146794) GPRS: SUBSCRIBE enviado: /dispositivo/1/comando[0m
+[0;32mI (167394) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (167524) GPRS: 0x3fc95ee0   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (167524) GPRS: 0x3fc95ef0   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (167524) GPRS: 0x3fc95f00   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (167534) GPRS: 0x3fc95f10   61 6c 6f 72 22 3a 34 39  2c 22 63 61 72 72 69 6c  |alor":49,"carril|[0m
+[0;32mI (167544) GPRS: 0x3fc95f20   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (167554) GPRS: 0x3fc95f30   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (167564) GPRS: 0x3fc95f40   22 32 30 32 35 2d 31 30  2d 31 33 54 32 30 3a 30  |"2025-10-13T20:0|[0m
+[0;32mI (167574) GPRS: 0x3fc95f50   30 3a 30 30 5a 22 7d                              |0:00Z"}|[0m
+[0;32mI (169294) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (169294) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":49,"carril":2,"clasificacionId":1,"fecha":"2025-10-13T20:00:00Z"}[0m
+[0;32mI (178094) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (178224) GPRS: 0x3fc95ee0   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (178224) GPRS: 0x3fc95ef0   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (178224) GPRS: 0x3fc95f00   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (178234) GPRS: 0x3fc95f10   61 6c 6f 72 22 3a 33 33  2c 22 63 61 72 72 69 6c  |alor":33,"carril|[0m
+[0;32mI (178244) GPRS: 0x3fc95f20   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (178254) GPRS: 0x3fc95f30   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (178264) GPRS: 0x3fc95f40   22 32 30 32 35 2d 31 30  2d 31 33 54 32 30 3a 30  |"2025-10-13T20:0|[0m
+[0;32mI (178274) GPRS: 0x3fc95f50   33 3a 30 30 5a 22 7d                              |3:00Z"}|[0m
+[0;32mI (179914) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (179914) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":33,"carril":2,"clasificacionId":1,"fecha":"2025-10-13T20:03:00Z"}[0m
+[0;32mI (188714) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (188844) GPRS: 0x3fc95ee0   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (188844) GPRS: 0x3fc95ef0   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (188844) GPRS: 0x3fc95f00   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (188854) GPRS: 0x3fc95f10   61 6c 6f 72 22 3a 35 35  2c 22 63 61 72 72 69 6c  |alor":55,"carril|[0m
+[0;32mI (188864) GPRS: 0x3fc95f20   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (188874) GPRS: 0x3fc95f30   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (188884) GPRS: 0x3fc95f40   22 32 30 32 35 2d 31 30  2d 31 33 54 32 30 3a 31  |"2025-10-13T20:1|[0m
+[0;32mI (188894) GPRS: 0x3fc95f50   30 3a 30 30 5a 22 7d                              |0:00Z"}|[0m
+[0;32mI (190594) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (190594) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":55,"carril":2,"clasificacionId":1,"fecha":"2025-10-13T20:10:00Z"}[0m
+[0;32mI (199394) GPRS: Comando enviado: AT+CIPSEND=101
+[0m
+[0;32mI (199524) GPRS: 0x3fc95ee0   30 63 00 18 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0c../dispositivo|[0m
+[0;32mI (199524) GPRS: 0x3fc95ef0   2f 31 2f 72 65 73 70 75  65 73 74 61 7b 22 66 65  |/1/respuesta{"fe|[0m
+[0;32mI (199524) GPRS: 0x3fc95f00   63 68 61 22 3a 22 32 30  32 35 2d 31 30 2d 31 33  |cha":"2025-10-13|[0m
+[0;32mI (199534) GPRS: 0x3fc95f10   54 32 30 3a 31 33 3a 30  30 5a 22 2c 22 63 6d 64  |T20:13:00Z","cmd|[0m
+[0;32mI (199544) GPRS: 0x3fc95f20   49 64 22 3a 32 2c 22 76  61 6c 6f 72 22 3a 22 4f  |Id":2,"valor":"O|[0m
+[0;32mI (199554) GPRS: 0x3fc95f30   4b 22 2c 22 64 69 73 70  6f 73 69 74 69 76 6f 49  |K","dispositivoI|[0m
+[0;32mI (199564) GPRS: 0x3fc95f40   64 22 3a 31 7d                                    |d":1}|[0m
+[0;32mI (201194) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (201194) GPRS: PUBLISH enviado: /dispositivo/1/respuesta -> {"fecha":"2025-10-13T20:13:00Z","cmdId":2,"valor":"OK","dispositivoId":1}[0m
+[0;32mI (206694) GPRS: PINGREQ enviado[0m
+[0;32mI (206694) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (206824) GPRS: 0x3fc9610c   c0 00                                             |..|[0m
+[0;32mI (208334) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (208344) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (247944) GPRS: PINGREQ enviado[0m
+[0;32mI (247944) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (248074) GPRS: 0x3fc9610c   c0 00                                             |..|[0m
+[0;32mI (249494) GPRS: CIPSEND OK: 
+SEND OK
+�
+[0;33mW (257194) GPRS: No se recibió PINGRESP a tiempo[0m
+[0;33mW (257194) GPRS: Conexión MQTT caída, reiniciando...[0m
+[0;32mI (257194) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (257334) GPRS: TCP desconectado exitosamente[0m
+[0;32mI (259334) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (260394) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (260394) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (262394) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (262394) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (262394) GPRS: Comando enviado: AT
+[0m
+[0;32mI (262514) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (262514) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (262514) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (264514) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (264514) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (266514) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (266514) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (266514) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (268514) GPRS: No registrado en red[0m
+[0;32mI (268514) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (268514) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (270514) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (270514) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (270644) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (270644) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (270644) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (270804) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (270804) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (270804) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (271534) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (271534) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (271534) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (273534) GPRS: IP obtenida: 
+10.173.164.73
+[0m
+[0;32mI (273534) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (273534) GPRS: Configurando módem...[0m
+[0;32mI (273534) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (273664) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (273664) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (273794) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (273794) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (273924) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;31mE (273924) GPRS: No se pudo conectar GPRS, reintentando en 3s...[0m
+[0;33mW (276924) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (276924) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (276924) GPRS: Comando enviado: AT
+[0m
+[0;32mI (277044) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (277044) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (277044) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (279044) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (279044) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (281044) GPRS: Calidad de señal: 
++CSQ: 31,0
+
+OK
+[0m
+[0;32mI (281044) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (281044) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (283044) GPRS: No registrado en red[0m
+[0;32mI (283044) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (283044) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (285044) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (285044) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (285174) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (285174) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (285174) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (285344) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (285344) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (285344) GPRS: GPRS conectado[0m
+[0;32mI (285344) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (287354) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (287354) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (287354) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (295354) GPRS: Conexión TCP realizada[0m
+[0;32mI (295354) GPRS: TCP conectado[0m
+[0;32mI (295354) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (295484) GPRS: 0x3c03a5b0   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (295484) GPRS: 0x3c03a5c0   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (299134) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (299244) GPRS: 0x3fc960b0   20 02 00 00                                       | ...|[0m
+[0;32mI (299244) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (299244) GPRS: MQTT conectado[0m
+[0;32mI (299644) GPRS: Comando enviado: AT+CIPSEND=29
+[0m
+[0;32mI (299774) GPRS: 0x3fc95ef0   82 1b 00 01 00 16 2f 64  69 73 70 6f 73 69 74 69  |....../dispositi|[0m
+[0;32mI (299774) GPRS: 0x3fc95f00   76 6f 2f 31 2f 63 6f 6d  61 6e 64 6f 00           |vo/1/comando.|[0m
+[0;32mI (300864) GPRS: CIPSEND OK: 
+SEND OK
+�[0m
+[0;32mI (300864) GPRS: SUBSCRIBE enviado: /dispositivo/1/comando[0m
+[0;32mI (317134) APP_ESP32C3: PUBLISH recibido. Retained: No[0m
+[0;32mI (317134) APP_ESP32C3: Tópico: /dispositivo/1/comando[0m
+[0;32mI (317134) APP_ESP32C3: Payload: {"cmdId":30,"tipoComandId":1,"valor":"as","fecha":"2025-10-15T15:23:12.213Z"}[0m
+{"cmdId":30,"tipoComandId":1,"valor":"as","fecha":"2025-10-15T15:23:12.213Z"}[0;32mI (317154) UART_RS232: Enviado UART DTEC: {"cmdId":30,"tipoComandId":1,"valor":"as","fecha":"2025-10-15T15:23:12.213Z"}[0m
+[0;32mI (352914) APP_ESP32C3: PUBLISH recibido. Retained: No[0m
+[0;32mI (352914) APP_ESP32C3: Tópico: /dispositivo/1/comando[0m
+[0;32mI (352914) APP_ESP32C3: Payload: {"cmdId":31,"tipoComandId":2,"valor":"testeo","fecha":"2025-10-15T15:23:49.156Z"}[0m
+{"cmdId":31,"tipoComandId":2,"valor":"testeo","fecha":"2025-10-15T15:23:49.156Z"}[0;32mI (352934) UART_RS232: Enviado UART DTEC: {"cmdId":31,"tipoComandId":2,"valor":"testeo","fecha":"2025-10-15T15:23:49.156Z"}[0m
+[0;32mI (360244) GPRS: PINGREQ enviado[0m
+[0;32mI (360244) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (360374) GPRS: 0x3fc9610c   c0 00                                             |..|[0m
+[0;32mI (361864) GPRS: CIPSEND OK: 
+SEND OK
+�
+[0;33mW (369564) GPRS: No se recibió PINGRESP a tiempo[0m
+[0;33mW (369564) GPRS: Conexión MQTT caída, reiniciando...[0m
+[0;32mI (369564) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (369704) GPRS: TCP desconectado exitosamente[0m
+[0;32mI (371704) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (372264) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (372264) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (374264) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (374264) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (374264) GPRS: Comando enviado: AT
+[0m
+[0;32mI (374384) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (374384) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (374384) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (376384) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (376384) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (

@@ -109,6 +109,9 @@ typedef struct {
     TipoMensaje tipo;  // Tipo del mensaje
 } Mensaje;
 
+//para simular
+static time_t timestampBase;
+
 static void aes_encrypt_base64(const char *input, char *output_b64, const char *key)
 {
     mbedtls_aes_context aes;
@@ -400,26 +403,7 @@ static bool tcp_disconnect() {
     ESP_LOGW(TAG_GPRS, "Timeout esperando respuesta a CIPCLOSE");
     return false;
 }
-static bool gprs_is_connected() {
-    char buf[64];
-    uart_flush(UART_MODEM_NUM);
-    send_at_command(TAG_GPRS, UART_MODEM_NUM, "AT+CGATT?");
-    vTaskDelay(pdMS_TO_TICKS(500));
-    int len = uart_read_bytes(UART_MODEM_NUM, (uint8_t*)buf, sizeof(buf) - 1, pdMS_TO_TICKS(1500));
-    if (len <= 0) return false;
-    buf[len] = 0;
-    
 
-
-    if (strstr((char*)buf, "+CGATT: 1")) {
-      ESP_LOGI(TAG_GPRS, "+CGATT: 1 OK");
-      return true; 
-    }
-
-    // Estado típico "STATE: CONNECT OK" si está conectado
-    ESP_LOGE(TAG_GPRS, "Error: +CGATT: 1");
-    return false;
-}
 
 static bool tcp_is_connected() {
     char buf[128];
@@ -697,7 +681,7 @@ static bool gprs_disconnect() {
 }
 
 
-static bool mqtt_publish(const char* topic, const char* payload) {
+static bool mqtt_publish(const char* topic, const char* payload,bool retain) {
 
 if (!mqtt_can_publish) {
         ESP_LOGW(TAG, "Publicacion bloqueada temporalmente (esperando PINGRESP)");
@@ -723,7 +707,7 @@ if (!mqtt_can_publish) {
     uint8_t publish_packet[MAX_MQTT_PACKET_SIZE];
     size_t  publish_len = 2 + rem_len;
 
-    publish_packet[0] = 0x30;         // PUBLISH, QoS 0
+    publish_packet[0] = 0x30|  (retain ? 0x01 : 0x00);    // PUBLISH, QoS 0
     publish_packet[1] = rem_len;
     publish_packet[2] = (topic_len >> 8) & 0xFF;
     publish_packet[3] = (topic_len     ) & 0xFF;
@@ -859,6 +843,118 @@ int read_remaining_length(uint32_t* length, int* consumed_bytes) {
 }
 
 
+static void enviarRespuestaComando(int dispositivoId, int cmdId, char *valor, char* fecha) {
+    
+    cJSON *root = cJSON_CreateObject();
+    if (!root) {
+        ESP_LOGE(TAG, "Error creando JSON");
+        return;
+    }
+
+    //mensaje json
+    cJSON_AddStringToObject(root, "fecha", fecha);
+    cJSON_AddNumberToObject(root, "cmdId", cmdId);
+    cJSON_AddStringToObject(root, "valor", valor); 
+    cJSON_AddNumberToObject(root, "dispositivoId", dispositivoId);
+    
+    
+
+    // Convertir el JSON a string
+    char *jsonStr = cJSON_PrintUnformatted(root);
+    if (!jsonStr) {
+        ESP_LOGE(TAG, "Error convirtiendo JSON a string");
+        cJSON_Delete(root);
+        return;
+    }
+
+    // Crear estructura Mensaje
+    Mensaje* m = malloc(sizeof(Mensaje));
+    if (!m) {
+        ESP_LOGE(TAG, "No se pudo reservar memoria para Mensaje");
+        free(jsonStr);
+        cJSON_Delete(root);
+        return;
+    }
+
+    m->tipo = RESPUESTA;
+    m->json = strdup(jsonStr);  // copiamos el JSON generado
+
+    if (!m->json) {
+        ESP_LOGE(TAG, "No se pudo duplicar JSON");
+        free(m);
+        free(jsonStr);
+        cJSON_Delete(root);
+        return;
+    }
+
+    // Encolar mensaje
+    if (!encolar(m)) {
+        ESP_LOGE(TAG, "No se pudo encolar mensaje de respuesta");
+        free(m->json);
+        free(m);
+        m = NULL;
+    }
+
+    // libero
+    free(jsonStr);
+    cJSON_Delete(root);
+}
+
+
+//paseo comando de la suscripcion
+static void parsearComando(char* payload) {
+
+    if(strlen(payload)==0) return;
+
+    cJSON *root = cJSON_Parse(payload);
+    if (!root) {
+        printf("Error parsing JSON\n");
+        return;
+    }
+
+   
+    cJSON *cmdId = cJSON_GetObjectItem(root, "cmdId");
+    cJSON *tipoComandId = cJSON_GetObjectItem(root, "tipoComandId");
+    cJSON *valor = cJSON_GetObjectItem(root, "valor");
+    cJSON *fecha = cJSON_GetObjectItem(root, "fecha");
+
+
+    
+
+int icmd = -1;
+int itipo = -1;
+char* valorStr = NULL;
+char* fechaStr = NULL;
+
+if (cmdId && cJSON_IsNumber(cmdId)) 
+    icmd = cmdId->valueint;
+
+if (tipoComandId && cJSON_IsNumber(tipoComandId)) 
+    itipo = tipoComandId->valueint;
+
+
+if (valor && cJSON_IsString(valor)) 
+    valorStr = valor->valuestring;
+
+if (fecha && cJSON_IsString(fecha)) 
+    fechaStr = fecha->valuestring;
+ 
+if (fechaStr && icmd>0 ) {
+     enviarRespuestaComando(1,icmd,"OK",fechaStr);
+    }
+
+
+    
+   // enviarRespuestaComando(1,icmd,"OK", "2025-10-13T20:13:00Z");
+   // enviarRespuestaComando(1,icmd,"OK","2025-10-13T20:13:00Z");
+    cJSON_Delete(root);
+
+
+  
+}
+
+
+
 void mqtt_handle_incoming(void) {
     if (xSemaphoreTake(uart_mutex, pdMS_TO_TICKS(1000)) != pdTRUE) {
         ESP_LOGW(TAG, "Timeout esperando mutex UART");
@@ -935,7 +1031,9 @@ void mqtt_handle_incoming(void) {
             
             ESP_LOGI(TAG, "Tópico: %s", topic);
             ESP_LOGI(TAG, "Payload: %s", payload);
-            rs232_enviar(payload);
+            parsearComando(payload);
+            
+            //rs232_enviar(payload);
             break;
         }
 
@@ -964,8 +1062,6 @@ static const uint8_t mqtt_connect_packet[26] = {
 };
 
 signed int len = sizeof(mqtt_connect_packet);
-
-    
 
 gprs_conectado=false;
 tcp_conectado=false;
@@ -1073,12 +1169,12 @@ while (conectado_a_mqtt) {
                if (m->tipo == TRANSITO) 
                    {
                     if(!encriptar)
-                     publico = mqtt_publish(mqttTopicData, m->json);
+                     publico = mqtt_publish(mqttTopicData, m->json,false);
                     else 
                     {
                     char json_cifrado[512]; 
                     aes_encrypt_base64(m->json , json_cifrado, clave);
-                    publico= mqtt_publish(mqttTopicData, mensaje_cifrado);
+                    publico= mqtt_publish(mqttTopicData, mensaje_cifrado,false);
 
                     }
                   
@@ -1087,12 +1183,15 @@ while (conectado_a_mqtt) {
               if (m->tipo == RESPUESTA) 
                    {
                   if(!encriptar)
-                    publico = mqtt_publish(mqttTopicRsp, m->json);
-                   else 
+                   {
+                    if((publico = mqtt_publish(mqttTopicRsp, m->json,false)))
+                        mqtt_publish(mqttTopicCmd,"",true);
+                   }
+                    else 
                     {
                     char json_cifrado[512]; 
                     aes_encrypt_base64(m->json, json_cifrado,clave);
-                    publico= mqtt_publish(mqttTopicRsp, mensaje_cifrado);
+                    publico= mqtt_publish(mqttTopicRsp, mensaje_cifrado,false);
 
                     }
   
@@ -1174,62 +1273,9 @@ while (conectado_a_mqtt) {
 }
 
 
-static void enviarRespuestaComando(int dispositivoId, int cmdId, char *valor, char* fecha) {
-    
-    cJSON *root = cJSON_CreateObject();
-    if (!root) {
-        ESP_LOGE(TAG, "Error creando JSON");
-        return;
-    }
 
-    //mensaje json
-    cJSON_AddStringToObject(root, "fecha", fecha);
-    cJSON_AddNumberToObject(root, "cmdId", cmdId);
-     cJSON_AddStringToObject(root, "valor", valor); 
-    cJSON_AddNumberToObject(root, "dispositivoId", dispositivoId);
-    
-    
 
-    // Convertir el JSON a string
-    char *jsonStr = cJSON_PrintUnformatted(root);
-    if (!jsonStr) {
-        ESP_LOGE(TAG, "Error convirtiendo JSON a string");
-        cJSON_Delete(root);
-        return;
-    }
 
-    // Crear estructura Mensaje
-    Mensaje* m = malloc(sizeof(Mensaje));
-    if (!m) {
-        ESP_LOGE(TAG, "No se pudo reservar memoria para Mensaje");
-        free(jsonStr);
-        cJSON_Delete(root);
-        return;
-    }
-
-    m->tipo = RESPUESTA;
-    m->json = strdup(jsonStr);  // copiamos el JSON generado
-
-    if (!m->json) {
-        ESP_LOGE(TAG, "No se pudo duplicar JSON");
-        free(m);
-        free(jsonStr);
-        cJSON_Delete(root);
-        return;
-    }
-
-    // Encolar mensaje
-    if (!encolar(m)) {
-        ESP_LOGE(TAG, "No se pudo encolar mensaje de respuesta");
-        free(m->json);
-        free(m);
-        m = NULL;
-    }
-
-    // Liberar memoria temporal
-    free(jsonStr);
-    cJSON_Delete(root);
-}
 
 static void enviarDatoTransito(int dispositivoid, int valor, int carril, int clasificacionId, char* fecha) {
 
@@ -1288,12 +1334,57 @@ static void enviarDatoTransito(int dispositivoid, int valor, int carril, int cla
     cJSON_Delete(root);
 }
 
+//---------
+//simular transito
+static void initTimestamp() {
+    struct tm tm_base = {0};
+    tm_base.tm_year = 2025 - 1900;
+    tm_base.tm_mon  = 9; // octubre
+    tm_base.tm_mday = 15;
+    tm_base.tm_hour = 20;
+    tm_base.tm_min  = 0;
+    tm_base.tm_sec  = 0;
 
+    timestampBase = mktime(&tm_base);
+}
+
+//Devuelve un valor aleatorio 
+static int valorAleatorio(int minVal, int maxVal) {
+    uint32_t r = esp_random();      
+    return minVal + (r % (maxVal - minVal + 1));
+}
+//simulo el transito.
+static void transito_random_task(void* pvParameters) {
+    while (1) {
+        // Generar medición random
+        int valor = valorAleatorio(10, 50);
+        int carril = valorAleatorio(1, 2);
+        int clasificacion = valorAleatorio(1, 2);
+
+        int segundosRandom = esp_random() % (2*60*60);
+        time_t fechaRandom = timestampBase + segundosRandom;
+        struct tm* tm_info = gmtime(&fechaRandom);
+        char fechaStr[25];
+        strftime(fechaStr, sizeof(fechaStr), "%Y-%m-%dT%H:%M:%SZ", tm_info);
+
+        // Enviar
+        enviarDatoTransito(1, valor, carril, clasificacion, fechaStr);
+      
+        //tomo 30 seg 
+        vTaskDelay(pdMS_TO_TICKS(30000));
+    }
+}
+//------------------------------------------
+
+
+// main
 void app_main(void)
 {
     ESP_LOGI(TAG, "Inicio Aplicación...");
    
-
+    //solo para simular
+    initTimestamp();
+    
     if (!uart_init())
       {
         ESP_LOGE(TAG, "No se pudo inicializar uarts. Saliendo...");
@@ -1313,7 +1404,7 @@ void app_main(void)
     
       
       
- 
+
       //Iniciar tarea para leer RS232
      if (xTaskCreate(rs232_lectura_tarea, "rs232_lectura_tarea", 4096, NULL, 10, NULL)!= pdPASS)
       {  
@@ -1328,13 +1419,11 @@ void app_main(void)
        return;
       }
 
+    //solo para simular transito 
+    if (xTaskCreate(transito_random_task, "transito_task", 4096, NULL, 5, NULL) != pdPASS) {
+        ESP_LOGE(TAG, "No se pudo crear la tarea de transito random");
+    }
 
 
-      enviarDatoTransito(1, 49, 2, 1, "2025-10-13T20:00:00Z");
       
-      enviarDatoTransito(1, 33, 2, 1, "2025-10-13T20:03:00Z");
- 
-      enviarDatoTransito(1, 55, 2, 1, "2025-10-13T20:10:00Z");
-
-      enviarRespuestaComando(1, 2,"OK", "2025-10-13T20:13:00Z");
     }
