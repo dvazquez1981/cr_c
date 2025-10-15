@@ -426,7 +426,6 @@ static bool tcp_is_connected() {
     return false;
 }
 
-
 static bool gprs_connect()
 {   uart_flush(UART_MODEM_NUM);
     ESP_LOGI(TAG_GPRS, "Verificando comunicación con AT...");
