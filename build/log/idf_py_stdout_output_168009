@@ -1,0 +1,429 @@
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0x1 (POWERON),boot:0xc (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (30) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time Oct 13 2025 15:52:46[0m
+[0;32mI (30) boot: chip revision: v0.3[0m
+[0;32mI (33) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (38) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (43) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (56) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (78) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (90) esp_image: segment 0: paddr=00010020 vaddr=3c030020 size=0d860h ( 55392) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=0001d888 vaddr=3fc8c200 size=012e8h (  4840) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=0001eb78 vaddr=40380000 size=014a0h (  5280) load[0m
+[0;32mI (116) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=288f0h (166128) map[0m
+[0;32mI (150) esp_image: segment 4: paddr=00048918 vaddr=403814a0 size=0ad2ch ( 44332) load[0m
+[0;32mI (162) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (162) boot: Disabling RNG early entropy source...[0m
+[0;32mI (174) cpu_start: Unicore app[0m
+[0;32mI (183) cpu_start: Pro cpu start user code[0m
+[0;32mI (183) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (183) cpu_start: Application information:[0m
+[0;32mI (186) cpu_start: Project name:     cr_c[0m
+[0;32mI (191) cpu_start: App version:      53fc32a-dirty[0m
+[0;32mI (196) cpu_start: Compile time:     Oct 15 2025 16:21:55[0m
+[0;32mI (202) cpu_start: ELF file SHA256:  53cf13352fd4936f...[0m
+[0;32mI (208) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (213) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (217) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (222) cpu_start: Chip rev:         v0.3[0m
+[0;32mI (227) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (234) heap_init: At 3FC8E4F0 len 00031B10 (198 KiB): RAM[0m
+[0;32mI (240) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (247) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (254) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (261) spi_flash: detected chip: generic[0m
+[0;32mI (265) spi_flash: flash io: dio[0m
+[0;33mW (269) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (283) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (289) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (296) main_task: Started on CPU0[0m
+[0;32mI (296) main_task: Calling app_main()[0m
+[0;32mI (296) APP_ESP32C3: Inicio Aplicación...[0m
+[0;32mI (306) UART_MODEM: uart_driver_install OK[0m
+[0;32mI (306) UART_MODEM: uart_param_config OK[0m
+[0;32mI (316) UART_MODEM: uart_[0;32mI (326) UART_RS232: uart_driver_install OK[0m
+[0;32mI (326) UART_RS232: uart_set_pin OK[0m
+[0;32mI (326) UART_RS232: Uart RS232 inicializada[0m
+[0;32mI (326) UART: UARTs inicializadas correctamente.[0m
+[0;32mI (336) APP_ESP32C3: Se creo la cola[0m
+[0;33mW (336) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (346) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (346) GPRS: Comando enviado: AT
+[0m
+[0;32mI (356) main_task: Returned from app_main()[0m
+[0;32mI (476) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (476) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (476) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (2476) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (2476) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (4476) GPRS: Calidad de señal: 
++CSQ: 30,0
+
+OK
+[0m
+[0;32mI (4476) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (4476) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (6476) GPRS: No registrado en red[0m
+[0;32mI (6476) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (6476) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (8476) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (8476) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (8606) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (8606) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (8606) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (8776) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (8776) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (8776) GPRS: GPRS conectado[0m
+[0;32mI (8776) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (10776) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (10776) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (10776) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (18776) GPRS: Conexión TCP realizada[0m
+[0;32mI (18776) GPRS: TCP conectado[0m
+[0;32mI (18776) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (18906) GPRS: 0x3c03a854   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (18906) GPRS: 0x3c03a864   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (20336) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (20456) GPRS: 0x3fc96150   20 02 00 00                                       | ...|[0m
+[0;32mI (20456) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (20456) GPRS: MQTT conectado[0m
+[0;32mI (20856) GPRS: Comando enviado: AT+CIPSEND=29
+[0m
+[0;32mI (20986) GPRS: 0x3fc95f90   82 1b 00 01 00 16 2f 64  69 73 70 6f 73 69 74 69  |....../dispositi|[0m
+[0;32mI (20986) GPRS: 0x3fc95fa0   76 6f 2f 31 2f 63 6f 6d  61 6e 64 6f 00           |vo/1/comando.|[0m
+[0;32mI (22006) GPRS: CIPSEND OK: 
+SEND OK
+�[0m
+[0;32mI (22006) GPRS: SUBSCRIBE enviado: /dispositivo/1/comando[0m
+[0;32mI (42606) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (42736) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (42736) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (42736) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (42746) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 34 33  2c 22 63 61 72 72 69 6c  |alor":43,"carril|[0m
+[0;32mI (42756) GPRS: 0x3fc95fb0   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (42766) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (42776) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 38 3a 34  |"2025-10-15T18:4|[0m
+[0;32mI (42786) GPRS: 0x3fc95fe0   35 3a 30 37 5a 22 7d                              |5:07Z"}|[0m
+[0;32mI (44446) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (44446) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":43,"carril":2,"clasificacionId":1,"fecha":"2025-10-15T18:45:07Z"}[0m
+[0;32mI (53246) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (53376) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (53376) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (53376) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (53386) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 32 39  2c 22 63 61 72 72 69 6c  |alor":29,"carril|[0m
+[0;32mI (53396) GPRS: 0x3fc95fb0   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (53406) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 32 2c  22 66 65 63 68 61 22 3a  |onId":2,"fecha":|[0m
+[0;32mI (53416) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 37 3a 35  |"2025-10-15T17:5|[0m
+[0;32mI (53426) GPRS: 0x3fc95fe0   30 3a 32 37 5a 22 7d                              |0:27Z"}|[0m
+[0;32mI (55066) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (55066) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":29,"carril":2,"clasificacionId":2,"fecha":"2025-10-15T17:50:27Z"}[0m
+[0;32mI (81966) GPRS: PINGREQ enviado[0m
+[0;32mI (81966) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (82096) GPRS: 0x3fc961ac   c0 00                                             |..|[0m
+[0;32mI (83476) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (83486) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (101386) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (101516) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (101516) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (101516) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (101526) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 35 30  2c 22 63 61 72 72 69 6c  |alor":50,"carril|[0m
+[0;32mI (101536) GPRS: 0x3fc95fb0   22 3a 31 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":1,"clasificaci|[0m
+[0;32mI (101546) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 32 2c  22 66 65 63 68 61 22 3a  |onId":2,"fecha":|[0m
+[0;32mI (101556) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 37 3a 31  |"2025-10-15T17:1|[0m
+[0;32mI (101566) GPRS: 0x3fc95fe0   37 3a 31 36 5a 22 7d                              |7:16Z"}|[0m
+[0;32mI (103306) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (103306) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":50,"carril":1,"clasificacionId":2,"fecha":"2025-10-15T17:17:16Z"}[0m
+[0;32mI (123006) GPRS: PINGREQ enviado[0m
+[0;32mI (123006) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (123136) GPRS: 0x3fc961ac   c0 00                                             |..|[0m
+[0;32mI (124546) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (124546) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (150846) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (150976) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (150976) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (150976) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (150986) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 32 39  2c 22 63 61 72 72 69 6c  |alor":29,"carril|[0m
+[0;32mI (150996) GPRS: 0x3fc95fb0   22 3a 31 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":1,"clasificaci|[0m
+[0;32mI (151006) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (151016) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 38 3a 31  |"2025-10-15T18:1|[0m
+[0;32mI (151026) GPRS: 0x3fc95fe0   31 3a 33 33 5a 22 7d                              |1:33Z"}|[0m
+[0;32mI (152746) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (152746) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":29,"carril":1,"clasificacionId":1,"fecha":"2025-10-15T18:11:33Z"}[0m
+[0;32mI (164046) GPRS: PINGREQ enviado[0m
+[0;32mI (164046) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (164176) GPRS: 0x3fc961ac   c0 00                                             |..|[0m
+[0;32mI (165556) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (165566) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (200356) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (200486) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (200486) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (200486) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (200496) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 33 36  2c 22 63 61 72 72 69 6c  |alor":36,"carril|[0m
+[0;32mI (200506) GPRS: 0x3fc95fb0   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (200516) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (200526) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 38 3a 33  |"2025-10-15T18:3|[0m
+[0;32mI (200536) GPRS: 0x3fc95fe0   39 3a 34 33 5a 22 7d                              |9:43Z"}|[0m
+[0;32mI (202186) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (202186) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":36,"carril":2,"clasificacionId":1,"fecha":"2025-10-15T18:39:43Z"}[0m
+[0;32mI (204386) GPRS: PINGREQ enviado[0m
+[0;32mI (204386) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (204516) GPRS: 0x3fc961ac   c0 00                                             |..|[0m
+[0;32mI (205916) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (205936) APP_ESP32C3: PINGRESP recibido[0m
+[0;32mI (245236) GPRS: PINGREQ enviado[0m
+[0;32mI (245236) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (245366) GPRS: 0x3fc961ac   c0 00                                             |..|[0m
+[0;32mI (246786) GPRS: CIPSEND OK: 
+SEND OK
+�
+[0;33mW (254486) GPRS: No se recibió PINGRESP a tiempo[0m
+[0;33mW (254486) GPRS: Conexión MQTT caída, reiniciando...[0m
+[0;32mI (254486) GPRS: Comando enviado: AT+CIPCLOSE
+[0m
+[0;32mI (254626) GPRS: TCP desconectado exitosamente[0m
+[0;32mI (256626) GPRS: Comando enviado: AT+CIPSHUT
+[0m
+[0;32mI (257166) GPRS: Respuesta OK recibida: 
+SHUT OK
+[0m
+[0;32mI (257166) GPRS: Conexión GPRS cerrada[0m
+[0;33mW (259166) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (259166) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (259166) GPRS: Comando enviado: AT
+[0m
+[0;32mI (259286) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (259286) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (259286) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (261286) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (261286) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (263286) GPRS: Calidad de señal: 
++CSQ: 30,0
+
+OK
+[0m
+[0;32mI (263286) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (263286) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (265286) GPRS: No registrado en red[0m
+[0;32mI (265286) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (265286) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (267286) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (267286) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (267416) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (267416) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (267416) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;32mI (267576) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (267576) GPRS: Iniciando conexión con AT+CIICR...[0m
+[0;32mI (267576) GPRS: Comando enviado: AT+CIICR
+[0m
+[0;32mI (268376) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (268376) GPRS: Obteniendo IP con AT+CIFSR...[0m
+[0;32mI (268376) GPRS: Comando enviado: AT+CIFSR
+[0m
+[0;32mI (270376) GPRS: IP obtenida: 
+10.99.171.8
+[0m
+[0;32mI (270376) GPRS: Conexión GPRS establecida correctamente[0m
+[0;32mI (270376) GPRS: Configurando módem...[0m
+[0;32mI (270376) GPRS: Comando enviado: ATE0
+[0m
+[0;32mI (270506) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (270506) GPRS: Comando enviado: AT+CMEE=1
+[0m
+[0;32mI (270636) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (270636) GPRS: Comando enviado: AT+CIPHEAD=0
+[0m
+[0;32mI (270766) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;31mE (270766) GPRS: No se pudo conectar GPRS, reintentando en 3s...[0m
+[0;33mW (273766) GPRS: GPRS desconectado, reconectando...[0m
+[0;32mI (273766) GPRS: Verificando comunicación con AT...[0m
+[0;32mI (273766) GPRS: Comando enviado: AT
+[0m
+[0;32mI (273886) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (273886) GPRS: Verificando estado de SIM con AT+CPIN?...[0m
+[0;32mI (273886) GPRS: Comando enviado: AT+CPIN?
+[0m
+[0;32mI (275886) GPRS: Chequeando calidad de señal con AT+CSQ...[0m
+[0;32mI (275886) GPRS: Comando enviado: AT+CSQ
+[0m
+[0;32mI (277886) GPRS: Calidad de señal: 
++CSQ: 30,0
+
+OK
+[0m
+[0;32mI (277886) GPRS: Verificando registro en red con AT+CREG?...[0m
+[0;32mI (277886) GPRS: Comando enviado: AT+CREG?
+[0m
+[0;33mW (279886) GPRS: No registrado en red[0m
+[0;32mI (279886) GPRS: Activando GAT+CGREG?...[0m
+[0;32mI (279886) GPRS: Comando enviado: AT+CGREG?
+[0m
+[0;32mI (281886) GPRS: Activando GPRS con AT+CGATT=1...[0m
+[0;32mI (281886) GPRS: Comando enviado: AT+CGATT=1
+[0m
+[0;32mI (282016) GPRS: Respuesta OK recibida: 
+OK
+[0m
+[0;32mI (282016) GPRS: Configurando APN con: AT+CSTT="igprs.claro.com.ar","",""[0m
+[0;32mI (282016) GPRS: Comando enviado: AT+CSTT="igprs.claro.com.ar","",""
+[0m
+[0;31mE (282186) GPRS: Respuesta ERROR recibida: 
++CME ERROR: 3
+[0m
+[0;31mE (282186) GPRS: Error: no se pudo configurar APN[0m
+[0;32mI (282186) GPRS: GPRS conectado[0m
+[0;32mI (282186) GPRS: Comando enviado: AT+CIPSTATUS
+[0m
+[0;31mE (284196) GPRS: Error: STATE: CONNECT OK[0m
+[0;33mW (284196) GPRS: TCP desconectado, conectando...[0m
+[0;32mI (284196) GPRS: Comando enviado: AT+CIPSTART="TCP","test.mosquitto.org",1883
+[0m
+[0;32mI (292196) GPRS: Conexión TCP realizada[0m
+[0;32mI (292196) GPRS: TCP conectado[0m
+[0;32mI (292196) GPRS: Comando enviado: AT+CIPSEND=26
+[0m
+[0;32mI (292326) GPRS: 0x3c03a854   10 18 00 04 4d 51 54 54  04 02 00 3c 00 0c 65 73  |....MQTT...<..es|[0m
+[0;32mI (292326) GPRS: 0x3c03a864   70 33 32 5f 41 42 43 31  32 33                    |p32_ABC123|[0m
+[0;32mI (293776) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (293896) GPRS: 0x3fc96150   20 02 00 00                                       | ...|[0m
+[0;32mI (293896) GPRS: CONNACK recibido, MQTT conectado[0m
+[0;32mI (293896) GPRS: MQTT conectado[0m
+[0;32mI (294296) GPRS: Comando enviado: AT+CIPSEND=29
+[0m
+[0;32mI (294426) GPRS: 0x3fc95f90   82 1b 00 01 00 16 2f 64  69 73 70 6f 73 69 74 69  |....../dispositi|[0m
+[0;32mI (294426) GPRS: 0x3fc95fa0   76 6f 2f 31 2f 63 6f 6d  61 6e 64 6f 00           |vo/1/comando.|[0m
+[0;32mI (295646) GPRS: CIPSEND OK: 
+SEND OK
+�[0m
+[0;32mI (295646) GPRS: SUBSCRIBE enviado: /dispositivo/1/comando[0m
+[0;32mI (316246) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (316376) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (316376) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (316376) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (316386) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 34 35  2c 22 63 61 72 72 69 6c  |alor":45,"carril|[0m
+[0;32mI (316396) GPRS: 0x3fc95fb0   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (316406) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (316416) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 38 3a 35  |"2025-10-15T18:5|[0m
+[0;32mI (316426) GPRS: 0x3fc95fe0   38 3a 34 33 5a 22 7d                              |8:43Z"}|[0m
+[0;32mI (318136) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (318136) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":45,"carril":2,"clasificacionId":1,"fecha":"2025-10-15T18:58:43Z"}[0m
+[0;32mI (326936) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (327066) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (327066) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (327066) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (327076) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 32 34  2c 22 63 61 72 72 69 6c  |alor":24,"carril|[0m
+[0;32mI (327086) GPRS: 0x3fc95fb0   22 3a 32 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":2,"clasificaci|[0m
+[0;32mI (327096) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 32 2c  22 66 65 63 68 61 22 3a  |onId":2,"fecha":|[0m
+[0;32mI (327106) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 38 3a 35  |"2025-10-15T18:5|[0m
+[0;32mI (327116) GPRS: 0x3fc95fe0   35 3a 30 34 5a 22 7d                              |5:04Z"}|[0m
+[0;32mI (328756) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (328756) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":24,"carril":2,"clasificacionId":2,"fecha":"2025-10-15T18:55:04Z"}[0m
+[0;32mI (350756) GPRS: Comando enviado: AT+CIPSEND=119
+[0m
+[0;32mI (350886) GPRS: 0x3fc95f70   30 75 00 17 2f 64 69 73  70 6f 73 69 74 69 76 6f  |0u../dispositivo|[0m
+[0;32mI (350886) GPRS: 0x3fc95f80   2f 31 2f 6d 65 64 69 63  69 6f 6e 7b 22 64 69 73  |/1/medicion{"dis|[0m
+[0;32mI (350886) GPRS: 0x3fc95f90   70 6f 73 69 74 69 76 6f  49 64 22 3a 31 2c 22 76  |positivoId":1,"v|[0m
+[0;32mI (350896) GPRS: 0x3fc95fa0   61 6c 6f 72 22 3a 34 38  2c 22 63 61 72 72 69 6c  |alor":48,"carril|[0m
+[0;32mI (350906) GPRS: 0x3fc95fb0   22 3a 31 2c 22 63 6c 61  73 69 66 69 63 61 63 69  |":1,"clasificaci|[0m
+[0;32mI (350916) GPRS: 0x3fc95fc0   6f 6e 49 64 22 3a 31 2c  22 66 65 63 68 61 22 3a  |onId":1,"fecha":|[0m
+[0;32mI (350926) GPRS: 0x3fc95fd0   22 32 30 32 35 2d 31 30  2d 31 35 54 31 37 3a 31  |"2025-10-15T17:1|[0m
+[0;32mI (350936) GPRS: 0x3fc95fe0   38 3a 31 33 5a 22 7d                              |8:13Z"}|[0m
+[0;32mI (352616) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (352616) GPRS: PUBLISH enviado: /dispositivo/1/medicion -> {"dispositivoId":1,"valor":48,"carril":1,"clasificacionId":1,"fecha":"2025-10-15T17:18:13Z"}[0m
+[0;32mI (355916) GPRS: PINGREQ enviado[0m
+[0;32mI (355916) GPRS: Comando enviado: AT+CIPSEND=2
+[0m
+[0;32mI (356046) GPRS: 0x3fc961ac   c0 00                                             |..|[0m
+[0;32mI (357536) GPRS: CIPSEND OK: 
+SEND OK
+[0m
+[0;32mI (357586) APP_ESP32C3: PINGRESP recibido[0m

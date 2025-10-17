@@ -404,7 +404,6 @@ static bool tcp_disconnect() {
     return false;
 }
 
-
 static bool tcp_is_connected() {
     char buf[128];
     uart_flush(UART_MODEM_NUM);
@@ -667,7 +666,6 @@ static bool tcp_send(const uint8_t* data, unsigned int len) {
     return false;
 }
 
-
 static bool gprs_disconnect() {
 
     vTaskDelay(pdMS_TO_TICKS(2000));
@@ -921,24 +919,26 @@ static void parsearComando(char* payload) {
     
 
 int icmd = -1;
-int itipo = -1;
-char* valorStr = NULL;
+int itipoComando = -1;
+//char* valorStr = NULL;
 char* fechaStr = NULL;
 
 if (cmdId && cJSON_IsNumber(cmdId)) 
     icmd = cmdId->valueint;
 
 if (tipoComandId && cJSON_IsNumber(tipoComandId)) 
-    itipo = tipoComandId->valueint;
-
+     itipoComando = tipoComandId->valueint;
+/*
 
 if (valor && cJSON_IsString(valor)) 
     valorStr = valor->valuestring;
+*/
+
 
 if (fecha && cJSON_IsString(fecha)) 
     fechaStr = fecha->valuestring;
  
-if (fechaStr && icmd>0 ) {
+if (fechaStr && icmd>0 &&  itipoComando>0 ) {
      enviarRespuestaComando(1,icmd,"OK",fechaStr);
     }
 
@@ -951,7 +951,6 @@ if (fechaStr && icmd>0 ) {
 
   
 }
-
 
 
 void mqtt_handle_incoming(void) {
@@ -1273,9 +1272,6 @@ while (conectado_a_mqtt) {
 
 
 
-
-
-
 static void enviarDatoTransito(int dispositivoid, int valor, int carril, int clasificacionId, char* fecha) {
 
     cJSON *root = cJSON_CreateObject();
@@ -1340,7 +1336,7 @@ static void initTimestamp() {
     tm_base.tm_year = 2025 - 1900;
     tm_base.tm_mon  = 9; // octubre
     tm_base.tm_mday = 15;
-    tm_base.tm_hour = 20;
+    tm_base.tm_hour = 17;
     tm_base.tm_min  = 0;
     tm_base.tm_sec  = 0;
 
@@ -1354,23 +1350,30 @@ static int valorAleatorio(int minVal, int maxVal) {
 }
 //simulo el transito.
 static void transito_random_task(void* pvParameters) {
+
+    static int incremento = 0;  
+    const int PASO_SEGUNDOS = 5 * 60; ;  // cuánto aumenta el tiempo simulado cada vez (ej: 60 seg)
+
+
     while (1) {
         // Generar medición random
         int valor = valorAleatorio(10, 50);
         int carril = valorAleatorio(1, 2);
         int clasificacion = valorAleatorio(1, 2);
 
-        int segundosRandom = esp_random() % (2*60*60);
-        time_t fechaRandom = timestampBase + segundosRandom;
-        struct tm* tm_info = gmtime(&fechaRandom);
+        time_t fechaSimulada = timestampBase + incremento;
+
+        struct tm* tm_info = gmtime(&fechaSimulada);
         char fechaStr[25];
         strftime(fechaStr, sizeof(fechaStr), "%Y-%m-%dT%H:%M:%SZ", tm_info);
 
         // Enviar
         enviarDatoTransito(1, valor, carril, clasificacion, fechaStr);
+        // Sumar
+        incremento += PASO_SEGUNDOS;
       
-        //tomo 30 seg 
-        vTaskDelay(pdMS_TO_TICKS(30000));
+        //tomo 50 seg 
+        vTaskDelay(50 * 1000 / portTICK_PERIOD_MS);
     }
 }
 //------------------------------------------
