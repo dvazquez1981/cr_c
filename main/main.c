@@ -1364,8 +1364,9 @@ static void transito_random_task(void* pvParameters) {
         time_t fechaSimulada = timestampBase + incremento;
 
         struct tm* tm_info = gmtime(&fechaSimulada);
-        char fechaStr[25];
-        strftime(fechaStr, sizeof(fechaStr), "%Y-%m-%dT%H:%M:%SZ", tm_info);
+        char fechaStr[32];
+        strftime(fechaStr, sizeof(fechaStr), "%Y-%m-%dT%H:%M:%S-03:00", tm_info);
+
 
         // Enviar
         enviarDatoTransito(1, valor, carril, clasificacion, fechaStr);
