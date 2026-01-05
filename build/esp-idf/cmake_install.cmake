@@ -412,3 +412,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/main/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/cmake_install.cmake")
+endif()
+

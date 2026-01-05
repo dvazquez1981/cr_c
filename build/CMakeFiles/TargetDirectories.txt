@@ -628,3 +628,10 @@
 /home/diego/proyectos/_/viejo/cr_c/build/esp-idf/main/CMakeFiles/install.dir
 /home/diego/proyectos/_/viejo/cr_c/build/esp-idf/main/CMakeFiles/install/local.dir
 /home/diego/proyectos/_/viejo/cr_c/build/esp-idf/main/CMakeFiles/install/strip.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/__idf_modem.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/edit_cache.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/rebuild_cache.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/list_install_components.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/install.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/install/local.dir
+/home/diego/proyectos/_/viejo/cr_c/build/esp-idf/modem/CMakeFiles/install/strip.dir

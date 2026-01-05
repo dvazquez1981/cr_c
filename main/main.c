@@ -339,6 +339,154 @@ static Mensaje* desencolar()
     return NULL;
 }
 
+
+
+static void procesarMensaje(const char *jsonStr) {
+
+    cJSON *root = cJSON_Parse(jsonStr);
+    if (!root) {
+        ESP_LOGE(TAG, "Error al parsear JSON");
+        return;
+    }
+
+    //  Mensaje de TRÁNSITO ---
+    if (cJSON_HasObjectItem(root, "dispositivoId")) {
+
+        // Extraemos los campos desde el JSON recibido
+        cJSON *dispositivoId = cJSON_GetObjectItem(root, "dispositivoId");
+        cJSON *valor = cJSON_GetObjectItem(root, "valor");
+        cJSON *carril = cJSON_GetObjectItem(root, "carril");
+        cJSON *clasificacionId = cJSON_GetObjectItem(root, "clasificacionId");
+        cJSON *fecha = cJSON_GetObjectItem(root, "fecha");
+
+        if (!cJSON_IsNumber(dispositivoId) || !cJSON_IsNumber(valor) ||
+            !cJSON_IsNumber(carril) || !cJSON_IsNumber(clasificacionId) ||
+            !cJSON_IsString(fecha)) {
+            ESP_LOGE(TAG, "Formato JSON inválido para tránsito");
+            cJSON_Delete(root);
+            return;
+        }
+
+        // Crear nuevo JSON (por ejemplo, para reenviar o almacenar)
+        cJSON *nuevo = cJSON_CreateObject();
+        cJSON_AddNumberToObject(nuevo, "dispositivoId", dispositivoId->valueint);
+        cJSON_AddNumberToObject(nuevo, "valor", valor->valueint);
+        cJSON_AddNumberToObject(nuevo, "carril", carril->valueint);
+        cJSON_AddNumberToObject(nuevo, "clasificacionId", clasificacionId->valueint);
+        cJSON_AddStringToObject(nuevo, "fecha", fecha->valuestring);
+
+        // Convertir a string
+        char *nuevoJsonStr = cJSON_PrintUnformatted(nuevo);
+        if (!nuevoJsonStr) {
+            ESP_LOGE(TAG, "Error convirtiendo JSON a string");
+            cJSON_Delete(nuevo);
+            cJSON_Delete(root);
+            return;
+        }
+
+        // Crear estructura Mensaje
+        Mensaje* m = malloc(sizeof(Mensaje));
+        if (!m) {
+            ESP_LOGE(TAG, "No se pudo reservar memoria para Mensaje");
+            free(nuevoJsonStr);
+            cJSON_Delete(nuevo);
+            cJSON_Delete(root);
+            return;
+        }
+
+        m->tipo = TRANSITO;
+        m->json = strdup(nuevoJsonStr);
+
+        if (!m->json) {
+            ESP_LOGE(TAG, "No se pudo duplicar JSON");
+            free(m);
+            free(nuevoJsonStr);
+            cJSON_Delete(nuevo);
+            cJSON_Delete(root);
+            return;
+        }
+
+        // Encolar la estructura
+        if (!encolar(m)) {
+            ESP_LOGE(TAG, "No se pudo encolar mensaje de tránsito");
+            free(m->json);
+            free(m);
+            m = NULL;
+        }
+
+        free(nuevoJsonStr);
+        cJSON_Delete(nuevo);
+    }
+
+    // Mensaje de COMANDO 
+    else if (cJSON_HasObjectItem(root, "cmdId")) {
+
+        cJSON *cmdId = cJSON_GetObjectItem(root, "cmdId");
+        cJSON *accion = cJSON_GetObjectItem(root, "valor");
+        cJSON *dispositivoId = cJSON_GetObjectItem(root, "dispositivoId");
+        cJSON *fecha = cJSON_GetObjectItem(root, "fecha");
+
+        if (!cJSON_IsNumber(cmdId) || !cJSON_IsString(accion) ||
+            !cJSON_IsNumber(dispositivoId) || !cJSON_IsString(fecha)) {
+            ESP_LOGE(TAG, "Formato JSON inválido para comando");
+            cJSON_Delete(root);
+            return;
+        }
+
+        // Armar respuesta
+        cJSON *resp = cJSON_CreateObject();
+        cJSON_AddNumberToObject(resp, "cmdId", cmdId->valueint);
+        cJSON_AddStringToObject(resp, "valor", accion->valuestring);
+        cJSON_AddNumberToObject(resp, "dispositivoId", dispositivoId->valueint);
+        cJSON_AddStringToObject(resp, "fecha", fecha->valuestring);
+
+        char *respJsonStr = cJSON_PrintUnformatted(resp);
+        if (!respJsonStr) {
+            ESP_LOGE(TAG, "Error convirtiendo JSON a string");
+            cJSON_Delete(resp);
+            cJSON_Delete(root);
+            return;
+        }
+
+        Mensaje* m = malloc(sizeof(Mensaje));
+        if (!m) {
+            ESP_LOGE(TAG, "No se pudo reservar memoria para Mensaje");
+            free(respJsonStr);
+            cJSON_Delete(resp);
+            cJSON_Delete(root);
+            return;
+        }
+
+        m->tipo = RESPUESTA;
+        m->json = strdup(respJsonStr);
+
+        if (!m->json) {
+            ESP_LOGE(TAG, "No se pudo duplicar JSON");
+            free(m);
+            free(respJsonStr);
+            cJSON_Delete(resp);
+            cJSON_Delete(root);
+            return;
+        }
+
+        if (!encolar(m)) {
+            ESP_LOGE(TAG, "No se pudo encolar mensaje de respuesta");
+            free(m->json);
+            free(m);
+            m = NULL;
+        }
+
+        free(respJsonStr);
+        cJSON_Delete(resp);
+    }
+
+    // --- CASO DESCONOCIDO ---
+    else {
+        ESP_LOGW(TAG, "Tipo de mensaje desconocido");
+    }
+
+    cJSON_Delete(root);
+}
 static void rs232_lectura_tarea(void *pvParameter)
 {
     
@@ -352,7 +500,14 @@ static void rs232_lectura_tarea(void *pvParameter)
                 memcpy(msg, data, len);
                 msg[len] = '\0';
                 ESP_LOGI(TAG_UART_RS232, "recibido UART DTEC: %s", msg);
-                encolar((char*)msg);
+
+                
+
+
+
+
+
+                procesarMensaje((char*)msg);
           }
         }
     }
@@ -381,7 +536,6 @@ static bool crear_cola(void)
     ESP_LOGI(TAG, "Se creo la cola");
     return true;
 }
-
 
 
 static bool tcp_disconnect() {
@@ -940,6 +1094,8 @@ if (fecha && cJSON_IsString(fecha))
  
 if (fechaStr && icmd>0 &&  itipoComando>0 ) {
      enviarRespuestaComando(1,icmd,"OK",fechaStr);
+
+
     }
 
 
@@ -1029,9 +1185,9 @@ void mqtt_handle_incoming(void) {
             
             ESP_LOGI(TAG, "Tópico: %s", topic);
             ESP_LOGI(TAG, "Payload: %s", payload);
-            parsearComando(payload);
+            //parsearComando(payload);
             
-            //rs232_enviar(payload);
+            rs232_enviar(payload);
             break;
         }
 
@@ -1272,6 +1428,7 @@ while (conectado_a_mqtt) {
 
 
 
+
 static void enviarDatoTransito(int dispositivoid, int valor, int carril, int clasificacionId, char* fecha) {
 
     cJSON *root = cJSON_CreateObject();
@@ -1384,6 +1541,9 @@ static void transito_random_task(void* pvParameters) {
 void app_main(void)
 {
     ESP_LOGI(TAG, "Inicio Aplicación...");
+
+    esp_log_level_set("*", ESP_LOG_NONE);
+    esp_log_set_vprintf(NULL);
    
     //solo para simular
     initTimestamp();
@@ -1422,11 +1582,11 @@ void app_main(void)
        return;
       }
 
-    //solo para simular transito 
+   /* //solo para simular transito 
     if (xTaskCreate(transito_random_task, "transito_task", 4096, NULL, 5, NULL) != pdPASS) {
         ESP_LOGE(TAG, "No se pudo crear la tarea de transito random");
     }
 
-
+    */
       
     }
